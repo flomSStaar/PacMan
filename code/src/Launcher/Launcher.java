@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Launcher extends Application
 {
     public void start(Stage stage) throws IOException {
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/fxml/vueAccueil.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/fxml/vueParametres.fxml"))));
         stage.setMaximized(true);
         stage.show();
     }

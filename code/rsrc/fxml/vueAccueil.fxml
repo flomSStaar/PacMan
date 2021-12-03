@@ -24,7 +24,7 @@
       <Button mnemonicParsing="false" text="Jouer" />
       <HBox alignment="BOTTOM_RIGHT" prefHeight="36.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" text="Paramètre" />
+            <Button mnemonicParsing="false" text="Paramètres" />
          </children>
       </HBox>
    </children>
