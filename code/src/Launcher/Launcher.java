@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class Launcher extends Application {
     public void start(Stage stage) throws IOException {
-        stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/vueAccueil.fxml")))));
+        stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/vueJeu.fxml")))));
         stage.setFullScreen(true);
         stage.setFullScreenExitHint("");
         //stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
