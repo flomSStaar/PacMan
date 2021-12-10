@@ -6,33 +6,32 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.BorderPane?>
-<VBox alignment="CENTER" style="-fx-background-image: url(/image/fond.png);-fx-background-repeat: no-repeat; -fx-background-position: center center;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox alignment="TOP_RIGHT">
-         <children>
-            <Button mnemonicParsing="false" text="Fermer" />
-         </children>
-      </HBox>
-      <ImageView pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="/image/Titre.png" />
-         </image></ImageView>
-
-      <ImageView pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="/image/PacMan.png" />
-         </image></ImageView>
-      <Button mnemonicParsing="false" text="Jouer" />
-      <HBox alignment="BOTTOM_RIGHT">
-         <children>
-            <Button mnemonicParsing="false" text="Parametres" />
-         </children>
-      </HBox>
-   </children>
-</VBox>
+<BorderPane style="-fx-background-image: url(/image/fond.png);-fx-background-repeat: no-repeat; -fx-background-position: center center;"
+            xmlns="http://javafx.com/javafx/16">
+    <top>
+        <ImageView pickOnBounds="true" visible="false" preserveRatio="true">
+            <image>
+                <Image url="/image/Titre.png"/>
+            </image>
+        </ImageView>
+    </top>
+    <center>
+        <ImageView pickOnBounds="true" visible="false" preserveRatio="true">
+            <image>
+                <Image url="/image/PacMan.png"/>
+            </image>
+        </ImageView>
+        <HBox alignment="TOP_RIGHT">
+            <children>
+                <Button mnemonicParsing="false" text="Fermer"/>
+            </children>
+        </HBox>
+        <Button mnemonicParsing="false" text="Jouer"/>
+        <HBox alignment="BOTTOM_RIGHT">
+            <children>
+                <Button mnemonicParsing="false" text="Parametres"/>
+            </children>
+        </HBox>
+    </center>
+</BorderPane>
