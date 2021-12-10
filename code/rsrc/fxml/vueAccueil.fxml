@@ -4,11 +4,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.BorderPane?>
 <BorderPane style="-fx-background-image: url(/image/fond.png);-fx-background-repeat: no-repeat; -fx-background-position: center center;"
-            xmlns="http://javafx.com/javafx/16">
+            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/javafx/1" fx:controller="view.VueAccueil">
     <top>
         <ImageView pickOnBounds="true" visible="false" preserveRatio="true">
             <image>

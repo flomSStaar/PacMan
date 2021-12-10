@@ -1,6 +1,6 @@
 package view;
 
-public class VueScore {
+public class VueAccueil {
     public void initialize(){
 
     }
