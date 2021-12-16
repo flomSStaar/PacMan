@@ -23,4 +23,12 @@ public abstract class BaseEntity {
     public float getHeight() { return height.get(); }
     public void setHeight(float height) { this.height.set(height); }
     public FloatProperty heightProperty() { return height; }
+
+    public BaseEntity(float x, float y, float width, float height)
+    {
+        setX(x);
+        setY(y);
+        setWidth(width);
+        setHeight(height);
+    }
 }
