@@ -6170,7 +6170,7 @@
 										"$ref": "AAAAAAF9nicyuo+qYng="
 									},
 									"edgePosition": 1,
-									"text": "+entityMananger"
+									"text": "+monde"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -9194,7 +9194,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9ekNzsvNM8NY="
 									},
-									"name": "x"
+									"name": "x",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9202,7 +9203,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9ekNzsvNM8NY="
 									},
-									"name": "y"
+									"name": "y",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9240,7 +9242,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9ekPBm/NUKKU="
 									},
-									"name": "entities"
+									"name": "entities",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9248,7 +9251,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9ekPBm/NUKKU="
 									},
-									"name": "entity"
+									"name": "entity",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9284,7 +9288,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlYT09N5bkY="
 									},
-									"name": "entities"
+									"name": "entities",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9292,7 +9297,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlYT09N5bkY="
 									},
-									"name": "entity"
+									"name": "entity",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9509,7 +9515,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9ngOcVzCK5b0="
 									},
-									"name": "x"
+									"name": "x",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9517,7 +9524,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9ngOcVzCK5b0="
 									},
-									"name": "y"
+									"name": "y",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9569,7 +9577,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9ngTc5TLxKEE="
 									},
-									"name": "x"
+									"name": "x",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9577,7 +9586,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9ngTc5TLxKEE="
 									},
-									"name": "y"
+									"name": "y",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9870,7 +9880,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF9niWwfIoqm9w="
 							},
-							"name": "entityMananger",
+							"name": "monde",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAF9nicyuo+nnDs=",
@@ -11645,7 +11655,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF9njFKyrIjGdY="
 							},
-							"name": "Role3"
+							"name": "Role3",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -11671,7 +11682,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF9njFKyrIjGdY="
 							},
-							"name": "Role6"
+							"name": "Role6",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -11734,7 +11746,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlaqUdT5zoo="
 									},
-									"name": "entities"
+									"name": "entities",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -11742,7 +11755,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlaqUdT5zoo="
 									},
-									"name": "entity"
+									"name": "entity",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -11778,7 +11792,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wleFANk5s4s="
 									},
-									"name": "entities"
+									"name": "entities",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -11786,7 +11801,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wleFANk5s4s="
 									},
-									"name": "entity"
+									"name": "entity",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -11847,7 +11863,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlgOUNqwNlA="
 									},
-									"name": "entities"
+									"name": "entities",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -11855,7 +11872,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlgOUNqwNlA="
 									},
-									"name": "entity"
+									"name": "entity",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -11891,7 +11909,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlgnhduup/o="
 									},
-									"name": "entities"
+									"name": "entities",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -11899,7 +11918,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlgnhduup/o="
 									},
-									"name": "entity"
+									"name": "entity",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -11960,7 +11980,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlgX/dsdzhI="
 									},
-									"name": "entities"
+									"name": "entities",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -11968,7 +11989,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlgX/dsdzhI="
 									},
-									"name": "entity"
+									"name": "entity",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -12004,7 +12026,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlgvhdwbYfE="
 									},
-									"name": "entities"
+									"name": "entities",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -12012,7 +12035,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF9wlgvhdwbYfE="
 									},
-									"name": "entity"
+									"name": "entity",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -12058,6 +12082,14 @@
 							}
 						}
 					]
+				},
+				{
+					"_type": "UMLInterface",
+					"_id": "AAAAAAF9yMAfjo3cRQA=",
+					"_parent": {
+						"$ref": "AAAAAAF9eftlHOcSgmw="
+					},
+					"name": "Interface1"
 				}
 			]
 		}

@@ -1,5 +1,8 @@
 package model.displacer;
 
+import model.collider.BaseCollider;
+import model.entity.BaseEntity;
+
 public interface BaseDisplacer {
-    void move(int x, int y);
+    void move(BaseEntity p, int x, int y, BaseCollider collider);
 }
