@@ -1,6 +1,7 @@
 package model.collider;
 
 import model.entity.BaseEntity;
+
 import java.util.List;
 
 public interface BaseCollider{

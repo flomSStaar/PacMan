@@ -1,8 +1,10 @@
 package model.displacer;
 
-import model.collider.BaseCollider;
 import model.entity.BaseEntity;
+import model.utils.Direction.Direction;
 
-public interface BaseDisplacer {
-    void move(BaseEntity p, int x, int y, BaseCollider collider);
+public abstract class BaseDisplacer {
+    private BaseEntity entity;
+
+    abstract void move(Direction direction);
 }

@@ -1,11 +1,10 @@
 package model.displacer;
 
-import model.collider.BaseCollider;
-import model.entity.BaseEntity;
+import model.utils.Direction.Direction;
 
-public class GhostDisplacer implements BaseDisplacer{
+public class GhostDisplacer extends BaseDisplacer{
     @Override
-    public void move(BaseEntity entity, int x, int y, BaseCollider collider) {
+    void move(Direction direction) {
 
     }
 }
