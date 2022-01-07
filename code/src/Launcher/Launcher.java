@@ -8,9 +8,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.displacer.PacManDisplacer;
 import model.entity.BaseEntity;
 import model.entity.PacMan;
 import model.entity.Wall;
+import model.utils.Direction.Direction;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,20 +26,21 @@ public class Launcher extends Application {
         List<BaseEntity> entities = new ArrayList<>();
         readFile(entities);
         PacMan pacMan = getPacMan(entities);
+        PacManDisplacer pacManDisplacer = new PacManDisplacer(entities, pacMan);
         Scene scene = this.getScene(entities);
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             switch (key.getCode()) {
                 case Z:
-                    pacMan.setY(pacMan.getY() - 10);
+                    pacManDisplacer.move(Direction.UP);
                     break;
                 case Q:
-                    pacMan.setX(pacMan.getX() - 10);
+                    pacManDisplacer.move(Direction.LEFT);
                     break;
                 case S:
-                    pacMan.setY(pacMan.getY() + 10);
+                    pacManDisplacer.move(Direction.DOWN);
                     break;
                 case D:
-                    pacMan.setX(pacMan.getX() + 10);
+                    pacManDisplacer.move(Direction.RIGHT);
                     break;
             }
         });
@@ -88,7 +91,7 @@ public class Launcher extends Application {
                     colonne += 45;
                     break;
                 case '2':
-                    entities.add(new PacMan(colonne, ligne, 45, 45));
+                    entities.add(new PacMan(colonne, ligne, 35, 35));
                     colonne += 45;
                     break;
                 case '0':
