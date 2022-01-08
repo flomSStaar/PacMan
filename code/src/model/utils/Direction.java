@@ -1,4 +1,4 @@
-package model.utils.Direction;
+package model.utils;
 
 public enum Direction {
     UP,

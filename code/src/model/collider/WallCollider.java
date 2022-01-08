@@ -4,8 +4,6 @@ import javafx.scene.shape.Rectangle;
 import model.entity.BaseEntity;
 import model.entity.Wall;
 
-import java.awt.geom.Point2D;
-import java.util.Arrays;
 import java.util.List;
 
 public class WallCollider implements BaseCollider {

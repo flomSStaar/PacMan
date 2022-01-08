@@ -1,6 +1,6 @@
 package model.displacer;
 
-import model.utils.Direction.Direction;
+import model.utils.Direction;
 
 public class GhostDisplacer extends BaseDisplacer{
     @Override
