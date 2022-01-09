@@ -21,20 +21,10 @@ public class PacManAnimator extends BaseAnimator implements DisplacerObserver {
         this.image = (this.image + 1) % 3;
         super.imageView.setImage(im[this.image]);
         switch (super.direction) {
-            case UP:
-                super.imageView.setRotate(270);
-                break;
-            case LEFT:
-                super.imageView.setRotate(180);
-                break;
-            case DOWN:
-                super.imageView.setRotate(90);
-                break;
-            case RIGHT:
-                super.imageView.setRotate(0);
-                break;
-            default:
-                break;
+            case UP -> super.imageView.setRotate(270);
+            case LEFT -> super.imageView.setRotate(180);
+            case DOWN -> super.imageView.setRotate(90);
+            case RIGHT -> super.imageView.setRotate(0);
         }
     }
 
