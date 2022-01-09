@@ -5,6 +5,7 @@ import model.entity.BaseEntity;
 import model.entity.Ghost;
 import model.entity.PacMan;
 import model.entity.Wall;
+import model.utils.Direction;
 
 import java.util.List;
 import java.util.Random;
@@ -31,15 +32,19 @@ public class GhostDisplacer extends BaseDisplacer {
     public void onLoop() {
         if (pacMan.getY() < entity.getY() && !wallCollider.isCollide(entities, entity, entity.getX(), entity.getY() - 1)) {
             entity.setY(entity.getY() - 1);
+            direction = Direction.UP;
             notifyObservers();
         } else if (pacMan.getY() > entity.getY() && !wallCollider.isCollide(entities, entity, entity.getX(), entity.getY() + 1)) {
             entity.setY(entity.getY() + 1);
+            direction = Direction.DOWN;
             notifyObservers();
         } else if (pacMan.getX() < entity.getY() && !wallCollider.isCollide(entities, entity, entity.getX() - 1, entity.getY())) {
             entity.setX(entity.getX() - 1);
+            direction = Direction.LEFT;
             notifyObservers();
         } else if (pacMan.getX() > entity.getY() && !wallCollider.isCollide(entities, entity, entity.getX() + 1, entity.getY())) {
             entity.setX(entity.getX() + 1);
+            direction = Direction.RIGHT;
             notifyObservers();
         } else {
             int i = 0;
@@ -49,6 +54,7 @@ public class GhostDisplacer extends BaseDisplacer {
                     case 0:
                         if (!wallCollider.isCollide(entities, entity, entity.getX(), entity.getY() - 1)) {
                             entity.setY(entity.getY() - 1);
+                            direction = Direction.UP;
                             notifyObservers();
                             i++;
                         }
@@ -56,6 +62,7 @@ public class GhostDisplacer extends BaseDisplacer {
                     case 1:
                         if (!wallCollider.isCollide(entities, entity, entity.getX(), entity.getY() + 1)) {
                             entity.setY(entity.getY() + 1);
+                            direction = Direction.DOWN;
                             notifyObservers();
                             i++;
                         }
@@ -63,6 +70,7 @@ public class GhostDisplacer extends BaseDisplacer {
                     case 2:
                         if (!wallCollider.isCollide(entities, entity, entity.getX() - 1, entity.getY())) {
                             entity.setX(entity.getX() - 1);
+                            direction = Direction.LEFT;
                             notifyObservers();
                             i++;
                         }
@@ -70,6 +78,7 @@ public class GhostDisplacer extends BaseDisplacer {
                     case 3:
                         if (!wallCollider.isCollide(entities, entity, entity.getX() + 1, entity.getY())) {
                             entity.setX(entity.getX() + 1);
+                            direction = Direction.RIGHT;
                             notifyObservers();
                             i++;
                         }

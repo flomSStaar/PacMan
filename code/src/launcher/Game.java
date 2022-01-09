@@ -13,6 +13,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.World;
 import model.animator.GhostAnimator;
@@ -150,6 +152,14 @@ public class Game implements EntityObserver {
             Thread thread2 = new Thread(animationLooper, "GameThreadAnimation");
             thread2.start();
             gameThread.add(thread2);
+
+            Text t_score = new Text(10, 17, "Score");
+            t_score.setFill(Color.WHITE);
+            Text t_time = new Text(520, 17, "");
+            t_time.setFill(Color.WHITE);
+            Text t_level = new Text(10, 35, "");
+            t_level.setFill(Color.WHITE);
+
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
@@ -158,7 +168,7 @@ public class Game implements EntityObserver {
         }
     }
 
-    public Scene getScene(List<BaseEntity> entities, Map<BaseEntity, ImageView> m, int score) throws IOException {
+    private Scene getScene(List<BaseEntity> entities, Map<BaseEntity, ImageView> m, int score) throws IOException {
         pane = FXMLLoader.load(getClass().getResource("/fxml/vueJeu.fxml"));
         pane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         for (BaseEntity entity : entities) {
@@ -181,6 +191,10 @@ public class Game implements EntityObserver {
             i.yProperty().bind(entity.yProperty());
             pane.getChildren().add(i);
         }
+        Text scoreText = new Text(10, 40, "score");
+        scoreText.setFill(Color.WHITE);
+        scoreText.setFont(Font.loadFont(getClass().getResourceAsStream("/font/PAC-FONT.ttf"), 30));
+        pane.getChildren().add(scoreText);
         return new Scene(pane);
     }
 
@@ -188,6 +202,6 @@ public class Game implements EntityObserver {
     public void update(BaseEntity e) {
         pane.getChildren().remove(mapImageView.get(e));
         mapImageView.remove(e);
-        world.Remove(e);
+        world.remove(e);
     }
 }

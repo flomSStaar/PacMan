@@ -9,9 +9,15 @@ import java.util.List;
 
 public class World {
     private List<BaseEntity> entities;
+    private Score score;
 
     public World(List<BaseEntity> entities) {
         this.entities = entities;
+        score = new Score();
+    }
+
+    public void loadWorld() {
+        //A utiliser pour charger le monde et enlever tout le code de la méthode launchGame de la classe Game
     }
 
     public PacMan getPacMan() {
@@ -36,5 +42,7 @@ public class World {
         return entities;
     }
 
-    public void Remove(BaseEntity e){entities.remove(e);}
+    public void remove(BaseEntity e) {
+        entities.remove(e);
+    }
 }
