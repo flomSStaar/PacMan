@@ -37,7 +37,7 @@ public class GhostDisplacer extends BaseDisplacer{
     }
 
     @Override
-    public void update() {
+    public void onLoop() {
         if(pacMan.getY() < entity.getY() && !wallCollider.isCollide(entities, entity, entity.getX(), entity.getY()-1))
         {
             entity.setY(entity.getY()-1);

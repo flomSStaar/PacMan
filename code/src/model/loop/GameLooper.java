@@ -1,23 +1,19 @@
 package model.loop;
 
 import javafx.application.Platform;
-import javafx.scene.image.ImageView;
 import model.World;
 import model.collider.EatCollider;
 import model.entity.BaseEntity;
-import model.entity.PacMan;
-import model.utils.Observer;
-import model.utils.ObserverEntity;
+import model.utils.EntityObserver;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class GameLooper extends Looper {
 
     private int score;
     private World world;
-    protected List<ObserverEntity> observers = new ArrayList<>();
+    protected List<EntityObserver> observers = new ArrayList<>();
 
     public GameLooper(int score, World world)
     {
@@ -50,16 +46,16 @@ public class GameLooper extends Looper {
     }
 
     public void notifyObject(BaseEntity e){
-        for (ObserverEntity o : this.observers){
+        for (EntityObserver o : this.observers){
             o.update(e);
         }
     }
 
-    public void attach(ObserverEntity o){
+    public void attach(EntityObserver o){
         observers.add(o);
     }
 
-    public void detach(ObserverEntity o){
+    public void detach(EntityObserver o){
         observers.remove(o);
     }
 }

@@ -1,18 +1,18 @@
 package model.loop;
 
-import model.utils.Observer;
+import model.utils.LooperObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Looper implements Runnable {
-    protected List<Observer> observers = new ArrayList<>();
+    protected List<LooperObserver> observers = new ArrayList<>();
 
     /**
      * Ajoute un observateur à la liste d'observateurs du boucleur
      * @param o
      */
-    public void attach(Observer o){
+    public void attach(LooperObserver o){
         observers.add(o);
     }
 
@@ -20,7 +20,7 @@ public abstract class Looper implements Runnable {
      * Supprime un observateur à la liste d'observateurs du boucleur
      * @param o
      */
-    public void detach(Observer o){
+    public void detach(LooperObserver o){
         observers.remove(o);
     }
 
@@ -28,8 +28,8 @@ public abstract class Looper implements Runnable {
      * Notifie tous les objets de la liste d'observateurs du boucleur
      */
     public void notifyObject(){
-        for (Observer o : observers){
-            o.update();
+        for (LooperObserver o : observers){
+            o.onLoop();
         }
     }
 }

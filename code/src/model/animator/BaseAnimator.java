@@ -1,26 +1,23 @@
 package model.animator;
 
 import javafx.scene.image.ImageView;
-import model.entity.BaseEntity;
 import model.utils.Direction;
-import model.utils.Observer;
+import model.utils.LooperObserver;
 
-import javax.swing.text.html.parser.Entity;
-import java.util.Map;
-
-public class BaseAnimator implements Observer {
-    protected ImageView BaseEntity;
-    protected Direction d;
+public abstract class BaseAnimator implements LooperObserver {
+    protected ImageView imageView;
+    protected Direction direction;
 
     public BaseAnimator(ImageView i){
-        this.BaseEntity = i;
-        this.d = Direction.NONE;
+        this.imageView = i;
+        this.direction = Direction.NONE;
     }
 
-    public void SetDirection(Direction direction){
-        this.d = direction;
+    public Direction getDirection(){
+        return direction;
     }
 
-    @Override
-    public void update(){}
+    public void setDirection(Direction direction){
+        this.direction = direction;
+    }
 }

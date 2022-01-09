@@ -3,42 +3,43 @@ package model.animator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.utils.Direction;
-import model.utils.Observer;
+import model.utils.DisplacerObserver;
 
-import javax.swing.text.html.parser.Entity;
-import java.net.URL;
-import java.util.Map;
-
-public class PacManAnimator extends BaseAnimator {
+public class PacManAnimator extends BaseAnimator implements DisplacerObserver {
 
     private int image;
     private Image[] im;
 
-    public PacManAnimator(ImageView i, Image[] im){
+    public PacManAnimator(ImageView i, Image[] im) {
         super(i);
         this.image = 0;
         this.im = im;
     }
 
     @Override
-    public void update(){
-        this.image = (this.image + 1)%3;
-        super.BaseEntity.setImage(im[this.image]);
-        switch (super.d) {
+    public void onLoop() {
+        this.image = (this.image + 1) % 3;
+        super.imageView.setImage(im[this.image]);
+        switch (super.direction) {
             case UP:
-                super.BaseEntity.setRotate(270);
+                super.imageView.setRotate(270);
                 break;
             case LEFT:
-                super.BaseEntity.setRotate(180);
+                super.imageView.setRotate(180);
                 break;
             case DOWN:
-                super.BaseEntity.setRotate(90);
+                super.imageView.setRotate(90);
                 break;
             case RIGHT:
-                super.BaseEntity.setRotate(0);
+                super.imageView.setRotate(0);
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onMove(Direction direction) {
+        setDirection(direction);
     }
 }

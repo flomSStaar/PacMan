@@ -4,7 +4,6 @@ import javafx.scene.shape.Rectangle;
 import model.entity.BaseEntity;
 import model.entity.Candy;
 import model.entity.SuperCandy;
-import model.entity.Wall;
 
 import java.util.ArrayList;
 import java.util.List;

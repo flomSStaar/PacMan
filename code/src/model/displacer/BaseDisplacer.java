@@ -1,12 +1,8 @@
 package model.displacer;
 
 import model.entity.BaseEntity;
-import model.utils.Direction;
-import model.utils.Observer;
+import model.utils.LooperObserver;
 
-public abstract class BaseDisplacer implements Observer {
+public abstract class BaseDisplacer implements LooperObserver {
     BaseEntity entity;
-
-    @Override
-    public void update(){}
 }

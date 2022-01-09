@@ -2,6 +2,6 @@ package model.utils;
 
 import model.entity.BaseEntity;
 
-public interface ObserverEntity {
+public interface EntityObserver {
     void update(BaseEntity e);
 }

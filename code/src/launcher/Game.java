@@ -8,9 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.World;
 import model.animator.GhostAnimator;
@@ -22,7 +24,7 @@ import model.loop.AnimationLooper;
 import model.loop.GameLooper;
 import model.loop.MovementLooper;
 import model.utils.Direction;
-import model.utils.ObserverEntity;
+import model.utils.EntityObserver;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Game implements ObserverEntity {
+public class Game implements EntityObserver {
     private Stage stage;
     private List<Thread> gameThread = new ArrayList<>();
     private Map<BaseEntity, ImageView> MapImageView = new HashMap<>();
@@ -92,7 +94,8 @@ public class Game implements ObserverEntity {
             im[1] = new Image("/image/PacManSprite1.png");
             im[2] = new Image("/image/PacManSprite2.png");
             PacManAnimator pacManAnimator = new PacManAnimator(this.MapImageView.get(pacMan), im);
-            PacManDisplacer pacManDisplacer = new PacManDisplacer(entities, pacMan, pacManAnimator);
+            PacManDisplacer pacManDisplacer = new PacManDisplacer(entities, pacMan);
+            pacManDisplacer.attach(pacManAnimator);
             MovementLooper ml = new MovementLooper();
             ml.attach(pacManDisplacer);
             AnimationLooper al = new AnimationLooper();
