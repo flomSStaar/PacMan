@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.World;
+import model.animator.GhostAnimator;
 import model.animator.PacManAnimator;
 import model.displacer.GhostDisplacer;
 import model.displacer.PacManDisplacer;
@@ -96,9 +97,20 @@ public class Game implements ObserverEntity {
             ml.attach(pacManDisplacer);
             AnimationLooper al = new AnimationLooper();
             al.attach(pacManAnimator);
+            Image[] imG = new Image[8];
+            imG[0] = new Image("/image/RedGhostUp0.png");
+            imG[1] = new Image("/image/RedGhostUp1.png");
+            imG[2] = new Image("/image/RedGhostLeft0.png");
+            imG[3] = new Image("/image/RedGhostLeft1.png");
+            imG[4] = new Image("/image/RedGhostDown0.png");
+            imG[5] = new Image("/image/RedGhostDown1.png");
+            imG[6] = new Image("/image/RedGhostRight0.png");
+            imG[7] = new Image("/image/RedGhostRight1.png");
             for(Ghost g : world.getGhosts())
             {
-                ml.attach(new GhostDisplacer(g, world.getPacMan(), world.getEntities()));
+                GhostAnimator ghostAnimator = new GhostAnimator(this.MapImageView.get(g), imG);
+                al.attach(ghostAnimator);
+                ml.attach(new GhostDisplacer(g, world.getPacMan(), world.getEntities(), ghostAnimator));
             }
             scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
                 switch (key.getCode()) {
