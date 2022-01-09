@@ -35,4 +35,6 @@ public class World {
     public List<BaseEntity> getEntities() {
         return entities;
     }
+
+    public void Remove(BaseEntity e){entities.remove(e);}
 }

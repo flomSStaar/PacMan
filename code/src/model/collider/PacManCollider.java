@@ -11,8 +11,4 @@ public class PacManCollider implements BaseCollider {
         return false;
     }
 
-    @Override
-    public List<BaseEntity> getColliding(List<BaseEntity> entities, BaseEntity entity, float x, float y) {
-        return null;
-    }
 }

@@ -2,9 +2,11 @@ package model.displacer;
 
 import model.entity.BaseEntity;
 import model.utils.Direction;
+import model.utils.Observer;
 
-public abstract class BaseDisplacer {
-    private BaseEntity entity;
+public abstract class BaseDisplacer implements Observer {
+    BaseEntity entity;
 
-    abstract void move(Direction direction);
+    @Override
+    public void update(){}
 }

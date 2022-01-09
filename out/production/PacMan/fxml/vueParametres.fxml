@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<BorderPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.*?>
+<BorderPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.VueParametres">
    <top>
-      <Text fill="#f5f507" strokeType="OUTSIDE" strokeWidth="0.0" text="Paramètres" textAlignment="CENTER" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="65.0" />
-         </font>
-      </Text>
+      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" text="Retour" textAlignment="CENTER" onAction="#back"/>
+            <Text fill="#f5f507" strokeType="OUTSIDE" strokeWidth="0.0" text="Paramètres" textAlignment="CENTER">
+               <font>
+                  <Font size="65.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
    </top>
    <center>
       <VBox alignment="CENTER">
@@ -105,4 +102,7 @@
          </children>
       </VBox>
    </center>
+   <bottom>
+      <Button alignment="CENTER" mnemonicParsing="false" text="Appliquer" textAlignment="CENTER" BorderPane.alignment="CENTER" onAction="#apply"/>
+   </bottom>
 </BorderPane>

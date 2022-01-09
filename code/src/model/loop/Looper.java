@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Looper implements Runnable {
-    private List<Observer> observers = new ArrayList<>();
+    protected List<Observer> observers = new ArrayList<>();
 
     /**
      * Ajoute un observateur à la liste d'observateurs du boucleur

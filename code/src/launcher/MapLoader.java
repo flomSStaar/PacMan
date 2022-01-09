@@ -1,8 +1,6 @@
 package launcher;
 
-import model.entity.BaseEntity;
-import model.entity.PacMan;
-import model.entity.Wall;
+import model.entity.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,18 +17,30 @@ public class MapLoader {
             switch ((char) character) {
                 case '\n':
                     x = 0;
-                    y += 45;
+                    y += 15;
                     break;
                 case '0':
-                    x += 45;
+                    x += 15;
                     break;
                 case '1':
-                    entities.add(new Wall(x, y, 45, 45));
-                    x += 45;
+                    entities.add(new Wall(x, y, 15, 15));
+                    x += 15;
                     break;
                 case '2':
-                    entities.add(new PacMan(x, y, 35, 35));
-                    x += 45;
+                    entities.add(new PacMan(x+1, y+1, 13, 13));
+                    x += 15;
+                    break;
+                case '3':
+                    entities.add(new Candy(x+7, y+7, 2, 2));
+                    x += 15;
+                    break;
+                case '4':
+                    entities.add(new SuperCandy(x+3, y+3, 8, 8));
+                    x += 15;
+                    break;
+                case '5':
+                    entities.add(new Ghost(x, y, 13, 13));
+                    x += 15;
                     break;
             }
         }
