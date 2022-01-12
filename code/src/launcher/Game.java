@@ -109,7 +109,6 @@ public class Game {
 
             pacManDisplacer.attach(pacManAnimator);
             pacManDisplacer.attach(candyEater);
-
             movementLooper.attach(pacManDisplacer);
 
             animationLooper.attach(pacManAnimator);
@@ -129,9 +128,10 @@ public class Game {
             img[7] = new Image("/image/RedGhostRight1.png");
             for (Ghost ghost : world.getGhosts()) {
                 GhostAnimator ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), img);
-                animationLooper.attach(ghostAnimator);
                 GhostDisplacer ghostDisplacer = new GhostDisplacer(ghost, world.getPacMan(), world.getEntities());
+
                 ghostDisplacer.attach(ghostAnimator);
+                animationLooper.attach(ghostAnimator);
                 movementLooper.attach(ghostDisplacer);
             }
             scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
