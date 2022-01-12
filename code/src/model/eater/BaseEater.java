@@ -1,6 +1,8 @@
 package model.eater;
 
+import model.collider.BaseCollider;
 import model.entity.BaseEntity;
+import model.utils.Direction;
 import model.utils.DisplacerObserver;
 import model.utils.EatObserver;
 
@@ -8,8 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseEater implements DisplacerObserver {
-    protected List<BaseEntity> entities = new ArrayList<>();
     private List<EatObserver> observers = new ArrayList<>();
+    protected List<BaseEntity> entities = new ArrayList<>();
+    protected BaseCollider collider;
 
     public void attach(EatObserver observer) {
         if (observer != null && !observers.contains(observer))
@@ -22,11 +25,20 @@ public abstract class BaseEater implements DisplacerObserver {
 
     /**
      * Notifie les observateurs qu'une entité peut être mangée
+     *
      * @param entity Entité pouvant mangée
      */
     public void notifyEating(BaseEntity entity) {
         for (EatObserver observer : observers) {
             observer.onEat(entity);
+        }
+    }
+
+    @Override
+    public void onMove(BaseEntity entity, Direction direction) {
+        List<BaseEntity> collidingEntites = collider.getColliding(entities, entity, entity.getX(), entity.getY());
+        for (BaseEntity e : collidingEntites) {
+            notifyEating(e);
         }
     }
 }

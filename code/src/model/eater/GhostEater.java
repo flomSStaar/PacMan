@@ -2,21 +2,16 @@ package model.eater;
 
 import model.collider.GhostCollider;
 import model.entity.BaseEntity;
-import model.utils.Direction;
 
 import java.util.List;
 
+/**
+ * Classe permettant de savoir si un fantome peut être mangé
+ * La classe notifie tous les observateurs si c'est le cas
+ */
 public class GhostEater extends BaseEater {
-    private GhostCollider ghostCollider = new GhostCollider();
-
     public GhostEater(List<BaseEntity> entities) {
         this.entities = entities;
-    }
-
-    @Override
-    public void onMove(BaseEntity entity, Direction direction) {
-        if (ghostCollider.isCollide(entities, entity, entity.getX(), entity.getY())) {
-            notifyEating(entity);
-        }
+        collider = new GhostCollider();
     }
 }
