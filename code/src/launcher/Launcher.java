@@ -1,21 +1,21 @@
 package launcher;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class Launcher extends Application {
     public static Game game;
 
-    public void start(Stage stage) throws Exception {
-        try{
+    public void start(Stage stage) {
+        try {
             game = new Game(stage);
-        }catch (IOException ioException){
+            stage.setOnCloseRequest(event -> {
+                Platform.exit();
+                System.exit(0);
+            });
+        } catch (Exception ioException) {
             ioException.printStackTrace();
-            stage.close();
-        }catch (Exception e){
-            e.printStackTrace();
             stage.close();
         }
     }
