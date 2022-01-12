@@ -2,6 +2,7 @@ package model.animator;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.entity.BaseEntity;
 import model.utils.Direction;
 import model.utils.DisplacerObserver;
 
@@ -29,7 +30,7 @@ public class PacManAnimator extends BaseAnimator implements DisplacerObserver {
     }
 
     @Override
-    public void onMove(Direction direction) {
+    public void onMove(BaseEntity entity, Direction direction) {
         setDirection(direction);
     }
 }

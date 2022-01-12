@@ -8,7 +8,7 @@ import model.entity.SuperCandy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EatCollider implements BaseCollider {
+public class CandyCollider implements BaseCollider {
     @Override
     public boolean isCollide(List<BaseEntity> entities, BaseEntity entity, float x, float y) {
         Rectangle entityRectangle = new Rectangle(x, y, entity.getWidth(), entity.getHeight());

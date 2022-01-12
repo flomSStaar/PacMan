@@ -1,10 +1,13 @@
 package model;
 
-public class Score {
+import model.entity.BaseEntity;
+import model.utils.EatObserver;
+
+public class Score implements EatObserver {
     private int score;
 
     public void increase() {
-        score++;
+        score += Config.CANDY_POINTS;
     }
 
     public void reset() {
@@ -13,5 +16,11 @@ public class Score {
 
     public int getScore() {
         return score;
+    }
+
+    @Override
+    public void onEat(BaseEntity entity) {
+        increase();
+        System.out.println(score);
     }
 }

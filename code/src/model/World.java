@@ -3,21 +3,25 @@ package model;
 import model.entity.BaseEntity;
 import model.entity.Ghost;
 import model.entity.PacMan;
+import model.utils.EatObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class World {
+public class World implements EatObserver {
     private List<BaseEntity> entities;
-    private Score score;
+    private Score score = new Score();
 
     public World(List<BaseEntity> entities) {
         this.entities = entities;
-        score = new Score();
     }
 
     public void loadWorld() {
         //A utiliser pour charger le monde et enlever tout le code de la méthode launchGame de la classe Game
+    }
+
+    public Score getScore() {
+        return score;
     }
 
     public PacMan getPacMan() {
@@ -42,7 +46,12 @@ public class World {
         return entities;
     }
 
-    public void remove(BaseEntity e) {
-        entities.remove(e);
+    public void remove(BaseEntity entity) {
+        entities.remove(entity);
+    }
+
+    @Override
+    public void onEat(BaseEntity entity) {
+        remove(entity);
     }
 }

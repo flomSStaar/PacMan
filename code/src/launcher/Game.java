@@ -6,7 +6,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -16,30 +15,28 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.SpriteManager;
 import model.World;
 import model.animator.GhostAnimator;
 import model.animator.PacManAnimator;
 import model.displacer.GhostDisplacer;
 import model.displacer.PacManDisplacer;
-import model.entity.*;
+import model.eater.CandyEater;
+import model.entity.BaseEntity;
+import model.entity.Ghost;
+import model.entity.PacMan;
 import model.loop.AnimationLooper;
-import model.loop.GameLooper;
 import model.loop.MovementLooper;
 import model.utils.Direction;
-import model.utils.EntityObserver;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class Game implements EntityObserver {
+public class Game {
     private Stage stage;
     private List<Thread> gameThread = new ArrayList<>();
-    private Map<BaseEntity, ImageView> mapImageView = new HashMap<>();
-    private World world;
-    private Pane pane;
+    private SpriteManager spriteManager;
 
     public Game(Stage stage) throws IOException {
         this.stage = stage;
@@ -85,23 +82,42 @@ public class Game implements EntityObserver {
 
     public void launchGame() {
         try {
-            int score = 0;
             List<BaseEntity> entities = new MapLoader().load();
-            world = new World(entities);
-
+            Pane pane = FXMLLoader.load(getClass().getResource("/fxml/vueJeu.fxml"));
+            pane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+            Scene scene = new Scene(pane);
+            World world = new World(entities);
             PacMan pacMan = world.getPacMan();
-            Scene scene = this.getScene(entities, this.mapImageView, score);
+            spriteManager = new SpriteManager(pane);
+
+            spriteManager.addAllSprite(entities);
+            Text scoreText = new Text(10, 40, "score");
+            scoreText.setFill(Color.WHITE);
+            scoreText.setFont(Font.loadFont(getClass().getResourceAsStream("/font/PAC-FONT.ttf"), 30));
+            pane.getChildren().add(scoreText);
+
             Image[] im = new Image[3];
             im[0] = new Image("/image/PacManSprite0.png");
             im[1] = new Image("/image/PacManSprite1.png");
             im[2] = new Image("/image/PacManSprite2.png");
-            PacManAnimator pacManAnimator = new PacManAnimator(this.mapImageView.get(pacMan), im);
+
+            PacManAnimator pacManAnimator = new PacManAnimator(spriteManager.getImageView(pacMan), im);
             PacManDisplacer pacManDisplacer = new PacManDisplacer(entities, pacMan);
-            pacManDisplacer.attach(pacManAnimator);
             MovementLooper movementLooper = new MovementLooper();
-            movementLooper.attach(pacManDisplacer);
             AnimationLooper animationLooper = new AnimationLooper();
+            CandyEater candyEater = new CandyEater(entities);
+
+            pacManDisplacer.attach(pacManAnimator);
+            pacManDisplacer.attach(candyEater);
+
+            movementLooper.attach(pacManDisplacer);
+
             animationLooper.attach(pacManAnimator);
+
+            candyEater.attach(spriteManager);
+            candyEater.attach(world);
+            candyEater.attach(world.getScore());
+
             Image[] img = new Image[8];
             img[0] = new Image("/image/RedGhostUp0.png");
             img[1] = new Image("/image/RedGhostUp1.png");
@@ -111,10 +127,10 @@ public class Game implements EntityObserver {
             img[5] = new Image("/image/RedGhostDown1.png");
             img[6] = new Image("/image/RedGhostRight0.png");
             img[7] = new Image("/image/RedGhostRight1.png");
-            for (Ghost g : world.getGhosts()) {
-                GhostAnimator ghostAnimator = new GhostAnimator(this.mapImageView.get(g), img);
+            for (Ghost ghost : world.getGhosts()) {
+                GhostAnimator ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), img);
                 animationLooper.attach(ghostAnimator);
-                GhostDisplacer ghostDisplacer = new GhostDisplacer(g, world.getPacMan(), world.getEntities());
+                GhostDisplacer ghostDisplacer = new GhostDisplacer(ghost, world.getPacMan(), world.getEntities());
                 ghostDisplacer.attach(ghostAnimator);
                 movementLooper.attach(ghostDisplacer);
             }
@@ -141,11 +157,7 @@ public class Game implements EntityObserver {
                         break;
                 }
             });
-            GameLooper gl = new GameLooper(0, world);
-            Thread thread = new Thread(gl, "GameThreadMove");
-            gl.attach(this);
-            thread.start();
-            gameThread.add(thread);
+
             Thread thread1 = new Thread(movementLooper, "GameThreadMove");
             thread1.start();
             gameThread.add(thread1);
@@ -153,55 +165,11 @@ public class Game implements EntityObserver {
             thread2.start();
             gameThread.add(thread2);
 
-            Text t_score = new Text(10, 17, "Score");
-            t_score.setFill(Color.WHITE);
-            Text t_time = new Text(520, 17, "");
-            t_time.setFill(Color.WHITE);
-            Text t_level = new Text(10, 35, "");
-            t_level.setFill(Color.WHITE);
-
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             //Afficher un message d'erreur si la map n'arrive pas à charger.
             e.printStackTrace();
         }
-    }
-
-    private Scene getScene(List<BaseEntity> entities, Map<BaseEntity, ImageView> m, int score) throws IOException {
-        pane = FXMLLoader.load(getClass().getResource("/fxml/vueJeu.fxml"));
-        pane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        for (BaseEntity entity : entities) {
-            ImageView i;
-            if (entity instanceof Wall) {
-                i = new ImageView(new Image("/image/wall.png"));
-            } else if (entity instanceof PacMan) {
-                i = new ImageView(new Image("/image/PacManSprite0.png"));
-            } else if (entity instanceof Candy) {
-                i = new ImageView(new Image("/image/Bonbon.png"));
-            } else if (entity instanceof SuperCandy) {
-                i = new ImageView(new Image("/image/SuperBonbon.png"));
-            } else if (entity instanceof Ghost) {
-                i = new ImageView(new Image("/image/RedGhostRight0.png"));
-            } else {
-                continue;
-            }
-            m.put(entity, i);
-            i.xProperty().bind(entity.xProperty());
-            i.yProperty().bind(entity.yProperty());
-            pane.getChildren().add(i);
-        }
-        Text scoreText = new Text(10, 40, "score");
-        scoreText.setFill(Color.WHITE);
-        scoreText.setFont(Font.loadFont(getClass().getResourceAsStream("/font/PAC-FONT.ttf"), 30));
-        pane.getChildren().add(scoreText);
-        return new Scene(pane);
-    }
-
-    @Override
-    public void update(BaseEntity e) {
-        pane.getChildren().remove(mapImageView.get(e));
-        mapImageView.remove(e);
-        world.remove(e);
     }
 }

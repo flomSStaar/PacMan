@@ -23,7 +23,7 @@ public class PacManDisplacer extends BaseDisplacer {
                 if (!wallCollider.isCollide(entities, super.entity, super.entity.getX(), super.entity.getY() - 1)) {
                     this.direction = Direction.UP;
                     this.directionFuture = Direction.NONE;
-                    notifyObservers();
+                    notifyMove();
                 } else
                     this.directionFuture = Direction.UP;
                 break;
@@ -31,7 +31,7 @@ public class PacManDisplacer extends BaseDisplacer {
                 if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() - 1, super.entity.getY())) {
                     this.direction = Direction.LEFT;
                     this.directionFuture = Direction.NONE;
-                    notifyObservers();
+                    notifyMove();
                 } else
                     this.directionFuture = Direction.LEFT;
                 break;
@@ -39,7 +39,7 @@ public class PacManDisplacer extends BaseDisplacer {
                 if (!wallCollider.isCollide(entities, super.entity, super.entity.getX(), super.entity.getY() + 1)) {
                     this.direction = Direction.DOWN;
                     this.directionFuture = Direction.NONE;
-                    notifyObservers();
+                    notifyMove();
                 } else
                     this.directionFuture = Direction.DOWN;
                 break;
@@ -47,7 +47,7 @@ public class PacManDisplacer extends BaseDisplacer {
                 if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + 1, super.entity.getY())) {
                     this.direction = Direction.RIGHT;
                     this.directionFuture = Direction.NONE;
-                    notifyObservers();
+                    notifyMove();
                 } else
                     this.directionFuture = Direction.RIGHT;
                 break;
@@ -62,7 +62,6 @@ public class PacManDisplacer extends BaseDisplacer {
                     this.direction = Direction.UP;
                     this.directionFuture = Direction.NONE;
                     moveUp();
-                    notifyObservers();
                 } else
                     dep();
                 break;
@@ -71,7 +70,6 @@ public class PacManDisplacer extends BaseDisplacer {
                     this.direction = Direction.LEFT;
                     this.directionFuture = Direction.NONE;
                     moveLeft();
-                    notifyObservers();
                 } else
                     dep();
                 break;
@@ -80,7 +78,6 @@ public class PacManDisplacer extends BaseDisplacer {
                     this.direction = Direction.DOWN;
                     this.directionFuture = Direction.NONE;
                     moveDown();
-                    notifyObservers();
                 } else
                     dep();
                 break;
@@ -89,7 +86,6 @@ public class PacManDisplacer extends BaseDisplacer {
                     this.direction = Direction.RIGHT;
                     this.directionFuture = Direction.NONE;
                     moveRight();
-                    notifyObservers();
                 } else
                     dep();
                 break;
@@ -118,6 +114,7 @@ public class PacManDisplacer extends BaseDisplacer {
                     moveRight();
                 break;
         }
+        notifyMove();
     }
 
     private void moveUp() {

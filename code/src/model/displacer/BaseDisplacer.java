@@ -21,9 +21,9 @@ public abstract class BaseDisplacer implements LooperObserver {
         observers.remove(observer);
     }
 
-    public void notifyObservers() {
+    public void notifyMove() {
         for (DisplacerObserver observer : observers) {
-            observer.onMove(direction);
+            observer.onMove(entity, direction);
         }
     }
 }

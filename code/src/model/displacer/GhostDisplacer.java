@@ -33,19 +33,19 @@ public class GhostDisplacer extends BaseDisplacer {
         if (pacMan.getY() < entity.getY() && !wallCollider.isCollide(entities, entity, entity.getX(), entity.getY() - 1)) {
             entity.setY(entity.getY() - 1);
             direction = Direction.UP;
-            notifyObservers();
+            notifyMove();
         } else if (pacMan.getY() > entity.getY() && !wallCollider.isCollide(entities, entity, entity.getX(), entity.getY() + 1)) {
             entity.setY(entity.getY() + 1);
             direction = Direction.DOWN;
-            notifyObservers();
+            notifyMove();
         } else if (pacMan.getX() < entity.getY() && !wallCollider.isCollide(entities, entity, entity.getX() - 1, entity.getY())) {
             entity.setX(entity.getX() - 1);
             direction = Direction.LEFT;
-            notifyObservers();
+            notifyMove();
         } else if (pacMan.getX() > entity.getY() && !wallCollider.isCollide(entities, entity, entity.getX() + 1, entity.getY())) {
             entity.setX(entity.getX() + 1);
             direction = Direction.RIGHT;
-            notifyObservers();
+            notifyMove();
         } else {
             int i = 0;
             Random r = new Random();
@@ -55,7 +55,7 @@ public class GhostDisplacer extends BaseDisplacer {
                         if (!wallCollider.isCollide(entities, entity, entity.getX(), entity.getY() - 1)) {
                             entity.setY(entity.getY() - 1);
                             direction = Direction.UP;
-                            notifyObservers();
+                            notifyMove();
                             i++;
                         }
                         break;
@@ -63,7 +63,7 @@ public class GhostDisplacer extends BaseDisplacer {
                         if (!wallCollider.isCollide(entities, entity, entity.getX(), entity.getY() + 1)) {
                             entity.setY(entity.getY() + 1);
                             direction = Direction.DOWN;
-                            notifyObservers();
+                            notifyMove();
                             i++;
                         }
                         break;
@@ -71,7 +71,7 @@ public class GhostDisplacer extends BaseDisplacer {
                         if (!wallCollider.isCollide(entities, entity, entity.getX() - 1, entity.getY())) {
                             entity.setX(entity.getX() - 1);
                             direction = Direction.LEFT;
-                            notifyObservers();
+                            notifyMove();
                             i++;
                         }
                         break;
@@ -79,7 +79,7 @@ public class GhostDisplacer extends BaseDisplacer {
                         if (!wallCollider.isCollide(entities, entity, entity.getX() + 1, entity.getY())) {
                             entity.setX(entity.getX() + 1);
                             direction = Direction.RIGHT;
-                            notifyObservers();
+                            notifyMove();
                             i++;
                         }
                         break;
