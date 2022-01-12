@@ -30,12 +30,10 @@ import model.loop.MovementLooper;
 import model.utils.Direction;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
     private Stage stage;
-    private List<Thread> gameThread = new ArrayList<>();
     private SpriteManager spriteManager;
 
     public Game(Stage stage) throws IOException {
@@ -70,14 +68,8 @@ public class Game {
     }
 
     public void close() {
-        //La libération des threads ne fonctionne pas
-        //Par conséquent le jeu ne s'arrête pas correctement si un thread a été demarré
-        for (Thread thread : gameThread) {
-            if (thread.getState() == Thread.State.RUNNABLE)
-                thread.interrupt();
-        }
-        gameThread.clear();
         Platform.exit();
+        System.exit(0);
     }
 
     public void launchGame() {
@@ -148,6 +140,16 @@ public class Game {
                     case D:
                         pacManDisplacer.move(Direction.RIGHT);
                         break;
+                    case A:
+                        candyEater.attach(spriteManager);
+                        candyEater.attach(world);
+                        candyEater.attach(world.getScore());
+                        break;
+                    case E:
+                        candyEater.detach(spriteManager);
+                        candyEater.detach(world);
+                        candyEater.detach(world.getScore());
+                        break;
                     case ESCAPE:
                         try {
                             home();
@@ -160,10 +162,8 @@ public class Game {
 
             Thread thread1 = new Thread(movementLooper, "GameThreadMove");
             thread1.start();
-            gameThread.add(thread1);
             Thread thread2 = new Thread(animationLooper, "GameThreadAnimation");
             thread2.start();
-            gameThread.add(thread2);
 
             stage.setScene(scene);
             stage.show();
