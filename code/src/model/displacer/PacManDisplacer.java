@@ -1,6 +1,5 @@
 package model.displacer;
 
-import model.collider.WallCollider;
 import model.entity.BaseEntity;
 import model.entity.PacMan;
 import model.utils.Direction;
@@ -24,11 +23,10 @@ public class PacManDisplacer extends BaseDisplacer {
         if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + directionFuture.getDx(), super.entity.getY() + directionFuture.getDy()) && directionFuture != Direction.NONE) {
             direction = directionFuture;
             directionFuture = Direction.NONE;
-            notifyObservers();
+            notifyMove();
         }
         if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + direction.getDx(), super.entity.getY() + direction.getDy())) {
-            bouge(direction, 1);
+            moveEntity(direction, 1);
         }
     }
-
 }
