@@ -16,7 +16,7 @@ public class CandyCollider implements BaseCollider {
         for (BaseEntity e : entities) {
             if (e instanceof Candy || e instanceof SuperCandy) {
                 Rectangle eatRectangle = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
-                if (entityRectangle.getBoundsInLocal().contains(eatRectangle.getBoundsInLocal())) {
+                if (entityRectangle.getBoundsInParent().contains(eatRectangle.getBoundsInParent())) {
                     return true;
                 }
             }
@@ -24,6 +24,7 @@ public class CandyCollider implements BaseCollider {
         return false;
     }
 
+    @Override
     public List<BaseEntity> getColliding(List<BaseEntity> entities, BaseEntity entity, float x, float y) {
         List<BaseEntity> l = new ArrayList<>();
         Rectangle entityRectangle = new Rectangle(x, y, entity.getWidth(), entity.getHeight());
@@ -31,7 +32,7 @@ public class CandyCollider implements BaseCollider {
         for (BaseEntity e : entities) {
             if (e instanceof Candy || e instanceof SuperCandy) {
                 Rectangle eatRectangle = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
-                if (entityRectangle.getBoundsInLocal().contains(eatRectangle.getBoundsInLocal())) {
+                if (entityRectangle.getBoundsInParent().contains(eatRectangle.getBoundsInParent())) {
                     l.add(e);
                 }
             }
