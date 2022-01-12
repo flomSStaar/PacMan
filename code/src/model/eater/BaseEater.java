@@ -12,7 +12,8 @@ public abstract class BaseEater implements DisplacerObserver {
     private List<EatObserver> observers = new ArrayList<>();
 
     public void attach(EatObserver observer) {
-        observers.add(observer);
+        if (observer != null && !observers.contains(observer))
+            observers.add(observer);
     }
 
     public void detach(EatObserver observer) {

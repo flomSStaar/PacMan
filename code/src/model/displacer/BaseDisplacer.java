@@ -17,7 +17,8 @@ public abstract class BaseDisplacer implements LooperObserver {
     protected List<BaseEntity> entities;
 
     public void attach(DisplacerObserver observer) {
-        observers.add(observer);
+        if (observer != null && !observers.contains(observer))
+            observers.add(observer);
     }
 
     public void detach(DisplacerObserver observer) {

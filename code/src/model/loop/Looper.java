@@ -10,18 +10,19 @@ public abstract class Looper implements Runnable {
 
     /**
      * Ajoute un observateur à la liste d'observateurs du boucleur
-     * @param o
+     * @param observer
      */
-    public void attach(LooperObserver o){
-        observers.add(o);
+    public void attach(LooperObserver observer){
+        if (observer != null && !observers.contains(observer))
+            observers.add(observer);
     }
 
     /**
      * Supprime un observateur à la liste d'observateurs du boucleur
-     * @param o
+     * @param observer
      */
-    public void detach(LooperObserver o){
-        observers.remove(o);
+    public void detach(LooperObserver observer){
+        observers.remove(observer);
     }
 
     /**
