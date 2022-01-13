@@ -34,8 +34,14 @@ public class SpriteManager implements EatObserver {
             imageView = new ImageView(new Image("/image/Bonbon.png"));
         } else if (entity instanceof SuperCandy) {
             imageView = new ImageView(new Image("/image/SuperBonbon.png"));
-        } else if (entity instanceof Ghost) {
+        } else if (entity instanceof RedGhost) {
             imageView = new ImageView(new Image("/image/RedGhostRight0.png"));
+        } else if (entity instanceof BlueGhost) {
+            imageView = new ImageView(new Image("/image/BlueGhostRight0.png"));
+        } else if (entity instanceof PinkGhost) {
+            imageView = new ImageView(new Image("/image/PinkGhostRight0.png"));
+        } else if (entity instanceof OrangeGhost) {
+            imageView = new ImageView(new Image("/image/OrangeGhostRight0.png"));
         } else {
             throw new IllegalArgumentException("Unknown Entity");
         }
