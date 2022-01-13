@@ -6,7 +6,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -28,6 +27,7 @@ import model.loop.MovementLooper;
 import model.utils.Direction;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
