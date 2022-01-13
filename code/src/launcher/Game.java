@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -19,12 +20,9 @@ import model.SpriteManager;
 import model.World;
 import model.animator.GhostAnimator;
 import model.animator.PacManAnimator;
-import model.displacer.GhostDisplacer;
-import model.displacer.PacManDisplacer;
+import model.displacer.*;
 import model.eater.CandyEater;
-import model.entity.BaseEntity;
-import model.entity.Ghost;
-import model.entity.PacMan;
+import model.entity.*;
 import model.loop.AnimationLooper;
 import model.loop.MovementLooper;
 import model.utils.Direction;
@@ -110,36 +108,105 @@ public class Game {
             candyEater.attach(world);
             candyEater.attach(world.getScore());
 
-            Image[] img = new Image[8];
-            img[0] = new Image("/image/RedGhostUp0.png");
-            img[1] = new Image("/image/RedGhostUp1.png");
-            img[2] = new Image("/image/RedGhostLeft0.png");
-            img[3] = new Image("/image/RedGhostLeft1.png");
-            img[4] = new Image("/image/RedGhostDown0.png");
-            img[5] = new Image("/image/RedGhostDown1.png");
-            img[6] = new Image("/image/RedGhostRight0.png");
-            img[7] = new Image("/image/RedGhostRight1.png");
-            for (Ghost ghost : world.getGhosts()) {
-                GhostAnimator ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), img);
-                GhostDisplacer ghostDisplacer = new GhostDisplacer(ghost, world.getPacMan(), world.getEntities());
+            Image[] imgR = new Image[8];
+            imgR[0] = new Image("/image/RedGhostUp0.png");
+            imgR[1] = new Image("/image/RedGhostUp1.png");
+            imgR[2] = new Image("/image/RedGhostLeft0.png");
+            imgR[3] = new Image("/image/RedGhostLeft1.png");
+            imgR[4] = new Image("/image/RedGhostDown0.png");
+            imgR[5] = new Image("/image/RedGhostDown1.png");
+            imgR[6] = new Image("/image/RedGhostRight0.png");
+            imgR[7] = new Image("/image/RedGhostRight1.png");
 
-                ghostDisplacer.attach(ghostAnimator);
-                animationLooper.attach(ghostAnimator);
-                movementLooper.attach(ghostDisplacer);
+            Image[] imgP = new Image[8];
+            imgP[0] = new Image("/image/PinkGhostUp0.png");
+            imgP[1] = new Image("/image/PinkGhostUp1.png");
+            imgP[2] = new Image("/image/PinkGhostLeft0.png");
+            imgP[3] = new Image("/image/PinkGhostLeft1.png");
+            imgP[4] = new Image("/image/PinkGhostDown0.png");
+            imgP[5] = new Image("/image/PinkGhostDown1.png");
+            imgP[6] = new Image("/image/PinkGhostRight0.png");
+            imgP[7] = new Image("/image/PinkGhostRight1.png");
+
+            Image[] imgB = new Image[8];
+            imgB[0] = new Image("/image/BlueGhostUp0.png");
+            imgB[1] = new Image("/image/BlueGhostUp1.png");
+            imgB[2] = new Image("/image/BlueGhostLeft0.png");
+            imgB[3] = new Image("/image/BlueGhostLeft1.png");
+            imgB[4] = new Image("/image/BlueGhostDown0.png");
+            imgB[5] = new Image("/image/BlueGhostDown1.png");
+            imgB[6] = new Image("/image/BlueGhostRight0.png");
+            imgB[7] = new Image("/image/BlueGhostRight1.png");
+
+            Image[] imgO = new Image[8];
+            imgO[0] = new Image("/image/OrangeGhostUp0.png");
+            imgO[1] = new Image("/image/OrangeGhostUp1.png");
+            imgO[2] = new Image("/image/OrangeGhostLeft0.png");
+            imgO[3] = new Image("/image/OrangeGhostLeft1.png");
+            imgO[4] = new Image("/image/OrangeGhostDown0.png");
+            imgO[5] = new Image("/image/OrangeGhostDown1.png");
+            imgO[6] = new Image("/image/OrangeGhostRight0.png");
+            imgO[7] = new Image("/image/OrangeGhostRight1.png");
+
+            List<PinkGhostDisplacer> pgd = new ArrayList<>();
+            for (Ghost ghost : world.getGhosts()) {
+                GhostAnimator ghostAnimator;
+                if (ghost instanceof RedGhost) {
+                    ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), imgR);
+                    RedGhostDisplacer ghostDisplacer = new RedGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
+                    ghostDisplacer.attach(ghostAnimator);
+                    animationLooper.attach(ghostAnimator);
+                    movementLooper.attach(ghostDisplacer);
+                } else if (ghost instanceof BlueGhost) {
+                    ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), imgB);
+                    BlueGhostDisplacer ghostDisplacer = new BlueGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
+                    ghostDisplacer.attach(ghostAnimator);
+                    animationLooper.attach(ghostAnimator);
+                    movementLooper.attach(ghostDisplacer);
+                } else if (ghost instanceof PinkGhost) {
+                    ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), imgP);
+                    PinkGhostDisplacer ghostDisplacer = new PinkGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
+                    ghostDisplacer.attach(ghostAnimator);
+                    animationLooper.attach(ghostAnimator);
+                    movementLooper.attach(ghostDisplacer);
+                    pgd.add(ghostDisplacer);
+                } else {
+                    ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), imgO);
+                    OrangeGhostDisplacer ghostDisplacer = new OrangeGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
+                    ghostDisplacer.attach(ghostAnimator);
+                    animationLooper.attach(ghostAnimator);
+                    movementLooper.attach(ghostDisplacer);
+                }
             }
             scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
                 switch (key.getCode()) {
                     case Z:
                         pacManDisplacer.move(Direction.UP);
+                        for(PinkGhostDisplacer p : pgd)
+                        {
+                            p.move(Direction.UP);
+                        }
                         break;
                     case Q:
                         pacManDisplacer.move(Direction.LEFT);
+                        for(PinkGhostDisplacer p : pgd)
+                        {
+                            p.move(Direction.LEFT);
+                        }
                         break;
                     case S:
                         pacManDisplacer.move(Direction.DOWN);
+                        for(PinkGhostDisplacer p : pgd)
+                        {
+                            p.move(Direction.DOWN);
+                        }
                         break;
                     case D:
                         pacManDisplacer.move(Direction.RIGHT);
+                        for(PinkGhostDisplacer p : pgd)
+                        {
+                            p.move(Direction.RIGHT);
+                        }
                         break;
                     case A:
                         candyEater.attach(spriteManager);

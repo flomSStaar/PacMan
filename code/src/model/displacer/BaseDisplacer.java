@@ -34,10 +34,10 @@ public abstract class BaseDisplacer implements LooperObserver {
     protected void moveEntity(Direction d, int speed) {
         entity.setX(entity.getX() + (d.getDx() * speed));
         entity.setY(entity.getY() + (d.getDy() * speed));
-        if (entity.getX() <= -13)
+        if (entity.getX() <= -15)
             entity.setX(420);
         else if (entity.getX() >= 420)
-            entity.setX(-13);
+            entity.setX(-15);
         direction = d;
         notifyMove();
     }
