@@ -84,8 +84,9 @@ public class Game {
 
             spriteManager.addAllSprite(entities);
             Text scoreText = new Text(10, 40, "score");
+            scoreText.textProperty().bind(world.getScore().scoreProperty());
             scoreText.setFill(Color.WHITE);
-            scoreText.setFont(Font.loadFont(getClass().getResourceAsStream("/font/PAC-FONT.ttf"), 30));
+            scoreText.setFont(Font.loadFont(getClass().getResourceAsStream("/font/emulogic.ttf"), 15));
             pane.getChildren().add(scoreText);
 
             Image[] im = new Image[3];
