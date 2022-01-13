@@ -1,8 +1,8 @@
 package model;
 
 import model.entity.BaseEntity;
-import model.entity.Ghost;
 import model.entity.PacMan;
+import model.entity.ghost.Ghost;
 import model.utils.EatObserver;
 
 import java.util.ArrayList;

@@ -4,6 +4,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.entity.*;
+import model.entity.ghost.BlueGhost;
+import model.entity.ghost.OrangeGhost;
+import model.entity.ghost.PinkGhost;
+import model.entity.ghost.RedGhost;
 import model.utils.EatObserver;
 
 import java.util.HashMap;

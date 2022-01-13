@@ -1,4 +1,4 @@
-package model.entity;
+package model.entity.ghost;
 
 public class BlueGhost extends Ghost{
     public BlueGhost(float x, float y, float width, float height)

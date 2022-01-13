@@ -1,6 +1,10 @@
 package launcher;
 
 import model.entity.*;
+import model.entity.ghost.BlueGhost;
+import model.entity.ghost.OrangeGhost;
+import model.entity.ghost.PinkGhost;
+import model.entity.ghost.RedGhost;
 
 import java.io.BufferedReader;
 import java.io.File;

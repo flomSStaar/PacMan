@@ -2,7 +2,7 @@ package model.collider;
 
 import javafx.scene.shape.Rectangle;
 import model.entity.BaseEntity;
-import model.entity.Ghost;
+import model.entity.ghost.Ghost;
 
 import java.util.ArrayList;
 import java.util.List;

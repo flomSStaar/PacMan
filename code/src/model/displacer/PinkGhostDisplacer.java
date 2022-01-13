@@ -1,8 +1,8 @@
 package model.displacer;
 
 import model.entity.BaseEntity;
-import model.entity.Ghost;
 import model.entity.PacMan;
+import model.entity.ghost.Ghost;
 import model.utils.Direction;
 
 import java.util.List;
