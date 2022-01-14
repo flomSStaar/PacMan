@@ -7,16 +7,9 @@ import model.utils.Direction;
 
 import java.util.List;
 
-public class PinkGhostDisplacer extends GhostDisplacer{
-
-    private Direction directionFuture = Direction.NONE;
-
+public class PinkGhostDisplacer extends GhostDisplacer {
     public PinkGhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
         super(ghost, pacMan, entities);
-    }
-
-    public void move(Direction direction) {
-        this.directionFuture = direction;
     }
 
     @Override

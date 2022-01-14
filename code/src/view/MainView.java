@@ -11,7 +11,7 @@ public class MainView {
     }
 
     public void launchGame(ActionEvent actionEvent) {
-        Launcher.game.launchGame();
+        Launcher.game.startGame();
     }
 
     public void parameters(ActionEvent actionEvent) {

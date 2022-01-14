@@ -84,7 +84,7 @@ public class Game {
         System.exit(0);
     }
 
-    public void launchGame() {
+    public void startGame() {
         if (isGameLaunched) {
             stopGame();
         }
@@ -113,71 +113,62 @@ public class Game {
 
             pacManDisplacer.attach(pacManAnimator);
             pacManDisplacer.attach(candyEater);
-            movementLooper.attach(pacManDisplacer);
 
+            movementLooper.attach(pacManDisplacer);
             animationLooper.attach(pacManAnimator);
+            loopers.add(movementLooper);
+            loopers.add(animationLooper);
 
             candyEater.attach(spriteManager);
             candyEater.attach(world);
             candyEater.attach(world.getScore());
 
-            loopers.add(movementLooper);
-            loopers.add(animationLooper);
-
-            List<PinkGhostDisplacer> pgd = new ArrayList<>();
+            List<GhostDisplacer> ghostDisplacers = new ArrayList<>();
             for (Ghost ghost : world.getGhosts()) {
                 GhostAnimator ghostAnimator;
+                GhostDisplacer ghostDisplacer;
                 if (ghost instanceof RedGhost) {
                     ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getRedSprite());
-                    RedGhostDisplacer ghostDisplacer = new RedGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
-                    ghostDisplacer.attach(ghostAnimator);
-                    animationLooper.attach(ghostAnimator);
-                    movementLooper.attach(ghostDisplacer);
+                    ghostDisplacer = new RedGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
                 } else if (ghost instanceof BlueGhost) {
                     ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getBlueSprite());
-                    BlueGhostDisplacer ghostDisplacer = new BlueGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
-                    ghostDisplacer.attach(ghostAnimator);
-                    animationLooper.attach(ghostAnimator);
-                    movementLooper.attach(ghostDisplacer);
+                    ghostDisplacer = new BlueGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
                 } else if (ghost instanceof PinkGhost) {
                     ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getPingSprite());
-                    PinkGhostDisplacer ghostDisplacer = new PinkGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
-                    ghostDisplacer.attach(ghostAnimator);
-                    animationLooper.attach(ghostAnimator);
-                    movementLooper.attach(ghostDisplacer);
-                    pgd.add(ghostDisplacer);
+                    ghostDisplacer = new PinkGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
+                    ghostDisplacers.add(ghostDisplacer);
                 } else {
                     ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getOrangeSprite());
-                    OrangeGhostDisplacer ghostDisplacer = new OrangeGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
-                    ghostDisplacer.attach(ghostAnimator);
-                    animationLooper.attach(ghostAnimator);
-                    movementLooper.attach(ghostDisplacer);
+                    ghostDisplacer = new OrangeGhostDisplacer(ghost, world.getPacMan(), world.getEntities());
                 }
+                ghostDisplacer.attach(ghostAnimator);
+                animationLooper.attach(ghostAnimator);
+                movementLooper.attach(ghostDisplacer);
             }
             scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
                 switch (key.getCode()) {
                     case Z:
                         pacManDisplacer.move(Direction.UP);
-                        for (PinkGhostDisplacer p : pgd) {
-                            p.move(Direction.UP);
+                        for(GhostDisplacer ghostDisplacer : ghostDisplacers){
+                            ghostDisplacer.move(Direction.UP);
                         }
                         break;
                     case Q:
                         pacManDisplacer.move(Direction.LEFT);
-                        for (PinkGhostDisplacer p : pgd) {
-                            p.move(Direction.LEFT);
+                        for(GhostDisplacer ghostDisplacer : ghostDisplacers){
+                            ghostDisplacer.move(Direction.LEFT);
                         }
                         break;
                     case S:
                         pacManDisplacer.move(Direction.DOWN);
-                        for (PinkGhostDisplacer p : pgd) {
-                            p.move(Direction.DOWN);
+                        for(GhostDisplacer ghostDisplacer : ghostDisplacers){
+                            ghostDisplacer.move(Direction.DOWN);
                         }
                         break;
                     case D:
                         pacManDisplacer.move(Direction.RIGHT);
-                        for (PinkGhostDisplacer p : pgd) {
-                            p.move(Direction.RIGHT);
+                        for(GhostDisplacer ghostDisplacer : ghostDisplacers){
+                            ghostDisplacer.move(Direction.RIGHT);
                         }
                         break;
                     case A:
@@ -200,17 +191,16 @@ public class Game {
                 }
             });
 
-            Thread thread1 = new Thread(movementLooper, "GameThreadMove");
-            thread1.start();
-            Thread thread2 = new Thread(animationLooper, "GameThreadAnimation");
-            thread2.start();
+            Thread movementThread = new Thread(movementLooper, "GameThreadMove");
+            movementThread.start();
+            Thread animationThread = new Thread(animationLooper, "GameThreadAnimation");
+            animationThread.start();
 
             stage.setScene(scene);
             stage.show();
 
             isGameLaunched = true;
         } catch (Exception e) {
-            //Afficher un message d'erreur si la map n'arrive pas à charger.
             e.printStackTrace();
         }
     }

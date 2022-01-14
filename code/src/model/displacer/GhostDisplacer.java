@@ -15,6 +15,8 @@ import static java.lang.Math.abs;
 public class GhostDisplacer extends BaseDisplacer {
     protected PacMan pacMan;
     protected boolean[][] cell;
+    protected Direction directionFuture = Direction.NONE;
+
 
     public GhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
         super.entity = ghost;
@@ -28,24 +30,23 @@ public class GhostDisplacer extends BaseDisplacer {
         }
     }
 
+    public void move(Direction direction) {
+        this.directionFuture = direction;
+    }
 
     @Override
     public void onLoop() {
     }
 
-    protected Direction fuite()
-    {
+    protected Direction fuite() {
         int x = 0;
         int y = 0;
         int d = 0;
-        int xf = ((int) entity.getX() - ((int) entity.getX() % 15))/15;
-        int yf = ((int) entity.getY() - ((int) entity.getY() % 15))/15;
-        for(int g = 0; g < 28; g++)
-        {
-            for(int h = 0; h < 31; h++)
-            {
-                if(d < abs(g - xf) + abs(h - yf) && !cell[h][g])
-                {
+        int xf = ((int) entity.getX() - ((int) entity.getX() % 15)) / 15;
+        int yf = ((int) entity.getY() - ((int) entity.getY() % 15)) / 15;
+        for (int g = 0; g < 28; g++) {
+            for (int h = 0; h < 31; h++) {
+                if (d < abs(g - xf) + abs(h - yf) && !cell[h][g]) {
                     d = abs(g - xf) + abs(h - yf);
                     x = g;
                     y = h;
