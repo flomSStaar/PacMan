@@ -59,26 +59,6 @@ public class Game implements GameOverObserver {
         this.stage.setScene(scene);
     }
 
-    public void parameters() throws IOException {
-        if (isGameLaunched) {
-            stopGame();
-        }
-        Parent p = FXMLLoader.load(getClass().getResource("/fxml/settingsView.fxml"));
-        Scene scene = new Scene(p);
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            switch (key.getCode()) {
-                case ESCAPE:
-                    try {
-                        home();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-            }
-        });
-        this.stage.setScene(scene);
-    }
-
     public void close() {
         if (isGameLaunched) {
             stopGame();

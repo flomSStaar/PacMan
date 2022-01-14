@@ -4,12 +4,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <BorderPane
         style="-fx-background-image: url(/image/fond.png);-fx-background-repeat: no-repeat; -fx-background-position: center center;"
         xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainView">
     <top>
-        <VBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" style="-fx-border-color: red;">
+        <VBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308">
             <children>
                 <Button alignment="TOP_RIGHT" mnemonicParsing="false" text="Fermer" textAlignment="CENTER"
                         onAction="#close">
@@ -37,15 +38,5 @@
                 <Image url="/image/PacMan.png"/>
             </image>
         </ImageView>
-        <HBox alignment="TOP_RIGHT">
-            <children>
-            </children>
-        </HBox>
-        <Button mnemonicParsing="false" text="Jouer"/>
-        <HBox alignment="BOTTOM_RIGHT">
-            <children>
-                <Button mnemonicParsing="false" text="Parametres" onAction="#parameters"/>
-            </children>
-        </HBox>
     </bottom>
 </BorderPane>
