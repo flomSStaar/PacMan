@@ -1,6 +1,6 @@
 package view;
 
-public class VueScore {
+public class ScoreView {
     public void initialize(){
 
     }

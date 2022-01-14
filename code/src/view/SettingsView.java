@@ -5,7 +5,7 @@ import launcher.Launcher;
 
 import java.io.IOException;
 
-public class VueParametres {
+public class SettingsView {
     public void initialize(){
 
     }

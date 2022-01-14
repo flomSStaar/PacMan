@@ -5,12 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -55,7 +51,7 @@ public class Game {
         if (isGameLaunched) {
             stopGame();
         }
-        Parent p = FXMLLoader.load(getClass().getResource("/fxml/vueAccueil.fxml"));
+        Parent p = FXMLLoader.load(getClass().getResource("/fxml/mainView.fxml"));
         Scene scene = new Scene(p);
         this.stage.setScene(scene);
     }
@@ -64,7 +60,7 @@ public class Game {
         if (isGameLaunched) {
             stopGame();
         }
-        Parent p = FXMLLoader.load(getClass().getResource("/fxml/vueParametres.fxml"));
+        Parent p = FXMLLoader.load(getClass().getResource("/fxml/settingsView.fxml"));
         Scene scene = new Scene(p);
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             switch (key.getCode()) {
@@ -94,19 +90,20 @@ public class Game {
         }
         try {
             List<BaseEntity> entities = new MapLoader().load();
-            Pane pane = FXMLLoader.load(getClass().getResource("/fxml/vueJeu.fxml"));
-            pane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-            Scene scene = new Scene(pane);
+            BorderPane borderPane = FXMLLoader.load(getClass().getResource("/fxml/gameView.fxml"));
+            Pane pane = (Pane) borderPane.getCenter();
+            borderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+            Scene scene = new Scene(borderPane);
             World world = new World(entities);
             PacMan pacMan = world.getPacMan();
             spriteManager = new SpriteManager(pane);
-
             spriteManager.addAllSprite(entities);
-            Text scoreText = new Text(10, 40, "score");
+
+            Text scoreText = new Text(10, 40, world.getScore().getScore());
             scoreText.textProperty().bind(world.getScore().scoreProperty());
             scoreText.setFill(Color.WHITE);
             scoreText.setFont(Font.loadFont(getClass().getResourceAsStream("/font/emulogic.ttf"), 15));
-            pane.getChildren().add(scoreText);
+            borderPane.setTop(scoreText);
 
             PacManAnimator pacManAnimator = new PacManAnimator(spriteManager.getImageView(pacMan), SpriteManager.getPacManSprite());
             PacManDisplacer pacManDisplacer = new PacManDisplacer(entities, pacMan);

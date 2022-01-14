@@ -9,6 +9,7 @@ public class Launcher extends Application {
     public void start(Stage stage) {
         try {
             game = new Game(stage);
+            stage.setOnCloseRequest(event -> game.close());
         } catch (Exception ioException) {
             ioException.printStackTrace();
             stage.close();

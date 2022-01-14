@@ -5,7 +5,7 @@ import launcher.Launcher;
 
 import java.io.IOException;
 
-public class VueAccueil {
+public class MainView {
     public void initialize() {
 
     }
