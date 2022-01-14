@@ -3,7 +3,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameView"
-            fx:id="borderPane">
+            fx:id="borderPane"
+            style="-fx-background-color: black;">
     <center>
         <Pane/>
     </center>

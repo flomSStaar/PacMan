@@ -2,21 +2,23 @@ package launcher;
 
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.GameOver;
 import model.SpriteManager;
 import model.World;
 import model.animator.GhostAnimator;
 import model.animator.PacManAnimator;
 import model.displacer.*;
 import model.eater.CandyEater;
+import model.eater.PacManEater;
 import model.entity.BaseEntity;
 import model.entity.PacMan;
 import model.entity.ghost.BlueGhost;
@@ -27,17 +29,18 @@ import model.loop.AnimationLooper;
 import model.loop.Looper;
 import model.loop.MovementLooper;
 import model.utils.Direction;
+import model.utils.GameOverObserver;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game {
-    private Stage stage;
+public class Game implements GameOverObserver {
+    private final Stage stage;
     private SpriteManager spriteManager;
 
     private boolean isGameLaunched = false;
-    private List<Looper> loopers = new ArrayList<>();
+    private final List<Looper> loopers = new ArrayList<>();
 
     public Game(Stage stage) throws IOException {
         this.stage = stage;
@@ -92,7 +95,6 @@ public class Game {
             List<BaseEntity> entities = new MapLoader().load();
             BorderPane borderPane = FXMLLoader.load(getClass().getResource("/fxml/gameView.fxml"));
             Pane pane = (Pane) borderPane.getCenter();
-            borderPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
             Scene scene = new Scene(borderPane);
             World world = new World(entities);
             PacMan pacMan = world.getPacMan();
@@ -110,9 +112,15 @@ public class Game {
             MovementLooper movementLooper = new MovementLooper();
             AnimationLooper animationLooper = new AnimationLooper();
             CandyEater candyEater = new CandyEater(entities);
+            PacManEater pacManEater = new PacManEater(entities);
+            GameOver gameOver = new GameOver();
 
             pacManDisplacer.attach(pacManAnimator);
             pacManDisplacer.attach(candyEater);
+
+            pacManEater.attach(gameOver);
+
+            gameOver.attach(this);
 
             movementLooper.attach(pacManDisplacer);
             animationLooper.attach(pacManAnimator);
@@ -144,30 +152,31 @@ public class Game {
                 ghostDisplacer.attach(ghostAnimator);
                 animationLooper.attach(ghostAnimator);
                 movementLooper.attach(ghostDisplacer);
+                ghostDisplacer.attach(pacManEater);
             }
             scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
                 switch (key.getCode()) {
                     case Z:
                         pacManDisplacer.move(Direction.UP);
-                        for(GhostDisplacer ghostDisplacer : ghostDisplacers){
+                        for (GhostDisplacer ghostDisplacer : ghostDisplacers) {
                             ghostDisplacer.move(Direction.UP);
                         }
                         break;
                     case Q:
                         pacManDisplacer.move(Direction.LEFT);
-                        for(GhostDisplacer ghostDisplacer : ghostDisplacers){
+                        for (GhostDisplacer ghostDisplacer : ghostDisplacers) {
                             ghostDisplacer.move(Direction.LEFT);
                         }
                         break;
                     case S:
                         pacManDisplacer.move(Direction.DOWN);
-                        for(GhostDisplacer ghostDisplacer : ghostDisplacers){
+                        for (GhostDisplacer ghostDisplacer : ghostDisplacers) {
                             ghostDisplacer.move(Direction.DOWN);
                         }
                         break;
                     case D:
                         pacManDisplacer.move(Direction.RIGHT);
-                        for(GhostDisplacer ghostDisplacer : ghostDisplacers){
+                        for (GhostDisplacer ghostDisplacer : ghostDisplacers) {
                             ghostDisplacer.move(Direction.RIGHT);
                         }
                         break;
@@ -210,5 +219,16 @@ public class Game {
             looper.stop();
         }
         isGameLaunched = false;
+    }
+
+    @Override
+    public void onGameOver() {
+        stopGame();
+        try {
+            Thread.sleep(1000);
+            home();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
