@@ -6,12 +6,12 @@ import model.entity.ghost.Ghost;
 
 import java.util.List;
 
-public class BlueGhostDisplacer extends GhostDisplacer{
+public class BlueGhostDisplacer extends GhostDisplacer {
     public BlueGhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
         super(ghost, pacMan, entities);
     }
 
     public void onLoop() {
-        moveEntity(fuite(), 1);
+        moveEntity(fuite());
     }
 }

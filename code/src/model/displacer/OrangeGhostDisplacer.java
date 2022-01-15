@@ -38,7 +38,7 @@ public class OrangeGhostDisplacer extends GhostDisplacer{
             }
             direction = super.findShortestPath(cell, (int) super.entity.getX() / 15, (int) super.entity.getY() / 15, x, y);
         }
-        moveEntity(direction, 1);
+        moveEntity(direction);
         h++;
     }
 }

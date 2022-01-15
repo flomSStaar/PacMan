@@ -26,7 +26,7 @@ public class PacManDisplacer extends BaseDisplacer {
             notifyMove();
         }
         if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + direction.getDx(), super.entity.getY() + direction.getDy())) {
-            moveEntity(direction, 1);
+            moveEntity(direction);
         }
     }
 }

@@ -6,7 +6,7 @@ import model.entity.ghost.Ghost;
 
 import java.util.List;
 
-public class RedGhostDisplacer extends GhostDisplacer{
+public class RedGhostDisplacer extends GhostDisplacer {
 
     private int h = 0;
 
@@ -18,7 +18,7 @@ public class RedGhostDisplacer extends GhostDisplacer{
     public void onLoop() {
         if (h % 15 == 0 && (int) super.entity.getX() >= 0 && (int) super.entity.getX() < 420)
             direction = super.findShortestPath(cell, (int) super.entity.getX() / 15, (int) super.entity.getY() / 15, ((int) pacMan.getX() - ((int) pacMan.getX() % 15)) / 15, ((int) pacMan.getY() - ((int) pacMan.getY() % 15)) / 15);
-        moveEntity(direction, 1);
+        moveEntity(direction);
         h++;
     }
 
