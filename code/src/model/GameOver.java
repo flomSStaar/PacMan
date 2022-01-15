@@ -1,6 +1,7 @@
 package model;
 
 import model.entity.BaseEntity;
+import model.entity.PacMan;
 import model.utils.EatObserver;
 import model.utils.GameOverObserver;
 
@@ -11,7 +12,7 @@ public class GameOver implements EatObserver {
     private List<GameOverObserver> observers = new ArrayList<>();
 
     public void attach(GameOverObserver observer) {
-        if(observer != null && !observers.contains(observer))
+        if (observer != null && !observers.contains(observer))
             observers.add(observer);
     }
 
@@ -27,6 +28,7 @@ public class GameOver implements EatObserver {
 
     @Override
     public void onEat(BaseEntity entity) {
-        notifyGameOver();
+        if (entity instanceof PacMan)
+            notifyGameOver();
     }
 }
