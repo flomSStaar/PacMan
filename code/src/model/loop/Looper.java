@@ -47,6 +47,16 @@ public abstract class Looper implements Runnable {
         run = false;
     }
 
+    public int getMillis() {
+        return millis;
+    }
+
+    public void setMillis(int millis) {
+        if (millis > 0) {
+            this.millis = millis;
+        }
+    }
+
     @Override
     public void run() {
         while (run) {

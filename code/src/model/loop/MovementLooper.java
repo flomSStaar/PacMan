@@ -1,7 +1,7 @@
 package model.loop;
 
 public class MovementLooper extends Looper {
-    public MovementLooper(){
+    public MovementLooper() {
         super.millis = 15;
     }
 }

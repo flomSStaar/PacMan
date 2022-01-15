@@ -70,7 +70,7 @@ public class SpriteManager implements EatObserver {
         return entityImageViewMap.get(entity);
     }
 
-    public static Image[] getPacManSprite(){
+    public static Image[] getPacManSprite() {
         Image[] im = new Image[3];
         im[0] = new Image("/image/PacManSprite0.png");
         im[1] = new Image("/image/PacManSprite1.png");
@@ -139,7 +139,7 @@ public class SpriteManager implements EatObserver {
     public void onEat(BaseEntity entity) {
         ImageView imageView = entityImageViewMap.get(entity);
         if (imageView == null)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("ImageView not found for entity"+entity);
         pane.getChildren().remove(imageView);
         entityImageViewMap.remove(entity);
     }
