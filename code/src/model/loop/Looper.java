@@ -8,8 +8,13 @@ import java.util.List;
 
 public abstract class Looper implements Runnable {
     private final List<LooperObserver> observers = new ArrayList<>();
+    private String name;
     protected boolean run = true;
     protected int millis = 50;
+
+    public Looper(String name) {
+        this.name = name;
+    }
 
     /**
      * Ajoute un observateur à la liste d'observateurs du boucleur
@@ -55,6 +60,10 @@ public abstract class Looper implements Runnable {
         if (millis > 0) {
             this.millis = millis;
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

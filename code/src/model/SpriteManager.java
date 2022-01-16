@@ -22,6 +22,11 @@ public class SpriteManager implements EatObserver {
         this.pane = pane;
     }
 
+    public void reinit() {
+        entityImageViewMap.clear();
+        pane.getChildren().clear();
+    }
+
     public void addAllSprite(List<BaseEntity> entities) {
         for (BaseEntity entity : entities) {
             addSprite(entity);
@@ -62,8 +67,11 @@ public class SpriteManager implements EatObserver {
     }
 
     public void removeSprite(BaseEntity entity) {
-        entityImageViewMap.remove(entity);
+        ImageView imageView = entityImageViewMap.get(entity);
+        if (imageView == null)
+            throw new IllegalArgumentException("ImageView not found for entity" + entity);
         pane.getChildren().remove(entityImageViewMap.get(entity));
+        entityImageViewMap.remove(entity);
     }
 
     public ImageView getImageView(BaseEntity entity) {
@@ -137,10 +145,6 @@ public class SpriteManager implements EatObserver {
 
     @Override
     public void onEat(BaseEntity entity) {
-        ImageView imageView = entityImageViewMap.get(entity);
-        if (imageView == null)
-            throw new IllegalArgumentException("ImageView not found for entity"+entity);
-        pane.getChildren().remove(imageView);
-        entityImageViewMap.remove(entity);
+        removeSprite(entity);
     }
 }

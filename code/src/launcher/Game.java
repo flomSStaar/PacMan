@@ -11,36 +11,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Config;
+import model.Score;
 import model.SpriteManager;
 import model.World;
-import model.animator.GhostAnimator;
-import model.animator.PacManAnimator;
-import model.displacer.GhostDisplacer;
 import model.displacer.PacManDisplacer;
-import model.eater.CandyEater;
-import model.eater.GhostEater;
-import model.eater.PacManEater;
 import model.entity.BaseEntity;
-import model.entity.PacMan;
-import model.entity.ghost.BlueGhost;
-import model.entity.ghost.Ghost;
-import model.entity.ghost.PinkGhost;
-import model.entity.ghost.RedGhost;
-import model.loop.AnimationLooper;
-import model.loop.Looper;
 import model.utils.Direction;
-import model.utils.GameOverObserver;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Game implements GameOverObserver {
+public class Game {
     private final Stage stage;
+    private Pane pane;
     private World world;
+    private Score score = new Score();
 
     private boolean isGameLaunched = false;
-    private final List<Looper> loopers = new ArrayList<>();
 
     public Game(Stage stage) throws IOException {
         this.stage = stage;
@@ -73,85 +61,36 @@ public class Game implements GameOverObserver {
         }
         try {
             List<BaseEntity> entities = new MapLoader().load();
-            //Vue
             BorderPane borderPane = FXMLLoader.load(getClass().getResource("/fxml/gameView.fxml"));
-            Pane pane = (Pane) borderPane.getCenter();
+            pane = (Pane) borderPane.getCenter();
             Scene scene = new Scene(borderPane);
 
-            world = new World(entities);
+            world = new World(entities, new SpriteManager(pane), score);
             world.loadWorld();
-            PacMan pacMan = world.getPacMan();
+            world.attachGame(this);
 
-            SpriteManager spriteManager = new SpriteManager(pane);
-            spriteManager.addAllSprite(entities);
-
-            Text scoreText = new Text(10, 40, world.getScore().getScore());
-            scoreText.textProperty().bind(world.getScore().scoreProperty());
+            Text scoreText = new Text(10, 40, score.getScore());
+            scoreText.textProperty().bind(score.scoreProperty());
             scoreText.setFill(Color.WHITE);
             scoreText.setFont(Font.loadFont(getClass().getResourceAsStream("/font/emulogic.ttf"), 15));
             borderPane.setTop(scoreText);
 
-            //Vue
-            PacManAnimator pacManAnimator = new PacManAnimator(spriteManager.getImageView(pacMan), SpriteManager.getPacManSprite());
-            AnimationLooper animationLooper = new AnimationLooper();
-
-            PacManDisplacer pacManDisplacer = world.getPacManDisplacer();
-            CandyEater candyEater = world.getCandyEater();
-            PacManEater pacManEater = world.getPacManEater();
-            GhostEater ghostEater = world.getGhostEater();
-
-            //Vue
-            pacManDisplacer.attach(pacManAnimator);
-            ghostEater.attach(spriteManager);
-            candyEater.attach(spriteManager);
-            animationLooper.attach(pacManAnimator);
-            loopers.add(animationLooper);
-
-            world.attachGameOver(this);
-
-            List<GhostDisplacer> ghostDisplacers = new ArrayList<>();
-            for (Ghost ghost : world.getGhosts()) {
-                GhostAnimator ghostAnimator;
-                GhostDisplacer ghostDisplacer = world.getGhostDisplacer(ghost);
-                if (ghost instanceof RedGhost) {
-                    ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getRedSprite());
-                } else if (ghost instanceof BlueGhost) {
-                    ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getBlueSprite());
-                } else if (ghost instanceof PinkGhost) {
-                    ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getPingSprite());
-                    ghostDisplacers.add(ghostDisplacer);
-                } else {
-                    ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getOrangeSprite());
-                }
-                ghostDisplacer.attach(ghostAnimator);
-                animationLooper.attach(ghostAnimator);
-            }
-            scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-                switch (key.getCode()) {
-                    case Z:
-                        pacManDisplacer.move(Direction.UP);
-                        for (GhostDisplacer ghostDisplacer : ghostDisplacers) {
-                            ghostDisplacer.move(Direction.UP);
-                        }
-                        break;
-                    case Q:
-                        pacManDisplacer.move(Direction.LEFT);
-                        for (GhostDisplacer ghostDisplacer : ghostDisplacers) {
-                            ghostDisplacer.move(Direction.LEFT);
-                        }
-                        break;
-                    case S:
-                        pacManDisplacer.move(Direction.DOWN);
-                        for (GhostDisplacer ghostDisplacer : ghostDisplacers) {
-                            ghostDisplacer.move(Direction.DOWN);
-                        }
-                        break;
-                    case D:
-                        pacManDisplacer.move(Direction.RIGHT);
-                        for (GhostDisplacer ghostDisplacer : ghostDisplacers) {
-                            ghostDisplacer.move(Direction.RIGHT);
-                        }
-                        break;
+            stage.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+                try {
+                    PacManDisplacer pacManDisplacer = world.getPacManDisplacer();
+                    switch (key.getCode()) {
+                        case Z:
+                            pacManDisplacer.move(Direction.UP);
+                            break;
+                        case Q:
+                            pacManDisplacer.move(Direction.LEFT);
+                            break;
+                        case S:
+                            pacManDisplacer.move(Direction.DOWN);
+                            break;
+                        case D:
+                            pacManDisplacer.move(Direction.RIGHT);
+                            break;
 //                    case C:
 //                        pacmanMovementLooper.setMillis(10);
 //                        ghostMovementLooper.setMillis(20);
@@ -164,29 +103,26 @@ public class Game implements GameOverObserver {
 //                        pacManEater.attach(gameOver);
 //                        pacManDisplacer.detach(ghostEater);
 //                        break;
-                    case A:
-                        candyEater.attach(spriteManager);
-                        candyEater.attach(world);
-                        candyEater.attach(world.getScore());
-                        break;
-                    case E:
-                        candyEater.detach(spriteManager);
-                        candyEater.detach(world);
-                        candyEater.detach(world.getScore());
-                        break;
-                    case ESCAPE:
-                        try {
-                            home();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        break;
+                        case A:
+                            world.canPacManEatCandy(true);
+                            break;
+                        case E:
+                            world.canPacManEatCandy(false);
+                            break;
+                        case ESCAPE:
+                            try {
+                                home();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             });
 
-            Thread animationThread = new Thread(animationLooper, "GameThreadAnimation");
             world.startThread();
-            animationThread.start();
 
             stage.setScene(scene);
             stage.show();
@@ -198,19 +134,39 @@ public class Game implements GameOverObserver {
     }
 
     private void stopGame() {
-        world.clearWorld();
-        for (Looper looper : loopers) {
-            looper.stop();
+        if (isGameLaunched) {
+            world.stopThread();
+            world.clearWorld();
+            score.reset();
+            isGameLaunched = false;
         }
-        isGameLaunched = false;
     }
 
-    @Override
-    public void onGameOver() {
+    public void gameOver() {
         stopGame();
         try {
             Thread.sleep(1000);
             home();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void levelUp() {
+        try {
+            //Arret de l'ancien monde
+            world.clearWorld();
+
+            score.increase(Config.LEVEL_UP);
+
+            //Création du nouveau monde
+            List<BaseEntity> entities = new MapLoader().load();
+            SpriteManager spriteManager = world.getSpriteManager();
+            spriteManager.reinit();
+            world = new World(entities, spriteManager, score);
+            world.loadWorld();
+            world.attachGame(this);
+            world.startThread();
         } catch (Exception e) {
             e.printStackTrace();
         }
