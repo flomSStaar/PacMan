@@ -15,8 +15,8 @@ public class PacManCollider implements BaseCollider {
 
         for (BaseEntity e : entities) {
             if (e instanceof PacMan) {
-                Rectangle pacManRectangle = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
-                if (entityRectangle.intersects(pacManRectangle.getBoundsInParent())) {
+                Rectangle pacManRectangle = new Rectangle(e.getX() + e.getWidth() / 2, e.getY() + e.getHeight() / 2, 1, 1);
+                if (entityRectangle.getBoundsInParent().contains(pacManRectangle.getBoundsInParent())) {
                     return true;
                 }
             }
@@ -31,13 +31,12 @@ public class PacManCollider implements BaseCollider {
 
         for (BaseEntity e : entities) {
             if (e instanceof PacMan) {
-                Rectangle pacManRectangle = new Rectangle(e.getX(), e.getY(), e.getWidth(), e.getHeight());
-                if (entityRectangle.intersects(pacManRectangle.getBoundsInParent())) {
+                Rectangle pacManRectangle = new Rectangle(e.getX() + e.getWidth() / 2, e.getY() + e.getHeight() / 2, 1, 1);
+                if (entityRectangle.getBoundsInParent().contains(pacManRectangle.getBoundsInParent())) {
                     l.add(e);
                 }
             }
         }
         return l;
     }
-
 }
