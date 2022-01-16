@@ -91,6 +91,7 @@ public class Game {
             stage.removeEventHandler(KeyEvent.KEY_PRESSED, this::onKeyPressed);
             world.stopThread();
             world.clearWorld();
+            world = null;
             score.reset();
             isGameLaunched = false;
         }
@@ -98,6 +99,8 @@ public class Game {
 
     private void onKeyPressed(KeyEvent event) {
         try {
+            if (world == null)
+                return;
             PacManDisplacer pacManDisplacer = world.getPacManDisplacer();
             switch (event.getCode()) {
                 case Z:

@@ -221,6 +221,9 @@ public class World implements EatObserver {
                 try {
                     pacManEater.setActive(false);
                     ghostEater.setActive(true);
+                    for (GhostAnimator ghostAnimator : ghostAnimators) {
+                        ghostAnimator.setEatable(true);
+                    }
                     pacmanMovementLooper.setMillis(Config.FAST_MOVEMENT_LOOP);
                     ghostMovementLooper.setMillis(Config.SLOW_MOVEMENT_LOOP);
                     Thread.sleep(Config.PACMAN_POWER_TIME);
@@ -229,16 +232,16 @@ public class World implements EatObserver {
                 } finally {
                     pacManEater.setActive(true);
                     ghostEater.setActive(false);
+                    for (GhostAnimator ghostAnimator : ghostAnimators) {
+                        ghostAnimator.setEatable(false);
+                    }
                     pacmanMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
                     ghostMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
                 }
-            },"PacManPower").start();
+            }, "PacManPower").start();
         } else if (entity instanceof Ghost) {
             GhostDisplacer ghostDisplacer = (GhostDisplacer) entityDisplacerMap.remove(entity);
             ghostMovementLooper.detach(ghostDisplacer);
-            if (ghostDisplacer instanceof PinkGhostDisplacer) {
-                getPacManDisplacer().detach((PinkGhostDisplacer) ghostDisplacer);
-            }
         }
         removeEntity(entity);
         for (BaseEntity e : entities) {

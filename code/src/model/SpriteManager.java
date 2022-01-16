@@ -143,6 +143,13 @@ public class SpriteManager implements EatObserver {
         return imgO;
     }
 
+    public static Image[] getGhostEatableSprite() {
+        Image[] im = new Image[3];
+        im[0] = new Image("/image/GhostEatable0.png");
+        im[1] = new Image("/image/GhostEatable1.png");
+        return im;
+    }
+
     @Override
     public void onEat(BaseEntity entity) {
         removeSprite(entity);
