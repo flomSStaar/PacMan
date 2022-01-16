@@ -9,4 +9,5 @@ public class Config {
     public static final int SLOW_MOVEMENT_LOOP = 20;
     public static final int FAST_MOVEMENT_LOOP = 10;
     public static final int ANIMATION_LOOP = 100;
+    public static final int PACMAN_POWER_TIME = 5000;
 }

@@ -59,8 +59,8 @@ public class World implements EatObserver {
         if (!isLoad) {
             initLooper();
             initEater();
-            PacMan pacMan = initPacMan();
-            initGhosts(pacMan);
+            initPacMan();
+            initGhosts();
             isLoad = true;
         }
     }
@@ -88,22 +88,20 @@ public class World implements EatObserver {
         }
     }
 
-    private PacMan initPacMan() {
+    private void initPacMan() {
         PacMan pacMan = getPacMan();
         PacManDisplacer pacManDisplacer = new PacManDisplacer(entities, pacMan);
         pacManAnimator = new PacManAnimator(spriteManager.getImageView(getPacMan()), SpriteManager.getPacManSprite());
         pacManDisplacer.attach(candyEater);
+        pacManDisplacer.attach(ghostEater);
         pacManDisplacer.attach(pacManAnimator);
         entityDisplacerMap.put(pacMan, pacManDisplacer);
         pacmanMovementLooper.attach(pacManDisplacer);
         animationLooper.attach(pacManAnimator);
-
-        pacmanMovementLooper.setMillis(10);
-
-        return pacMan;
     }
 
-    private void initGhosts(PacMan pacMan) {
+    private void initGhosts() {
+        PacMan pacMan = getPacMan();
         for (Ghost ghost : getGhosts()) {
             GhostAnimator ghostAnimator;
             GhostDisplacer ghostDisplacer;
@@ -141,6 +139,8 @@ public class World implements EatObserver {
         ghostEater.attach(score);
         ghostEater.attach(this);
         pacManEater.attach(this);
+        pacManEater.setActive(true);
+        ghostEater.setActive(false);
     }
 
     private void initLooper() {
@@ -216,6 +216,29 @@ public class World implements EatObserver {
         if (entity instanceof PacMan) {
             game.gameOver();
             return;
+        } else if (entity instanceof SuperCandy) {
+            new Thread(() -> {
+                try {
+                    pacManEater.setActive(false);
+                    ghostEater.setActive(true);
+                    pacmanMovementLooper.setMillis(Config.FAST_MOVEMENT_LOOP);
+                    ghostMovementLooper.setMillis(Config.SLOW_MOVEMENT_LOOP);
+                    Thread.sleep(Config.PACMAN_POWER_TIME);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    pacManEater.setActive(true);
+                    ghostEater.setActive(false);
+                    pacmanMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
+                    ghostMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
+                }
+            },"PacManPower").start();
+        } else if (entity instanceof Ghost) {
+            GhostDisplacer ghostDisplacer = (GhostDisplacer) entityDisplacerMap.remove(entity);
+            ghostMovementLooper.detach(ghostDisplacer);
+            if (ghostDisplacer instanceof PinkGhostDisplacer) {
+                getPacManDisplacer().detach((PinkGhostDisplacer) ghostDisplacer);
+            }
         }
         removeEntity(entity);
         for (BaseEntity e : entities) {
@@ -223,6 +246,7 @@ public class World implements EatObserver {
                 return;
             }
         }
+        score.increase(Config.LEVEL_UP);
         game.levelUp();
     }
 }

@@ -75,55 +75,8 @@ public class Game {
             scoreText.setFont(Font.loadFont(getClass().getResourceAsStream("/font/emulogic.ttf"), 15));
             borderPane.setTop(scoreText);
 
-            stage.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-                try {
-                    PacManDisplacer pacManDisplacer = world.getPacManDisplacer();
-                    switch (key.getCode()) {
-                        case Z:
-                            pacManDisplacer.move(Direction.UP);
-                            break;
-                        case Q:
-                            pacManDisplacer.move(Direction.LEFT);
-                            break;
-                        case S:
-                            pacManDisplacer.move(Direction.DOWN);
-                            break;
-                        case D:
-                            pacManDisplacer.move(Direction.RIGHT);
-                            break;
-//                    case C:
-//                        pacmanMovementLooper.setMillis(10);
-//                        ghostMovementLooper.setMillis(20);
-//                        pacManEater.detach(gameOver);
-//                        pacManDisplacer.attach(ghostEater);
-//                        break;
-//                    case X:
-//                        pacmanMovementLooper.setMillis(15);
-//                        ghostMovementLooper.setMillis(15);
-//                        pacManEater.attach(gameOver);
-//                        pacManDisplacer.detach(ghostEater);
-//                        break;
-                        case A:
-                            world.canPacManEatCandy(true);
-                            break;
-                        case E:
-                            world.canPacManEatCandy(false);
-                            break;
-                        case ESCAPE:
-                            try {
-                                home();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            break;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
             world.startThread();
-
+            stage.addEventHandler(KeyEvent.KEY_PRESSED, this::onKeyPressed);
             stage.setScene(scene);
             stage.show();
 
@@ -135,10 +88,46 @@ public class Game {
 
     private void stopGame() {
         if (isGameLaunched) {
+            stage.removeEventHandler(KeyEvent.KEY_PRESSED, this::onKeyPressed);
             world.stopThread();
             world.clearWorld();
             score.reset();
             isGameLaunched = false;
+        }
+    }
+
+    private void onKeyPressed(KeyEvent event) {
+        try {
+            PacManDisplacer pacManDisplacer = world.getPacManDisplacer();
+            switch (event.getCode()) {
+                case Z:
+                    pacManDisplacer.move(Direction.UP);
+                    break;
+                case Q:
+                    pacManDisplacer.move(Direction.LEFT);
+                    break;
+                case S:
+                    pacManDisplacer.move(Direction.DOWN);
+                    break;
+                case D:
+                    pacManDisplacer.move(Direction.RIGHT);
+                    break;
+                case A:
+                    world.canPacManEatCandy(true);
+                    break;
+                case E:
+                    world.canPacManEatCandy(false);
+                    break;
+                case ESCAPE:
+                    try {
+                        home();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -156,8 +145,6 @@ public class Game {
         try {
             //Arret de l'ancien monde
             world.clearWorld();
-
-            score.increase(Config.LEVEL_UP);
 
             //Création du nouveau monde
             List<BaseEntity> entities = new MapLoader().load();

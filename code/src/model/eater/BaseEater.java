@@ -13,6 +13,7 @@ public abstract class BaseEater implements DisplacerObserver {
     private List<EatObserver> observers = new ArrayList<>();
     protected List<BaseEntity> entities = new ArrayList<>();
     protected BaseCollider collider;
+    private boolean isActive = true;
 
     public void attach(EatObserver observer) {
         if (observer != null && !observers.contains(observer))
@@ -34,11 +35,21 @@ public abstract class BaseEater implements DisplacerObserver {
         }
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean bool) {
+        isActive = bool;
+    }
+
     @Override
     public void onMove(BaseEntity entity, Direction direction) {
-        List<BaseEntity> collidingEntites = collider.getColliding(entities, entity, entity.getX(), entity.getY());
-        for (BaseEntity e : collidingEntites) {
-            notifyEating(e);
+        if (isActive) {
+            List<BaseEntity> collidingEntites = collider.getColliding(entities, entity, entity.getX(), entity.getY());
+            for (BaseEntity e : collidingEntites) {
+                notifyEating(e);
+            }
         }
     }
 }
