@@ -31,7 +31,7 @@ public class PacManDisplacer extends BaseDisplacer {
     public void onLoop() {
         if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + directionFuture.getDx(), super.entity.getY() + directionFuture.getDy())
                 && directionFuture != Direction.NONE) {
-            if (!(entity.getX() <= 0&& (directionFuture == Direction.UP || directionFuture == Direction.DOWN))) {
+            if (!((entity.getX() <= 0 || entity.getX() >= 420) && (directionFuture == Direction.UP || directionFuture == Direction.DOWN))) {
                 direction = directionFuture;
                 directionFuture = Direction.NONE;
                 moveEntity();
