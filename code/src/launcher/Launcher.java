@@ -2,7 +2,11 @@ package launcher;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.Game;
 
+/**
+ * Lanceur de l'application
+ */
 public class Launcher extends Application {
     public static Game game;
 

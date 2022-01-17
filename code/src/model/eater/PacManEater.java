@@ -10,6 +10,11 @@ import java.util.List;
  * La classe notifie tous les observateurs si c'est le cas
  */
 public class PacManEater extends BaseEater {
+    /**
+     * Créé une instance de PacManEater
+     *
+     * @param entities Liste des entités
+     */
     public PacManEater(List<BaseEntity> entities) {
         this.entities = entities;
         collider = new PacManCollider();

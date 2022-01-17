@@ -7,6 +7,9 @@ import model.entity.Wall;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Définit si une entité est en collision avec un mur
+ */
 public class WallCollider implements BaseCollider {
     @Override
     public boolean isCollide(List<BaseEntity> entities, BaseEntity entity, float x, float y) {

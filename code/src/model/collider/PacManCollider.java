@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PacManCollider implements BaseCollider {
-
     @Override
     public boolean isCollide(List<BaseEntity> entities, BaseEntity entity, float x, float y) {
         Rectangle entityRectangle = new Rectangle(x, y, entity.getWidth(), entity.getHeight());

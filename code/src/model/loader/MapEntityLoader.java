@@ -1,4 +1,4 @@
-package launcher;
+package model.loader;
 
 import model.entity.*;
 import model.entity.ghost.BlueGhost;
@@ -12,7 +12,15 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapLoader {
+/**
+ * Chargeur de carte.
+ */
+public class MapEntityLoader implements EntityLoader {
+    /**
+     * Charge les entités à partir d'un fichier
+     * @return Entités chargées
+     * @throws Exception
+     */
     public List<BaseEntity> load() throws Exception {
         BufferedReader br = new BufferedReader(new FileReader(new File(getClass().getResource("/text/map.txt").toURI())));
         List<BaseEntity> entities = new ArrayList<>();
@@ -31,15 +39,15 @@ public class MapLoader {
                     x += 15;
                     break;
                 case '2':
-                    entities.add(new PacMan(x+1, y+1, 13, 13));
+                    entities.add(new PacMan(x + 1, y + 1, 13, 13));
                     x += 15;
                     break;
                 case '3':
-                    entities.add(new Candy(x+7, y+7, 2, 2));
+                    entities.add(new Candy(x + 7, y + 7, 2, 2));
                     x += 15;
                     break;
                 case '4':
-                    entities.add(new SuperCandy(x+3, y+3, 8, 8));
+                    entities.add(new SuperCandy(x + 3, y + 3, 8, 8));
                     x += 15;
                     break;
                 case '5':

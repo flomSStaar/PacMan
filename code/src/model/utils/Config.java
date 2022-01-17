@@ -1,4 +1,4 @@
-package model;
+package model.utils;
 
 public class Config {
     public static final int GHOST_POINTS = 100;

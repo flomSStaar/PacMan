@@ -10,6 +10,11 @@ import java.util.List;
  * La classe notifie tous les observateurs si c'est le cas
  */
 public class CandyEater extends BaseEater {
+    /**
+     * Créé une instance de CandyEater
+     *
+     * @param entities Liste des entités
+     */
     public CandyEater(List<BaseEntity> entities) {
         this.entities = entities;
         collider = new CandyCollider();

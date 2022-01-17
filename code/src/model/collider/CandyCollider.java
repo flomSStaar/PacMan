@@ -8,6 +8,9 @@ import model.entity.SuperCandy;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Définit si une entité est en collision avec un bonbon
+ */
 public class CandyCollider implements BaseCollider {
     @Override
     public boolean isCollide(List<BaseEntity> entities, BaseEntity entity, float x, float y) {

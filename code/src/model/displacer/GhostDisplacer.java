@@ -12,12 +12,23 @@ import java.util.Queue;
 
 import static java.lang.Math.abs;
 
-public class GhostDisplacer extends BaseDisplacer {
+/**
+ * Définit le déplacement d'un fantôme
+ * <p>
+ * A FINIR DE COMMENTER
+ */
+public abstract class GhostDisplacer extends BaseDisplacer {
     protected PacMan pacMan;
     protected boolean[][] cell;
     protected Direction directionFuture = Direction.NONE;
 
-
+    /**
+     * Définit le constructeur de GhostDisplacer
+     *
+     * @param ghost    Fantôme à déplacer
+     * @param pacMan   PacMan
+     * @param entities Liste des entités du jeu
+     */
     public GhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
         super.entity = ghost;
         this.pacMan = pacMan;
@@ -30,12 +41,14 @@ public class GhostDisplacer extends BaseDisplacer {
         }
     }
 
-    public void move(Direction direction) {
-        this.directionFuture = direction;
-    }
-
+    /**
+     * Modifie la direction future de l'entité
+     *
+     * @param direction Direction de l'entité
+     */
     @Override
-    public void onLoop() {
+    public void setDirection(Direction direction) {
+        this.directionFuture = direction;
     }
 
     protected Direction fuite() {
@@ -56,6 +69,16 @@ public class GhostDisplacer extends BaseDisplacer {
         return findShortestPath(cell, xf, yf, x, y);
     }
 
+    /**
+     * Trouve le plus court chemin pour arriver à PacMan
+     *
+     * @param lab
+     * @param cx
+     * @param cy
+     * @param mx
+     * @param my
+     * @return
+     */
     protected Direction findShortestPath(boolean[][] lab, int cx, int cy, int mx, int my) {
         Queue<Node> queue = new ArrayDeque<>();
         boolean[][] discovered = new boolean[31][29];
@@ -101,5 +124,4 @@ public class GhostDisplacer extends BaseDisplacer {
             this.initialDir = initialDir;
         }
     }
-
 }

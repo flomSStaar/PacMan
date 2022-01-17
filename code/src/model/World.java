@@ -1,6 +1,5 @@
 package model;
 
-import launcher.Game;
 import model.animator.GhostAnimator;
 import model.animator.PacManAnimator;
 import model.displacer.*;
@@ -15,10 +14,11 @@ import model.entity.ghost.BlueGhost;
 import model.entity.ghost.Ghost;
 import model.entity.ghost.PinkGhost;
 import model.entity.ghost.RedGhost;
-import model.loop.AnimationLooper;
-import model.loop.Looper;
-import model.loop.MovementLooper;
-import model.utils.EatObserver;
+import model.looper.AnimationLooper;
+import model.looper.Looper;
+import model.looper.MovementLooper;
+import model.observers.EatObserver;
+import model.utils.Config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,35 +26,46 @@ import java.util.List;
 import java.util.Map;
 
 public class World implements EatObserver {
-    private Game game;
-    private SpriteManager spriteManager;
-    private Score score;
+    private final Game game;
+    private final SpriteManager spriteManager;
+    private final Score score;
 
-    private List<BaseEntity> entities;
-    private Map<BaseEntity, BaseDisplacer> entityDisplacerMap = new HashMap<>();
+    private final List<BaseEntity> entities;
+    private final Map<BaseEntity, BaseDisplacer> entityDisplacerMap = new HashMap<>();
 
     private CandyEater candyEater;
     private GhostEater ghostEater;
     private PacManEater pacManEater;
 
     private PacManAnimator pacManAnimator;
-    private List<GhostAnimator> ghostAnimators = new ArrayList<>();
+    private final List<GhostAnimator> ghostAnimators = new ArrayList<>();
 
     private AnimationLooper animationLooper;
     private MovementLooper pacmanMovementLooper;
     private MovementLooper ghostMovementLooper;
-    private List<Looper> loopers = new ArrayList<>();
+    private final List<Looper> loopers = new ArrayList<>();
 
     private boolean isLoad = false;
     private boolean isThreadStart = false;
 
-    public World(List<BaseEntity> entities, SpriteManager spriteManager, Score score) {
+    /**
+     * Créé une instance de World
+     *
+     * @param entities      Liste des entités
+     * @param spriteManager SpriteManager
+     * @param score         Score
+     */
+    public World(Game game, List<BaseEntity> entities, SpriteManager spriteManager, Score score) {
+        this.game = game;
         this.entities = entities;
         this.spriteManager = spriteManager;
         spriteManager.addAllSprite(entities);
         this.score = score;
     }
 
+    /**
+     * Lance le chargement du monde
+     */
     public void loadWorld() {
         if (!isLoad) {
             initLooper();
@@ -65,15 +76,21 @@ public class World implements EatObserver {
         }
     }
 
+    /**
+     * Nettoie le monde
+     */
     public void clearWorld() {
         if (isLoad) {
             entities.clear();
-            stopThread();
+            stopWorld();
             isLoad = false;
         }
     }
 
-    public void startThread() {
+    /**
+     * Démarre le monde
+     */
+    public void startWorld() {
         if (isLoad && !isThreadStart) {
             for (Looper looper : loopers) {
                 new Thread(looper, looper.getName()).start();
@@ -82,12 +99,18 @@ public class World implements EatObserver {
         }
     }
 
-    public void stopThread() {
+    /**
+     * Arrête le monde
+     */
+    public void stopWorld() {
         for (Looper looper : loopers) {
             looper.stop();
         }
     }
 
+    /**
+     * Initialise PacMan
+     */
     private void initPacMan() {
         PacMan pacMan = getPacMan();
         PacManDisplacer pacManDisplacer = new PacManDisplacer(entities, pacMan);
@@ -100,6 +123,9 @@ public class World implements EatObserver {
         animationLooper.attach(pacManAnimator);
     }
 
+    /**
+     * Initialise les fantômes
+     */
     private void initGhosts() {
         PacMan pacMan = getPacMan();
         for (Ghost ghost : getGhosts()) {
@@ -113,7 +139,7 @@ public class World implements EatObserver {
                 ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getBlueSprite());
             } else if (ghost instanceof PinkGhost) {
                 ghostDisplacer = new PinkGhostDisplacer(ghost, pacMan, entities);
-                ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getPingSprite());
+                ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getPinkSprite());
                 getPacManDisplacer().attach((PinkGhostDisplacer) ghostDisplacer);
             } else {
                 ghostDisplacer = new OrangeGhostDisplacer(ghost, pacMan, entities);
@@ -128,6 +154,9 @@ public class World implements EatObserver {
         }
     }
 
+    /**
+     * Initialise les mangeurs
+     */
     private void initEater() {
         candyEater = new CandyEater(entities);
         pacManEater = new PacManEater(entities);
@@ -143,6 +172,9 @@ public class World implements EatObserver {
         ghostEater.setActive(false);
     }
 
+    /**
+     * Initialise les boucleurs
+     */
     private void initLooper() {
         loopers.clear();
         animationLooper = new AnimationLooper();
@@ -153,18 +185,20 @@ public class World implements EatObserver {
         loopers.add(ghostMovementLooper);
     }
 
+    /**
+     * Modifie l'état du mangeur de bonbons pour PacMan
+     *
+     * @param canEatCandy Etat du mangeur de bonbons
+     */
     public void canPacManEatCandy(boolean canEatCandy) {
-        if (canEatCandy) {
-            candyEater.attach(spriteManager);
-            candyEater.attach(this);
-            candyEater.attach(score);
-        } else {
-            candyEater.detach(spriteManager);
-            candyEater.detach(this);
-            candyEater.detach(score);
-        }
+        candyEater.setActive(canEatCandy);
     }
 
+    /**
+     * Retourne PacMan
+     *
+     * @return PacMan
+     */
     public PacMan getPacMan() {
         for (BaseEntity entity : entities) {
             if (entity instanceof PacMan)
@@ -173,10 +207,20 @@ public class World implements EatObserver {
         throw new IllegalStateException("PacMan is not defined");
     }
 
+    /**
+     * Retourne le déplaceur de PacMan
+     *
+     * @return Déplaceur de PacMan
+     */
     public PacManDisplacer getPacManDisplacer() {
         return (PacManDisplacer) entityDisplacerMap.get(getPacMan());
     }
 
+    /**
+     * Retourne les fantômes
+     *
+     * @return Liste des fantômes
+     */
     public List<Ghost> getGhosts() {
         List<Ghost> ghosts = new ArrayList<>();
         for (BaseEntity entity : entities) {
@@ -187,6 +231,12 @@ public class World implements EatObserver {
         return ghosts;
     }
 
+    /**
+     * Renvoie le déplaceur du fantôme passé en paramètre
+     *
+     * @param ghost Fantome
+     * @return Déplaceur du fantome
+     */
     public GhostDisplacer getGhostDisplacer(Ghost ghost) {
         for (var set : entityDisplacerMap.entrySet()) {
             if (ghost == set.getKey())
@@ -195,18 +245,29 @@ public class World implements EatObserver {
         throw new IllegalArgumentException("Ghost not found");
     }
 
+    /**
+     * Retourne les entités
+     *
+     * @return Liste des entités
+     */
     public List<BaseEntity> getEntities() {
         return entities;
     }
 
+    /**
+     * Retourne le SpriteManager
+     *
+     * @return SpriteManager
+     */
     public SpriteManager getSpriteManager() {
         return spriteManager;
     }
 
-    public void attachGame(Game game) {
-        this.game = game;
-    }
-
+    /**
+     * Supprime une entité
+     *
+     * @param entity Entité à supprimer
+     */
     private void removeEntity(BaseEntity entity) {
         entities.remove(entity);
     }

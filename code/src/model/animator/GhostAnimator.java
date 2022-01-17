@@ -5,22 +5,44 @@ import javafx.scene.image.ImageView;
 import model.SpriteManager;
 import model.entity.BaseEntity;
 import model.utils.Direction;
-import model.utils.DisplacerObserver;
+import model.observers.DisplacerObserver;
 
 public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
-
+    private final Image[] defaultSprite;
+    private final Image[] eatableSprite;
     private int image;
-    private Image[] defaultSprite;
-    private Image[] eatableSprite;
+    /**
+     * Définit si le fantôme est dans un état ou il peut-être mangé.
+     */
     private boolean isEatable = false;
 
-    public GhostAnimator(ImageView i, Image[] defaultSprite) {
-        super(i);
+    /**
+     * Créé une instance de GhostAnimator
+     *
+     * @param imageView     ImageView qui va être gérée par l'animateur
+     * @param defaultSprite Sprites du fantôme
+     */
+    public GhostAnimator(ImageView imageView, Image[] defaultSprite) {
+        super(imageView);
         this.image = 0;
         this.defaultSprite = defaultSprite;
         this.eatableSprite = SpriteManager.getGhostEatableSprite();
     }
 
+    /**
+     * Récupère la valeur de isEateable
+     *
+     * @return valeur de isEatable
+     */
+    public boolean isEatable() {
+        return isEatable;
+    }
+
+    /**
+     * Modifie la valeur de isEatable
+     *
+     * @param eatable Nouvelle état
+     */
     public void setEatable(boolean eatable) {
         isEatable = eatable;
     }
@@ -32,18 +54,10 @@ public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
             super.imageView.setImage(eatableSprite[this.image]);
         } else {
             switch (super.direction) {
-                case UP:
-                    super.imageView.setImage(defaultSprite[this.image]);
-                    break;
-                case LEFT:
-                    super.imageView.setImage(defaultSprite[this.image + 2]);
-                    break;
-                case DOWN:
-                    super.imageView.setImage(defaultSprite[this.image + 4]);
-                    break;
-                case RIGHT:
-                    super.imageView.setImage(defaultSprite[this.image + 6]);
-                    break;
+                case UP -> super.imageView.setImage(defaultSprite[this.image]);
+                case LEFT -> super.imageView.setImage(defaultSprite[this.image + 2]);
+                case DOWN -> super.imageView.setImage(defaultSprite[this.image + 4]);
+                case RIGHT -> super.imageView.setImage(defaultSprite[this.image + 6]);
             }
         }
     }

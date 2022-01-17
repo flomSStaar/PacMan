@@ -7,6 +7,9 @@ import model.entity.ghost.Ghost;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Définit si une entité est en collision avec un fantôme
+ */
 public class GhostCollider implements BaseCollider {
     @Override
     public boolean isCollide(List<BaseEntity> entities, BaseEntity entity, float x, float y) {

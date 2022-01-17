@@ -10,6 +10,11 @@ import java.util.List;
  * La classe notifie tous les observateurs si c'est le cas
  */
 public class GhostEater extends BaseEater {
+    /**
+     * Créé une instance de GhostEater
+     *
+     * @param entities Liste des entités
+     */
     public GhostEater(List<BaseEntity> entities) {
         this.entities = entities;
         collider = new GhostCollider();
