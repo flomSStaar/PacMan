@@ -1,6 +1,7 @@
 package model;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import model.entity.BaseEntity;
 import model.entity.Candy;
 import model.entity.SuperCandy;
@@ -11,14 +12,14 @@ import model.utils.Config;
 public class Score implements EatObserver {
     private int integerScore = 0;
 
-    private SimpleStringProperty score = new SimpleStringProperty("Score: 0");
+    private StringProperty score = new SimpleStringProperty("Score: 0");
     public String getScore() {
         return score.get().substring(7);
     }
     public void setScore(String string) {
         score.set("Score: " + string);
     }
-    public SimpleStringProperty scoreProperty() {
+    public StringProperty scoreProperty() {
         return score;
     }
 

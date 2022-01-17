@@ -26,7 +26,7 @@ public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
         super(imageView);
         this.image = 0;
         this.defaultSprite = defaultSprite;
-        this.eatableSprite = SpriteManager.getGhostEatableSprite();
+        this.eatableSprite = SpriteManager.getEatableGhostSprite();
     }
 
     /**

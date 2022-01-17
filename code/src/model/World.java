@@ -133,17 +133,17 @@ public class World implements EatObserver {
             GhostDisplacer ghostDisplacer;
             if (ghost instanceof RedGhost) {
                 ghostDisplacer = new RedGhostDisplacer(entities, ghost, pacMan);
-                ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getRedSprite());
+                ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getRedGhostSprite());
             } else if (ghost instanceof BlueGhost) {
                 ghostDisplacer = new BlueGhostDisplacer(entities, ghost, pacMan);
-                ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getBlueSprite());
+                ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getBlueGhostSprite());
             } else if (ghost instanceof PinkGhost) {
                 ghostDisplacer = new PinkGhostDisplacer(entities, ghost, pacMan);
-                ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getPinkSprite());
+                ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getPinkGhostSprite());
                 getPacManDisplacer().attach((PinkGhostDisplacer) ghostDisplacer);
             } else {
                 ghostDisplacer = new OrangeGhostDisplacer(entities, ghost, pacMan);
-                ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getOrangeSprite());
+                ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getOrangeGhostSprite());
             }
             entityDisplacerMap.put(ghost, ghostDisplacer);
             ghostMovementLooper.attach(ghostDisplacer);

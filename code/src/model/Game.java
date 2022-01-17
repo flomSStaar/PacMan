@@ -26,7 +26,7 @@ public class Game {
     private final Stage stage;
     private Pane pane;
     private World world;
-    private Score score = new Score();
+    private final Score score = new Score();
 
     private boolean isGameLaunched = false;
 
@@ -38,8 +38,6 @@ public class Game {
      */
     public Game(Stage stage) throws IOException {
         this.stage = stage;
-        stage.setMinWidth(420);
-        stage.setMinHeight(502);
         home();
         this.stage.show();
     }

@@ -16,7 +16,6 @@ public class GhostEater extends BaseEater {
      * @param entities Liste des entités
      */
     public GhostEater(List<BaseEntity> entities) {
-        this.entities = entities;
-        collider = new GhostCollider();
+        super(entities, new GhostCollider());
     }
 }

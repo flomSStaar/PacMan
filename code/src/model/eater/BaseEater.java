@@ -14,9 +14,14 @@ import java.util.List;
  */
 public abstract class BaseEater implements DisplacerObserver {
     private final List<EatObserver> observers = new ArrayList<>();
-    protected List<BaseEntity> entities = new ArrayList<>();
+    protected List<BaseEntity> entities;
     protected BaseCollider collider;
     private boolean isActive = true;
+
+    public BaseEater(List<BaseEntity> entities, BaseCollider collider) {
+        this.entities = entities;
+        this.collider = collider;
+    }
 
     /**
      * Ajoute un observateur à la liste d'observateurs du mangeur
@@ -40,7 +45,7 @@ public abstract class BaseEater implements DisplacerObserver {
     /**
      * Notifie les observateurs qu'une entité peut être mangée
      *
-     * @param entity Entité pouvant mangée
+     * @param entity Entité pouvant être mangée
      */
     protected void notifyEating(BaseEntity entity) {
         for (EatObserver observer : observers) {
@@ -51,7 +56,7 @@ public abstract class BaseEater implements DisplacerObserver {
     /**
      * Récupère l'état du mangeur
      *
-     * @return
+     * @return Etat du mangeur
      */
     public boolean isActive() {
         return isActive;
@@ -60,10 +65,10 @@ public abstract class BaseEater implements DisplacerObserver {
     /**
      * Modifie l'état du mangeur
      *
-     * @param bool Future état
+     * @param isActive Future état
      */
-    public void setActive(boolean bool) {
-        isActive = bool;
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override

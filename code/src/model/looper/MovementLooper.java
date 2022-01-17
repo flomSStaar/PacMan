@@ -17,6 +17,6 @@ public class MovementLooper extends Looper {
      */
     public MovementLooper(String name) {
         super(name);
-        super.millis = Config.DEFAULT_MOVEMENT_LOOP;
+        setMillis(Config.DEFAULT_MOVEMENT_LOOP);
     }
 }

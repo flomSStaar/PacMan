@@ -16,7 +16,6 @@ public class PacManEater extends BaseEater {
      * @param entities Liste des entités
      */
     public PacManEater(List<BaseEntity> entities) {
-        this.entities = entities;
-        collider = new PacManCollider();
+        super(entities, new PacManCollider());
     }
 }

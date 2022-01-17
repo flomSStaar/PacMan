@@ -132,7 +132,7 @@ public class SpriteManager implements EatObserver {
      *
      * @return Sprites du fantôme rouge
      */
-    public static Image[] getRedSprite() {
+    public static Image[] getRedGhostSprite() {
         Image[] imgR = new Image[8];
         imgR[0] = new Image("/image/RedGhostUp0.png");
         imgR[1] = new Image("/image/RedGhostUp1.png");
@@ -151,7 +151,7 @@ public class SpriteManager implements EatObserver {
      *
      * @return Sprites  du fantôme rose
      */
-    public static Image[] getPinkSprite() {
+    public static Image[] getPinkGhostSprite() {
         Image[] imgP = new Image[8];
         imgP[0] = new Image("/image/PinkGhostUp0.png");
         imgP[1] = new Image("/image/PinkGhostUp1.png");
@@ -170,7 +170,7 @@ public class SpriteManager implements EatObserver {
      *
      * @return Sprites du fantôme bleu
      */
-    public static Image[] getBlueSprite() {
+    public static Image[] getBlueGhostSprite() {
         Image[] imgB = new Image[8];
         imgB[0] = new Image("/image/BlueGhostUp0.png");
         imgB[1] = new Image("/image/BlueGhostUp1.png");
@@ -189,7 +189,7 @@ public class SpriteManager implements EatObserver {
      *
      * @return Sprites du fantôme orange
      */
-    public static Image[] getOrangeSprite() {
+    public static Image[] getOrangeGhostSprite() {
         Image[] imgO = new Image[8];
         imgO[0] = new Image("/image/OrangeGhostUp0.png");
         imgO[1] = new Image("/image/OrangeGhostUp1.png");
@@ -208,7 +208,7 @@ public class SpriteManager implements EatObserver {
      *
      * @return Sprites d'un fantôme mangeable
      */
-    public static Image[] getGhostEatableSprite() {
+    public static Image[] getEatableGhostSprite() {
         Image[] im = new Image[4];
         im[0] = new Image("/image/GhostEatable0.png");
         im[1] = new Image("/image/GhostEatable1.png");

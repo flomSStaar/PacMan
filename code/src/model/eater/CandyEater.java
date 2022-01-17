@@ -16,7 +16,6 @@ public class CandyEater extends BaseEater {
      * @param entities Liste des entités
      */
     public CandyEater(List<BaseEntity> entities) {
-        this.entities = entities;
-        collider = new CandyCollider();
+        super(entities, new CandyCollider());
     }
 }
