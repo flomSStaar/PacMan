@@ -18,6 +18,7 @@ public class BlueGhostDisplacer extends GhostDisplacer {
         super(entities, ghost, pacMan);
     }
 
+    //A voir
     @Override
     public void onLoop() {
         this.direction = escape();

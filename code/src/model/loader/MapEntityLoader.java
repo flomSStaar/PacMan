@@ -51,19 +51,19 @@ public class MapEntityLoader implements EntityLoader {
                     x += 15;
                     break;
                 case '5':
-                    entities.add(new RedGhost(x, y, 13, 13));
+                    entities.add(new RedGhost(x+1, y+1, 13, 13));
                     x += 15;
                     break;
                 case '6':
-                    entities.add(new BlueGhost(x, y, 13, 13));
+                    entities.add(new BlueGhost(x+1, y+1, 13, 13));
                     x += 15;
                     break;
                 case '7':
-                    entities.add(new OrangeGhost(x, y, 13, 13));
+                    entities.add(new OrangeGhost(x+1, y+1, 13, 13));
                     x += 15;
                     break;
                 case '8':
-                    entities.add(new PinkGhost(x, y, 13, 13));
+                    entities.add(new PinkGhost(x+1, y+1, 13, 13));
                     x += 15;
                     break;
             }
