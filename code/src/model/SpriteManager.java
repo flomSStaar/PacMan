@@ -144,9 +144,20 @@ public class SpriteManager implements EatObserver {
     }
 
     public static Image[] getGhostEatableSprite() {
-        Image[] im = new Image[3];
+        Image[] im = new Image[4];
         im[0] = new Image("/image/GhostEatable0.png");
         im[1] = new Image("/image/GhostEatable1.png");
+        im[2] = new Image("/image/GhostEatable2.png");
+        im[3] = new Image("/image/GhostEatable3.png");
+        return im;
+    }
+
+    public static Image[] getGhostEyeSprite() {
+        Image[] im = new Image[4];
+        im[0] = new Image("/image/GhostEyeUp.png");
+        im[1] = new Image("/image/GhostEyeRight.png");
+        im[2] = new Image("/image/GhostEyeDown.png");
+        im[3] = new Image("/image/GhostEyeLeft.png");
         return im;
     }
 

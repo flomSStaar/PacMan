@@ -27,22 +27,22 @@ public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
 
     @Override
     public void onLoop() {
-        this.image = (this.image + 1) % 2;
+        this.image = (this.image + 1) % 4;
         if (isEatable) {
             super.imageView.setImage(eatableSprite[this.image]);
         } else {
             switch (super.direction) {
                 case UP:
-                    super.imageView.setImage(defaultSprite[this.image]);
+                    super.imageView.setImage(defaultSprite[this.image%2]);
                     break;
                 case LEFT:
-                    super.imageView.setImage(defaultSprite[this.image + 2]);
+                    super.imageView.setImage(defaultSprite[this.image%2 + 2]);
                     break;
                 case DOWN:
-                    super.imageView.setImage(defaultSprite[this.image + 4]);
+                    super.imageView.setImage(defaultSprite[this.image%2 + 4]);
                     break;
                 case RIGHT:
-                    super.imageView.setImage(defaultSprite[this.image + 6]);
+                    super.imageView.setImage(defaultSprite[this.image%2 + 6]);
                     break;
             }
         }

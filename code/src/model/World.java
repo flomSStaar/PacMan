@@ -224,6 +224,9 @@ public class World implements EatObserver {
                     for (GhostAnimator ghostAnimator : ghostAnimators) {
                         ghostAnimator.setEatable(true);
                     }
+                    for (Ghost ghost : getGhosts()) {
+                        getGhostDisplacer(ghost).setEatable(true);
+                    }
                     pacmanMovementLooper.setMillis(Config.FAST_MOVEMENT_LOOP);
                     ghostMovementLooper.setMillis(Config.SLOW_MOVEMENT_LOOP);
                     Thread.sleep(Config.PACMAN_POWER_TIME);
@@ -234,6 +237,9 @@ public class World implements EatObserver {
                     ghostEater.setActive(false);
                     for (GhostAnimator ghostAnimator : ghostAnimators) {
                         ghostAnimator.setEatable(false);
+                    }
+                    for (Ghost ghost : getGhosts()) {
+                        getGhostDisplacer(ghost).setEatable(false);
                     }
                     pacmanMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
                     ghostMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);

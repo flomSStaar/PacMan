@@ -15,13 +15,22 @@ public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObser
 
     @Override
     public void onLoop() {
-        if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + directionFuture.getDx(), super.entity.getY() + directionFuture.getDy()) && directionFuture != Direction.NONE) {
-            direction = directionFuture;
-            directionFuture = Direction.NONE;
-            notifyMove();
-        }
-        if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + direction.getDx(), super.entity.getY() + direction.getDy())) {
-            moveEntity(direction);
+        if(isEatable)
+            super.onLoop();
+        else {
+            if (h % 15 == 0) {
+                if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + directionFuture.getDx(), super.entity.getY() + directionFuture.getDy()) && directionFuture != Direction.NONE) {
+                    if (!(entity.getX() <= 0 && (directionFuture == Direction.UP || directionFuture == Direction.DOWN))) {
+                        direction = directionFuture;
+                        directionFuture = Direction.NONE;
+                        notifyMove();
+                    }
+                }
+            }
+            if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + direction.getDx(), super.entity.getY() + direction.getDy())) {
+                moveEntity(direction);
+            }
+            h++;
         }
     }
 

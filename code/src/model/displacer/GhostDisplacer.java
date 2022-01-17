@@ -16,6 +16,9 @@ public class GhostDisplacer extends BaseDisplacer {
     protected PacMan pacMan;
     protected boolean[][] cell;
     protected Direction directionFuture = Direction.NONE;
+    protected int h = 0;
+    protected boolean isEatable = false;
+    protected boolean hasBeenEaten = false;
 
 
     public GhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
@@ -30,20 +33,30 @@ public class GhostDisplacer extends BaseDisplacer {
         }
     }
 
+    public void setEatable(boolean eatable) {
+        isEatable = eatable;
+    }
+
     public void move(Direction direction) {
         this.directionFuture = direction;
     }
 
     @Override
     public void onLoop() {
+        if (h % 15 == 0)
+            direction = fuite();
+        if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + direction.getDx(), super.entity.getY() + direction.getDy())) {
+            moveEntity(direction);
+        }
+        h++;
     }
 
     protected Direction fuite() {
         int x = 0;
         int y = 0;
         int d = 0;
-        int xf = ((int) entity.getX() - ((int) entity.getX() % 15)) / 15;
-        int yf = ((int) entity.getY() - ((int) entity.getY() % 15)) / 15;
+        int xf = ((int) pacMan.getX() - ((int) pacMan.getX() % 15)) / 15;
+        int yf = ((int) pacMan.getY() - ((int) pacMan.getY() % 15)) / 15;
         for (int g = 0; g < 28; g++) {
             for (int h = 0; h < 31; h++) {
                 if (d < abs(g - xf) + abs(h - yf) && !cell[h][g]) {
@@ -53,7 +66,7 @@ public class GhostDisplacer extends BaseDisplacer {
                 }
             }
         }
-        return findShortestPath(cell, xf, yf, x, y);
+        return findShortestPath(cell, ((int) entity.getX() - ((int) entity.getX() % 15)) / 15, ((int) entity.getY() - ((int) entity.getY() % 15)) / 15, x, y);
     }
 
     protected Direction findShortestPath(boolean[][] lab, int cx, int cy, int mx, int my) {
