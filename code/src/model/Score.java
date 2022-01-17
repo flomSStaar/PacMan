@@ -5,6 +5,7 @@ import model.entity.BaseEntity;
 import model.entity.Candy;
 import model.entity.SuperCandy;
 import model.entity.ghost.Ghost;
+import model.observers.BaseObserver;
 import model.observers.EatObserver;
 import model.utils.Config;
 

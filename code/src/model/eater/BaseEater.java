@@ -3,6 +3,7 @@ package model.eater;
 import model.collider.BaseCollider;
 import model.entity.BaseEntity;
 import model.observers.DisplacerObserver;
+import model.observers.BaseObserver;
 import model.observers.EatObserver;
 import model.utils.Direction;
 
@@ -16,7 +17,7 @@ public abstract class BaseEater implements DisplacerObserver {
     private final List<EatObserver> observers = new ArrayList<>();
     protected List<BaseEntity> entities = new ArrayList<>();
     protected BaseCollider collider;
-    private boolean isActive = true;
+    protected boolean isActive = true;
 
     /**
      * Ajoute un observateur à la liste d'observateurs du mangeur
@@ -33,7 +34,7 @@ public abstract class BaseEater implements DisplacerObserver {
      *
      * @param observer Observateur à détacher
      */
-    public void detach(EatObserver observer) {
+    public void detach(BaseObserver observer) {
         observers.remove(observer);
     }
 

@@ -4,9 +4,11 @@ import model.entity.BaseEntity;
 import model.entity.PacMan;
 import model.entity.Wall;
 import model.entity.ghost.Ghost;
+import model.observers.BaseObserver;
 import model.utils.Direction;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
@@ -17,13 +19,14 @@ import static java.lang.Math.abs;
  * <p>
  * A FINIR DE COMMENTER
  */
-public abstract class GhostDisplacer extends BaseDisplacer {
+public abstract class GhostDisplacer extends BaseDisplacer{
     protected PacMan pacMan;
     protected boolean[][] cell;
     protected Direction directionFuture = Direction.NONE;
     protected int h = 0;
     protected boolean isEatable = false;
     protected boolean hasBeenEaten = false;
+    private List<BaseObserver> observerGhost = new ArrayList<>();
 
     /**
      * Définit le constructeur de GhostDisplacer
@@ -57,6 +60,10 @@ public abstract class GhostDisplacer extends BaseDisplacer {
         isEatable = eatable;
     }
 
+    public void setHasBeenEaten(boolean hasBeenEaten) {
+        this.hasBeenEaten = hasBeenEaten;
+    }
+
     protected Direction escape() {
         int x = 0;
         int y = 0;
@@ -73,6 +80,10 @@ public abstract class GhostDisplacer extends BaseDisplacer {
             }
         }
         return findShortestPath(cell, ((int) entity.getX() - ((int) entity.getX() % 15)) / 15, ((int) entity.getY() - ((int) entity.getY() % 15)) / 15, x, y);
+    }
+
+    protected Direction returnBase() {
+        return findShortestPath(cell, ((int) entity.getX() - ((int) entity.getX() % 15)) / 15, ((int) entity.getY() - ((int) entity.getY() % 15)) / 15, 13, 14);
     }
 
     /**
@@ -121,8 +132,16 @@ public abstract class GhostDisplacer extends BaseDisplacer {
 
     @Override
     public void onLoop() {
-        if (h % 15 == 0)
-            direction = escape();
+        if (h % 15 == 0) {
+            if (hasBeenEaten) {
+                if (((int) entity.getX() - ((int) entity.getX() % 15)) / 15 == 13 && ((int) entity.getY() - ((int) entity.getY() % 15)) / 15 == 14) {
+                    notifyGhost(entity);
+                }
+                direction = returnBase();
+            }
+            else
+                direction = escape();
+        }
         if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + direction.getDx(), super.entity.getY() + direction.getDy())) {
             moveEntity();
         }
@@ -138,6 +157,31 @@ public abstract class GhostDisplacer extends BaseDisplacer {
             this.x = x;
             this.y = y;
             this.initialDir = initialDir;
+        }
+    }
+
+    public void attachGhost(BaseObserver observer) {
+        if (observer != null && !observerGhost.contains(observer))
+            observerGhost.add(observer);
+    }
+
+    /**
+     * Supprime un observateur à la liste d'observateurs du mangeur
+     *
+     * @param observer Observateur à détacher
+     */
+    public void detachGhost(BaseObserver observer) {
+        observerGhost.remove(observer);
+    }
+
+    /**
+     * Notifie les observateurs qu'une entité peut être mangée
+     *
+     * @param entity Entité pouvant mangée
+     */
+    protected void notifyGhost(BaseEntity entity) {
+        for (BaseObserver observer : observerGhost) {
+            observer.onBase(entity);
         }
     }
 }

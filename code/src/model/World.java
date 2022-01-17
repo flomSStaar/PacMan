@@ -17,6 +17,8 @@ import model.entity.ghost.RedGhost;
 import model.looper.AnimationLooper;
 import model.looper.Looper;
 import model.looper.MovementLooper;
+import model.observers.DisplacerObserver;
+import model.observers.BaseObserver;
 import model.observers.EatObserver;
 import model.utils.Config;
 
@@ -25,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class World implements EatObserver {
+public class World implements EatObserver, BaseObserver {
     private final Game game;
     private final SpriteManager spriteManager;
     private final Score score;
@@ -38,7 +40,7 @@ public class World implements EatObserver {
     private PacManEater pacManEater;
 
     private PacManAnimator pacManAnimator;
-    private final List<GhostAnimator> ghostAnimators = new ArrayList<>();
+    private final Map<Ghost, GhostAnimator> ghostAnimators = new HashMap<>();
 
     private AnimationLooper animationLooper;
     private MovementLooper pacmanMovementLooper;
@@ -47,6 +49,8 @@ public class World implements EatObserver {
 
     private boolean isLoad = false;
     private boolean isThreadStart = false;
+
+    private List<BaseEntity> eatenGhost = new ArrayList<>();
 
     /**
      * Créé une instance de World
@@ -132,25 +136,27 @@ public class World implements EatObserver {
             GhostAnimator ghostAnimator;
             GhostDisplacer ghostDisplacer;
             if (ghost instanceof RedGhost) {
-                ghostDisplacer = new RedGhostDisplacer(entities, ghost, pacMan);
+                ghostDisplacer = new RedGhostDisplacer(ghost, pacMan, entities);
                 ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getRedSprite());
             } else if (ghost instanceof BlueGhost) {
                 ghostDisplacer = new BlueGhostDisplacer(entities, ghost, pacMan);
                 ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getBlueSprite());
             } else if (ghost instanceof PinkGhost) {
-                ghostDisplacer = new PinkGhostDisplacer(entities, ghost, pacMan);
+                ghostDisplacer = new PinkGhostDisplacer(ghost, pacMan, entities);
                 ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getPinkSprite());
-                getPacManDisplacer().attach((PinkGhostDisplacer) ghostDisplacer);
+                getPacManDisplacer().attach((DisplacerObserver) ghostDisplacer);
             } else {
-                ghostDisplacer = new OrangeGhostDisplacer(entities, ghost, pacMan);
+                ghostDisplacer = new OrangeGhostDisplacer(ghost, pacMan, entities);
                 ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getOrangeSprite());
             }
             entityDisplacerMap.put(ghost, ghostDisplacer);
             ghostMovementLooper.attach(ghostDisplacer);
-            ghostDisplacer.attach(ghostAnimator);
+            ghostDisplacer.attach((DisplacerObserver) ghostAnimator);
             ghostDisplacer.attach(pacManEater);
+            ghostDisplacer.attachGhost(this);
             animationLooper.attach(ghostAnimator);
-            ghostAnimators.add(ghostAnimator);
+            ghostAnimators.put(ghost, ghostAnimator);
+            eatenGhost.add(ghost);
         }
     }
 
@@ -159,8 +165,8 @@ public class World implements EatObserver {
      */
     private void initEater() {
         candyEater = new CandyEater(entities);
-        pacManEater = new PacManEater(entities);
-        ghostEater = new GhostEater(entities);
+        pacManEater = new PacManEater(entities, eatenGhost);
+        ghostEater = new GhostEater(eatenGhost);
         candyEater.attach(spriteManager);
         candyEater.attach(score);
         candyEater.attach(this);
@@ -282,11 +288,11 @@ public class World implements EatObserver {
                 try {
                     pacManEater.setActive(false);
                     ghostEater.setActive(true);
-                    for (GhostAnimator ghostAnimator : ghostAnimators) {
-                        ghostAnimator.setEatable(true);
+                    for (BaseEntity ghost : eatenGhost) {
+                        ghostAnimators.get(ghost).setEatable(true);
                     }
-                    for (Ghost ghost : getGhosts()) {
-                        getGhostDisplacer(ghost).setEatable(true);
+                    for (BaseEntity ghost : eatenGhost) {
+                        getGhostDisplacer((Ghost) ghost).setEatable(true);
                     }
                     pacmanMovementLooper.setMillis(Config.FAST_MOVEMENT_LOOP);
                     ghostMovementLooper.setMillis(Config.SLOW_MOVEMENT_LOOP);
@@ -296,19 +302,24 @@ public class World implements EatObserver {
                 } finally {
                     pacManEater.setActive(true);
                     ghostEater.setActive(false);
-                    for (GhostAnimator ghostAnimator : ghostAnimators) {
-                        ghostAnimator.setEatable(false);
+                    for (BaseEntity ghost : eatenGhost) {
+                        ghostAnimators.get(ghost).setEatable(false);
                     }
-                    for (Ghost ghost : getGhosts()) {
-                        getGhostDisplacer(ghost).setEatable(false);
+                    for (BaseEntity ghost : eatenGhost) {
+                        getGhostDisplacer((Ghost)ghost).setEatable(false);
                     }
                     pacmanMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
                     ghostMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
                 }
             }, "PacManPower").start();
         } else if (entity instanceof Ghost) {
-            GhostDisplacer ghostDisplacer = (GhostDisplacer) entityDisplacerMap.remove(entity);
-            ghostMovementLooper.detach(ghostDisplacer);
+            eatenGhost.remove(entity);
+            ghostAnimators.get(entity).setHasBeenEaten(true);
+            getGhostDisplacer((Ghost)entity).setHasBeenEaten(true);
+            ghostAnimators.get(entity).setEatable(false);
+            getGhostDisplacer((Ghost) entity).setEatable(false);
+            score.increase(Config.GHOST_POINTS);
+            return;
         }
         removeEntity(entity);
         for (BaseEntity e : entities) {
@@ -318,5 +329,13 @@ public class World implements EatObserver {
         }
         score.increase(Config.LEVEL_UP);
         game.levelUp();
+    }
+
+    @Override
+    public void onBase(BaseEntity entity)
+    {
+        eatenGhost.add(entity);
+        ghostAnimators.get(entity).setHasBeenEaten(false);
+        getGhostDisplacer((Ghost)entity).setHasBeenEaten(false);
     }
 }

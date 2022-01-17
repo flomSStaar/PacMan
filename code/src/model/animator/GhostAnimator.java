@@ -4,60 +4,70 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.SpriteManager;
 import model.entity.BaseEntity;
-import model.observers.DisplacerObserver;
 import model.utils.Direction;
+import model.observers.DisplacerObserver;
 
 public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
-    private final Image[] defaultSprite;
-    private final Image[] eatableSprite;
-    private int image;
-    /**
-     * Définit si le fantôme est dans un état ou il peut-être mangé.
-     */
-    private boolean isEatable = false;
 
-    /**
-     * Créé une instance de GhostAnimator
-     *
-     * @param imageView     ImageView qui va être gérée par l'animateur
-     * @param defaultSprite Sprites du fantôme
-     */
-    public GhostAnimator(ImageView imageView, Image[] defaultSprite) {
-        super(imageView);
+    private int image;
+    private Image[] defaultSprite;
+    private Image[] eatableSprite;
+    private Image[] eyeSprite;
+    private boolean isEatable = false;
+    protected boolean hasBeenEaten = false;
+
+
+    public GhostAnimator(ImageView i, Image[] defaultSprite) {
+        super(i);
         this.image = 0;
         this.defaultSprite = defaultSprite;
         this.eatableSprite = SpriteManager.getGhostEatableSprite();
+        this.eyeSprite = SpriteManager.getGhostEyeSprite();
     }
 
-    /**
-     * Récupère la valeur de isEateable
-     *
-     * @return valeur de isEatable
-     */
-    public boolean isEatable() {
-        return isEatable;
-    }
-
-    /**
-     * Modifie la valeur de isEatable
-     *
-     * @param eatable Nouvelle état
-     */
     public void setEatable(boolean eatable) {
         isEatable = eatable;
+    }
+
+    public void setHasBeenEaten(boolean hasBeenEaten) {
+        this.hasBeenEaten = hasBeenEaten;
     }
 
     @Override
     public void onLoop() {
         this.image = (this.image + 1) % 4;
-        if (isEatable) {
+        if (hasBeenEaten) {
+            switch (super.direction) {
+                case UP:
+                    super.imageView.setImage(eyeSprite[0]);
+                    break;
+                case LEFT:
+                    super.imageView.setImage(eyeSprite[3]);
+                    break;
+                case DOWN:
+                    super.imageView.setImage(eyeSprite[2]);
+                    break;
+                case RIGHT:
+                    super.imageView.setImage(eyeSprite[1]);
+                    break;
+            }
+        }
+        else if (isEatable) {
             super.imageView.setImage(eatableSprite[this.image]);
         } else {
             switch (super.direction) {
-                case UP -> super.imageView.setImage(defaultSprite[this.image%2]);
-                case LEFT -> super.imageView.setImage(defaultSprite[this.image%2 + 2]);
-                case DOWN -> super.imageView.setImage(defaultSprite[this.image%2 + 4]);
-                case RIGHT -> super.imageView.setImage(defaultSprite[this.image%2 + 6]);
+                case UP:
+                    super.imageView.setImage(defaultSprite[this.image%2]);
+                    break;
+                case LEFT:
+                    super.imageView.setImage(defaultSprite[this.image%2 + 2]);
+                    break;
+                case DOWN:
+                    super.imageView.setImage(defaultSprite[this.image%2 + 4]);
+                    break;
+                case RIGHT:
+                    super.imageView.setImage(defaultSprite[this.image%2 + 6]);
+                    break;
             }
         }
     }

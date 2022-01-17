@@ -2,6 +2,7 @@ package model.eater;
 
 import model.collider.GhostCollider;
 import model.entity.BaseEntity;
+import model.entity.ghost.Ghost;
 
 import java.util.List;
 
