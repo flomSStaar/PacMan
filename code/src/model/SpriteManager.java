@@ -4,10 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.entity.*;
-import model.entity.ghost.BlueGhost;
-import model.entity.ghost.OrangeGhost;
-import model.entity.ghost.PinkGhost;
-import model.entity.ghost.RedGhost;
+import model.entity.ghost.*;
+import model.observers.BaseObserver;
 import model.observers.EatObserver;
 
 import java.util.HashMap;
@@ -228,6 +226,7 @@ public class SpriteManager implements EatObserver {
 
     @Override
     public void onEat(BaseEntity entity) {
-        removeSprite(entity);
+        if(!(entity instanceof Ghost))
+            removeSprite(entity);
     }
 }

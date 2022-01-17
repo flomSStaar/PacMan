@@ -7,20 +7,15 @@ import model.entity.ghost.Ghost;
 import java.util.List;
 
 public class RedGhostDisplacer extends GhostDisplacer {
-    /**
-     * Créé une instance de RedGhostDisplacer
-     *
-     * @param entities Liste des entités
-     * @param ghost    Fantôme à déplacer
-     * @param pacMan   PacMan
-     */
-    public RedGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
+
+
+    public RedGhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
         super(entities, ghost, pacMan);
     }
 
     @Override
     public void onLoop() {
-        if (isEatable)
+        if(isEatable || hasBeenEaten)
             super.onLoop();
         else {
             try {
@@ -35,5 +30,4 @@ public class RedGhostDisplacer extends GhostDisplacer {
             }
         }
     }
-
 }

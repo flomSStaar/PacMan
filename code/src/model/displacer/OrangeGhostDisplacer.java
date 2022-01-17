@@ -7,18 +7,12 @@ import model.entity.ghost.Ghost;
 import java.util.List;
 import java.util.Random;
 
-public class OrangeGhostDisplacer extends GhostDisplacer {
+public class OrangeGhostDisplacer extends GhostDisplacer{
+
     private int x;
     private int y;
 
-    /**
-     * Créé une instance de OrangeGhostDisplacer
-     *
-     * @param entities Liste des entités
-     * @param ghost    Fantôme à déplacer
-     * @param pacMan   PacMan
-     */
-    public OrangeGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
+    public OrangeGhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
         super(entities, ghost, pacMan);
         x = 0;
         y = 0;
@@ -31,7 +25,7 @@ public class OrangeGhostDisplacer extends GhostDisplacer {
 
     @Override
     public void onLoop() {
-        if (isEatable)
+        if(isEatable || hasBeenEaten)
             super.onLoop();
         else {
             if (h % 15 == 0) {
@@ -47,7 +41,6 @@ public class OrangeGhostDisplacer extends GhostDisplacer {
                 direction = super.findShortestPath(cell, (int) super.entity.getX() / 15, (int) super.entity.getY() / 15, x, y);
             }
             if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + direction.getDx(), super.entity.getY() + direction.getDy())) {
-                setDirection(direction);
                 moveEntity();
             }
             h++;
