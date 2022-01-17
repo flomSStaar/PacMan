@@ -3,8 +3,8 @@ package model.displacer;
 import model.entity.BaseEntity;
 import model.entity.PacMan;
 import model.entity.ghost.Ghost;
-import model.utils.Direction;
 import model.observers.DisplacerObserver;
+import model.utils.Direction;
 
 import java.util.List;
 
@@ -12,12 +12,12 @@ public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObser
     /**
      * Créé une instance PinkGhostDisplacer
      *
+     * @param entities Liste des entités
      * @param ghost    Fantôme à déplacer
      * @param pacMan   PacMan
-     * @param entities Liste des entités
      */
-    public PinkGhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
-        super(ghost, pacMan, entities);
+    public PinkGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
+        super(entities, ghost, pacMan);
     }
 
     @Override

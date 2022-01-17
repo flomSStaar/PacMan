@@ -15,12 +15,12 @@ public class OrangeGhostDisplacer extends GhostDisplacer {
     /**
      * Créé une instance de OrangeGhostDisplacer
      *
+     * @param entities Liste des entités
      * @param ghost    Fantôme à déplacer
      * @param pacMan   PacMan
-     * @param entities Liste des entités
      */
-    public OrangeGhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
-        super(ghost, pacMan, entities);
+    public OrangeGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
+        super(entities, ghost, pacMan);
         x = 0;
         y = 0;
         Random rand = new Random();

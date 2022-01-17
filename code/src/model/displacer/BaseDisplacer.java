@@ -2,9 +2,9 @@ package model.displacer;
 
 import model.collider.WallCollider;
 import model.entity.BaseEntity;
-import model.utils.Direction;
 import model.observers.DisplacerObserver;
 import model.observers.LooperObserver;
+import model.utils.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,17 @@ public abstract class BaseDisplacer implements LooperObserver {
     protected WallCollider wallCollider = new WallCollider();
     protected List<DisplacerObserver> observers = new ArrayList<>();
     protected List<BaseEntity> entities;
+
+    /**
+     * Définit le constructeur du déplaceur abstrait
+     *
+     * @param entities Liste des entités
+     * @param entity   Entité à déplacer
+     */
+    public BaseDisplacer(List<BaseEntity> entities, BaseEntity entity) {
+        this.entities = entities;
+        this.entity = entity;
+    }
 
     /**
      * Ajoute un observateur à la liste d'observateurs du boucleur

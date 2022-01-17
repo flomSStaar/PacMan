@@ -4,8 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.SpriteManager;
 import model.entity.BaseEntity;
-import model.utils.Direction;
 import model.observers.DisplacerObserver;
+import model.utils.Direction;
 
 public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
     private final Image[] defaultSprite;

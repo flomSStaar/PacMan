@@ -19,8 +19,7 @@ public class PacManDisplacer extends BaseDisplacer {
      * @param pacMan   PacMan à déplacer
      */
     public PacManDisplacer(List<BaseEntity> entities, PacMan pacMan) {
-        this.entities = entities;
-        super.entity = pacMan;
+        super(entities, pacMan);
     }
 
     @Override

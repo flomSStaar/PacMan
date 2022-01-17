@@ -132,17 +132,17 @@ public class World implements EatObserver {
             GhostAnimator ghostAnimator;
             GhostDisplacer ghostDisplacer;
             if (ghost instanceof RedGhost) {
-                ghostDisplacer = new RedGhostDisplacer(ghost, pacMan, entities);
+                ghostDisplacer = new RedGhostDisplacer(entities, ghost, pacMan);
                 ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getRedSprite());
             } else if (ghost instanceof BlueGhost) {
-                ghostDisplacer = new BlueGhostDisplacer(ghost, pacMan, entities);
+                ghostDisplacer = new BlueGhostDisplacer(entities, ghost, pacMan);
                 ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getBlueSprite());
             } else if (ghost instanceof PinkGhost) {
-                ghostDisplacer = new PinkGhostDisplacer(ghost, pacMan, entities);
+                ghostDisplacer = new PinkGhostDisplacer(entities, ghost, pacMan);
                 ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getPinkSprite());
                 getPacManDisplacer().attach((PinkGhostDisplacer) ghostDisplacer);
             } else {
-                ghostDisplacer = new OrangeGhostDisplacer(ghost, pacMan, entities);
+                ghostDisplacer = new OrangeGhostDisplacer(entities, ghost, pacMan);
                 ghostAnimator = new GhostAnimator(spriteManager.getImageView(ghost), SpriteManager.getOrangeSprite());
             }
             entityDisplacerMap.put(ghost, ghostDisplacer);

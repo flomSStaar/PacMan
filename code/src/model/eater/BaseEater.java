@@ -2,9 +2,9 @@ package model.eater;
 
 import model.collider.BaseCollider;
 import model.entity.BaseEntity;
-import model.utils.Direction;
 import model.observers.DisplacerObserver;
 import model.observers.EatObserver;
+import model.utils.Direction;
 
 import java.util.ArrayList;
 import java.util.List;

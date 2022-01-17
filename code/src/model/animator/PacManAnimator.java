@@ -3,8 +3,8 @@ package model.animator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.entity.BaseEntity;
-import model.utils.Direction;
 import model.observers.DisplacerObserver;
+import model.utils.Direction;
 
 public class PacManAnimator extends BaseAnimator implements DisplacerObserver {
     private int image;

@@ -1,8 +1,8 @@
 package model.animator;
 
 import javafx.scene.image.ImageView;
-import model.utils.Direction;
 import model.observers.LooperObserver;
+import model.utils.Direction;
 
 /**
  * Définit un animateur de base

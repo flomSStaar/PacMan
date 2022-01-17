@@ -25,14 +25,13 @@ public abstract class GhostDisplacer extends BaseDisplacer {
     /**
      * Définit le constructeur de GhostDisplacer
      *
+     * @param entities Liste des entités
      * @param ghost    Fantôme à déplacer
      * @param pacMan   PacMan
-     * @param entities Liste des entités du jeu
      */
-    public GhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
-        super.entity = ghost;
+    public GhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
+        super(entities, ghost);
         this.pacMan = pacMan;
-        super.entities = entities;
         cell = new boolean[31][29];
         for (BaseEntity entity : entities) {
             if (entity instanceof Wall) {

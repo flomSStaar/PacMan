@@ -12,12 +12,12 @@ public class RedGhostDisplacer extends GhostDisplacer {
     /**
      * Créé une instance de RedGhostDisplacer
      *
+     * @param entities Liste des entités
      * @param ghost    Fantôme à déplacer
      * @param pacMan   PacMan
-     * @param entities Liste des entités
      */
-    public RedGhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
-        super(ghost, pacMan, entities);
+    public RedGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
+        super(entities, ghost, pacMan);
     }
 
     @Override
