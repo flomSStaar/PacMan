@@ -79,7 +79,7 @@ public abstract class BaseDisplacer implements LooperObserver {
     /**
      * Déplacer l'entité gérée par le déplaceur
      */
-    protected void moveEntity(Direction direction) {
+    protected void moveEntity() {
         entity.setX(entity.getX() + direction.getDx());
         entity.setY(entity.getY() + direction.getDy());
         if (entity.getX() <= -14)

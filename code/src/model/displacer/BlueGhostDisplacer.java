@@ -17,11 +17,4 @@ public class BlueGhostDisplacer extends GhostDisplacer {
     public BlueGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
         super(entities, ghost, pacMan);
     }
-
-    //A voir
-    @Override
-    public void onLoop() {
-        this.direction = escape();
-        moveEntity();
-    }
 }
