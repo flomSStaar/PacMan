@@ -20,7 +20,7 @@ public class BlueGhostDisplacer extends GhostDisplacer {
 
     @Override
     public void onLoop() {
-        this.direction = fuite();
+        this.direction = escape();
         moveEntity();
     }
 }

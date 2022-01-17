@@ -50,7 +50,7 @@ public abstract class GhostDisplacer extends BaseDisplacer {
         this.directionFuture = direction;
     }
 
-    protected Direction fuite() {
+    protected Direction escape() {
         int x = 0;
         int y = 0;
         int d = 0;
