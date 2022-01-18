@@ -2,8 +2,8 @@ package model.eater;
 
 import model.collider.BaseCollider;
 import model.entity.BaseEntity;
-import model.observers.DisplacerObserver;
 import model.observers.BaseObserver;
+import model.observers.DisplacerObserver;
 import model.observers.EatObserver;
 import model.utils.Direction;
 

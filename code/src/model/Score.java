@@ -6,23 +6,16 @@ import model.entity.BaseEntity;
 import model.entity.Candy;
 import model.entity.SuperCandy;
 import model.entity.ghost.Ghost;
-import model.observers.BaseObserver;
 import model.observers.EatObserver;
 import model.utils.Config;
 
 public class Score implements EatObserver {
-    private int integerScore = 0;
+    private int score = 0;
 
-    private StringProperty score = new SimpleStringProperty("Score: 0");
-    public String getScore() {
-        return score.get().substring(7);
-    }
-    public void setScore(String string) {
-        score.set("Score: " + string);
-    }
-    public StringProperty scoreProperty() {
-        return score;
-    }
+    private StringProperty textScore = new SimpleStringProperty("Score: " + score);
+    public String getTextScore() { return textScore.get(); }
+    public void setTextScore(String string) { textScore.set(string + getScore()); }
+    public StringProperty textScoreProperty() { return textScore; }
 
     /**
      * Augmente le score du nombre de points en paramètres
@@ -32,16 +25,25 @@ public class Score implements EatObserver {
     public void increase(int points) {
         if (points < 0)
             return;
-        integerScore += points;
-        setScore(Integer.toString(integerScore));
+        score += points;
+        setTextScore("Score: ");
     }
 
     /**
      * Remet à zero le score
      */
     public void reset() {
-        integerScore = 0;
-        setScore(Integer.toString(integerScore));
+        score = 0;
+        setTextScore("Score: ");
+    }
+
+    /**
+     * Récupère le score actuel
+     *
+     * @return Score actuel
+     */
+    public int getScore() {
+        return score;
     }
 
     @Override

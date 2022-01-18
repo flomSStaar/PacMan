@@ -17,7 +17,6 @@ import model.entity.ghost.RedGhost;
 import model.looper.AnimationLooper;
 import model.looper.Looper;
 import model.looper.MovementLooper;
-import model.observers.DisplacerObserver;
 import model.observers.BaseObserver;
 import model.observers.EatObserver;
 import model.utils.Config;

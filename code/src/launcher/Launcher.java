@@ -1,6 +1,7 @@
 package launcher;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import model.Game;
 
@@ -17,6 +18,8 @@ public class Launcher extends Application {
         } catch (Exception ioException) {
             ioException.printStackTrace();
             stage.close();
+            Platform.exit();
+            System.exit(1);
         }
     }
 }

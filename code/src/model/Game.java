@@ -45,13 +45,24 @@ public class Game {
     /**
      * Effectue la naviguation vers la vue principale
      *
-     * @throws IOException
+     * @throws IOException Exception lancée si le fichier de vue à un problème ou n'arrive pas à être chargée
      */
     public void home() throws IOException {
         if (isGameLaunched) {
             stopGame();
         }
         Parent p = FXMLLoader.load(getClass().getResource("/fxml/mainView.fxml"));
+        Scene scene = new Scene(p);
+        this.stage.setScene(scene);
+    }
+
+    /**
+     * Effectue la naviguation vers la vue de score
+     *
+     * @throws IOException Exception lancée si le fichier de vue à un problème ou n'arrive pas à être chargée
+     */
+    public void score() throws IOException {
+        Parent p = FXMLLoader.load(getClass().getResource("/fxml/scoreView.fxml"));
         Scene scene = new Scene(p);
         this.stage.setScene(scene);
     }
@@ -80,11 +91,12 @@ public class Game {
             pane = (Pane) borderPane.getCenter();
             Scene scene = new Scene(borderPane);
 
+            score.reset();
             world = new World(this, entities, new SpriteManager(pane), score);
             world.loadWorld();
 
-            Text scoreText = new Text(10, 40, score.getScore());
-            scoreText.textProperty().bind(score.scoreProperty());
+            Text scoreText = new Text(10, 40, score.getTextScore());
+            scoreText.textProperty().bind(score.textScoreProperty());
             scoreText.setFill(Color.WHITE);
             scoreText.setFont(Font.loadFont(getClass().getResourceAsStream("/font/emulogic.ttf"), 15));
             borderPane.setTop(scoreText);
@@ -109,7 +121,6 @@ public class Game {
             world.stopWorld();
             world.clearWorld();
             world = null;
-            score.reset();
             isGameLaunched = false;
         }
     }
@@ -164,7 +175,7 @@ public class Game {
             stopGame();
             try {
                 Thread.sleep(1000);
-                home();
+                score();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -191,5 +202,14 @@ public class Game {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * Récupère l'instance de score en cours
+     *
+     * @return Score en cours
+     */
+    public Score getScore() {
+        return score;
     }
 }

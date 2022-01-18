@@ -5,7 +5,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.entity.*;
 import model.entity.ghost.*;
-import model.observers.BaseObserver;
 import model.observers.EatObserver;
 
 import java.util.HashMap;
