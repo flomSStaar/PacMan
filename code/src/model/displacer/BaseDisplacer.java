@@ -2,8 +2,8 @@ package model.displacer;
 
 import model.collider.WallCollider;
 import model.entity.BaseEntity;
-import model.observers.DisplacerObserver;
-import model.observers.LooperObserver;
+import model.observer.DisplacerObserver;
+import model.observer.LooperObserver;
 import model.utils.Direction;
 
 import java.util.ArrayList;

@@ -4,7 +4,7 @@ import model.entity.BaseEntity;
 import model.entity.PacMan;
 import model.entity.Wall;
 import model.entity.ghost.Ghost;
-import model.observers.BaseObserver;
+import model.observer.BaseObserver;
 import model.utils.Direction;
 
 import java.util.ArrayDeque;
@@ -19,7 +19,7 @@ import static java.lang.Math.abs;
  * <p>
  * A FINIR DE COMMENTER
  */
-public abstract class GhostDisplacer extends BaseDisplacer{
+public abstract class GhostDisplacer extends BaseDisplacer {
     protected PacMan pacMan;
     protected boolean[][] cell;
     protected Direction directionFuture = Direction.NONE;
@@ -56,14 +56,29 @@ public abstract class GhostDisplacer extends BaseDisplacer{
         this.directionFuture = direction;
     }
 
+    /**
+     * Modifie l'état de isEatable
+     *
+     * @param eatable Future état
+     */
     public void setEatable(boolean eatable) {
         isEatable = eatable;
     }
 
+    /**
+     * Modifie l'état de hasBeenEaten
+     *
+     * @param hasBeenEaten Future état
+     */
     public void setHasBeenEaten(boolean hasBeenEaten) {
         this.hasBeenEaten = hasBeenEaten;
     }
 
+    /**
+     * Trouve la direction pour s'échapper de PacMan
+     *
+     * @return Direction de fuite
+     */
     protected Direction escape() {
         int x = 0;
         int y = 0;
@@ -82,6 +97,11 @@ public abstract class GhostDisplacer extends BaseDisplacer{
         return findShortestPath(cell, ((int) entity.getX() - ((int) entity.getX() % 15)) / 15, ((int) entity.getY() - ((int) entity.getY() % 15)) / 15, x, y);
     }
 
+    /**
+     * Trouve la direction pour retourner à la base
+     *
+     * @return Direction vers la base
+     */
     protected Direction returnBase() {
         return findShortestPath(cell, ((int) entity.getX() - ((int) entity.getX() % 15)) / 15, ((int) entity.getY() - ((int) entity.getY() % 15)) / 15, 13, 14);
     }
@@ -138,8 +158,7 @@ public abstract class GhostDisplacer extends BaseDisplacer{
                     notifyGhost(entity);
                 }
                 direction = returnBase();
-            }
-            else
+            } else
                 direction = escape();
         }
         if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + direction.getDx(), super.entity.getY() + direction.getDy())) {
@@ -160,13 +179,18 @@ public abstract class GhostDisplacer extends BaseDisplacer{
         }
     }
 
+    /**
+     * Attache un observateur
+     *
+     * @param observer Observateur à ajouter
+     */
     public void attachGhost(BaseObserver observer) {
         if (observer != null && !observerGhost.contains(observer))
             observerGhost.add(observer);
     }
 
     /**
-     * Supprime un observateur à la liste d'observateurs du mangeur
+     * Supprime un observateur
      *
      * @param observer Observateur à détacher
      */
@@ -175,9 +199,9 @@ public abstract class GhostDisplacer extends BaseDisplacer{
     }
 
     /**
-     * Notifie les observateurs qu'une entité peut être mangée
+     * Notifie les observateurs qu'une entité est sur la base
      *
-     * @param entity Entité pouvant mangée
+     * @param entity Entité sur la base
      */
     protected void notifyGhost(BaseEntity entity) {
         for (BaseObserver observer : observerGhost) {

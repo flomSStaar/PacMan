@@ -7,8 +7,7 @@ import model.entity.ghost.Ghost;
 import java.util.List;
 import java.util.Random;
 
-public class OrangeGhostDisplacer extends GhostDisplacer{
-
+public class OrangeGhostDisplacer extends GhostDisplacer {
     private int x;
     private int y;
 
@@ -25,7 +24,7 @@ public class OrangeGhostDisplacer extends GhostDisplacer{
 
     @Override
     public void onLoop() {
-        if(isEatable || hasBeenEaten)
+        if (isEatable || hasBeenEaten)
             super.onLoop();
         else {
             if (h % 15 == 0) {

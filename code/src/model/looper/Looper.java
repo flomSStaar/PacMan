@@ -1,7 +1,7 @@
 package model.looper;
 
 import javafx.application.Platform;
-import model.observers.LooperObserver;
+import model.observer.LooperObserver;
 
 import java.util.ArrayList;
 import java.util.List;

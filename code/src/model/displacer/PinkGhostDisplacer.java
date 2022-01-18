@@ -3,7 +3,7 @@ package model.displacer;
 import model.entity.BaseEntity;
 import model.entity.PacMan;
 import model.entity.ghost.Ghost;
-import model.observers.DisplacerObserver;
+import model.observer.DisplacerObserver;
 import model.utils.Direction;
 
 import java.util.List;
@@ -15,12 +15,12 @@ public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObser
 
     @Override
     public void onLoop() {
-        if(isEatable || hasBeenEaten)
+        if (isEatable || hasBeenEaten)
             super.onLoop();
         else {
             if (h % 15 == 0) {
                 if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + directionFuture.getDx(), super.entity.getY() + directionFuture.getDy()) && directionFuture != Direction.NONE) {
-                    if (!((entity.getX() <= 0 || entity.getX() >=420) && (directionFuture == Direction.UP || directionFuture == Direction.DOWN))) {
+                    if (!((entity.getX() <= 0 || entity.getX() >= 420) && (directionFuture == Direction.UP || directionFuture == Direction.DOWN))) {
                         direction = directionFuture;
                         directionFuture = Direction.NONE;
                         notifyMove();
@@ -36,7 +36,7 @@ public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObser
 
     @Override
     public void onMove(BaseEntity entity, Direction direction) {
-        if(entity instanceof PacMan){
+        if (entity instanceof PacMan) {
             directionFuture = direction;
         }
     }

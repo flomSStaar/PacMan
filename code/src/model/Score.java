@@ -6,7 +6,7 @@ import model.entity.BaseEntity;
 import model.entity.Candy;
 import model.entity.SuperCandy;
 import model.entity.ghost.Ghost;
-import model.observers.EatObserver;
+import model.observer.EatObserver;
 import model.utils.Config;
 
 public class Score implements EatObserver {

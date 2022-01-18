@@ -1,4 +1,4 @@
-package model.observers;
+package model.observer;
 
 import model.entity.BaseEntity;
 import model.utils.Direction;

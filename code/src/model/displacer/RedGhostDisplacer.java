@@ -7,15 +7,13 @@ import model.entity.ghost.Ghost;
 import java.util.List;
 
 public class RedGhostDisplacer extends GhostDisplacer {
-
-
     public RedGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
         super(entities, ghost, pacMan);
     }
 
     @Override
     public void onLoop() {
-        if(isEatable || hasBeenEaten)
+        if (isEatable || hasBeenEaten)
             super.onLoop();
         else {
             try {

@@ -1,4 +1,4 @@
-package model.observers;
+package model.observer;
 
 public interface LooperObserver {
     /**

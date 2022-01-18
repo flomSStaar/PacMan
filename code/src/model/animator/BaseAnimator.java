@@ -1,7 +1,7 @@
 package model.animator;
 
 import javafx.scene.image.ImageView;
-import model.observers.LooperObserver;
+import model.observer.LooperObserver;
 import model.utils.Direction;
 
 /**

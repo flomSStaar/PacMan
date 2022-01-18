@@ -17,8 +17,8 @@ import model.entity.ghost.RedGhost;
 import model.looper.AnimationLooper;
 import model.looper.Looper;
 import model.looper.MovementLooper;
-import model.observers.BaseObserver;
-import model.observers.EatObserver;
+import model.observer.BaseObserver;
+import model.observer.EatObserver;
 import model.utils.Config;
 
 import java.util.ArrayList;
