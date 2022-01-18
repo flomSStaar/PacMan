@@ -12,7 +12,7 @@ public class OrangeGhostDisplacer extends GhostDisplacer{
     private int x;
     private int y;
 
-    public OrangeGhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
+    public OrangeGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
         super(entities, ghost, pacMan);
         x = 0;
         y = 0;

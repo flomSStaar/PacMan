@@ -10,7 +10,7 @@ import model.utils.Direction;
 public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
     private final Image[] defaultSprite;
     private final Image[] eatableSprite;
-    private Image[] eyeSprite;
+    private final Image[] eyeSprite;
     private int image;
     /**
      * Définit si le fantôme est dans un état où il peut-être mangé.
@@ -47,7 +47,16 @@ public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
      * @param eatable Nouvel état
      */
     public void setEatable(boolean eatable) {
-        isEatable = eatable;
+        this.isEatable = eatable;
+    }
+
+    /**
+     * Récupère la valeur de hasBeenEaten
+     *
+     * @return valeur de hasBeenEaten
+     */
+    public boolean hasBeenEaten() {
+        return hasBeenEaten;
     }
 
     /**

@@ -9,7 +9,7 @@ import java.util.List;
 public class RedGhostDisplacer extends GhostDisplacer {
 
 
-    public RedGhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
+    public RedGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
         super(entities, ghost, pacMan);
     }
 

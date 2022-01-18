@@ -50,7 +50,7 @@ public class World implements EatObserver, BaseObserver {
     private boolean isLoad = false;
     private boolean isThreadStart = false;
 
-    private List<BaseEntity> eatenGhost = new ArrayList<>();
+    private final List<BaseEntity> eatenGhost = new ArrayList<>();
 
     /**
      * Créé une instance de World
@@ -151,7 +151,7 @@ public class World implements EatObserver, BaseObserver {
             }
             entityDisplacerMap.put(ghost, ghostDisplacer);
             ghostMovementLooper.attach(ghostDisplacer);
-            ghostDisplacer.attach((DisplacerObserver) ghostAnimator);
+            ghostDisplacer.attach(ghostAnimator);
             ghostDisplacer.attach(pacManEater);
             ghostDisplacer.attachGhost(this);
             animationLooper.attach(ghostAnimator);
@@ -306,7 +306,7 @@ public class World implements EatObserver, BaseObserver {
                         ghostAnimators.get(ghost).setEatable(false);
                     }
                     for (BaseEntity ghost : eatenGhost) {
-                        getGhostDisplacer((Ghost)ghost).setEatable(false);
+                        getGhostDisplacer((Ghost) ghost).setEatable(false);
                     }
                     pacmanMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
                     ghostMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
@@ -315,7 +315,7 @@ public class World implements EatObserver, BaseObserver {
         } else if (entity instanceof Ghost) {
             eatenGhost.remove(entity);
             ghostAnimators.get(entity).setHasBeenEaten(true);
-            getGhostDisplacer((Ghost)entity).setHasBeenEaten(true);
+            getGhostDisplacer((Ghost) entity).setHasBeenEaten(true);
             ghostAnimators.get(entity).setEatable(false);
             getGhostDisplacer((Ghost) entity).setEatable(false);
             score.increase(Config.GHOST_POINTS);
@@ -332,10 +332,9 @@ public class World implements EatObserver, BaseObserver {
     }
 
     @Override
-    public void onBase(BaseEntity entity)
-    {
+    public void onBase(BaseEntity entity) {
         eatenGhost.add(entity);
         ghostAnimators.get(entity).setHasBeenEaten(false);
-        getGhostDisplacer((Ghost)entity).setHasBeenEaten(false);
+        getGhostDisplacer((Ghost) entity).setHasBeenEaten(false);
     }
 }

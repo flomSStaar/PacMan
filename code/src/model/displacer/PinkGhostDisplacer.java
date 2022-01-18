@@ -9,7 +9,7 @@ import model.observers.DisplacerObserver;
 import java.util.List;
 
 public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObserver {
-    public PinkGhostDisplacer(Ghost ghost, PacMan pacMan, List<BaseEntity> entities) {
+    public PinkGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
         super(entities, ghost, pacMan);
     }
 
