@@ -7,16 +7,23 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Save.LoadResultat;
+import model.Save.SaveResultat;
 import model.displacer.PacManDisplacer;
 import model.entity.BaseEntity;
 import model.io.loader.MapEntityLoader;
 import model.utils.Direction;
+import model.utils.Resultat;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +34,7 @@ public class Game {
     private Pane pane;
     private World world;
     private final Score score = new Score();
+    public ObservableList<Resultat> Resultats = FXCollections.observableArrayList();
 
     private boolean isGameLaunched = false;
 
@@ -37,6 +45,8 @@ public class Game {
      * @throws IOException
      */
     public Game(Stage stage) throws IOException {
+        LoadResultat l = new LoadResultat();
+        Resultats = l.LoadScore(Resultats);
         this.stage = stage;
         home();
         this.stage.show();
@@ -67,6 +77,15 @@ public class Game {
         this.stage.setScene(scene);
     }
 
+    public void Score() throws IOException {
+        if (isGameLaunched) {
+            stopGame();
+        }
+        Parent p = FXMLLoader.load(getClass().getResource("/fxml/scoreView.fxml"));
+        Scene scene = new Scene(p);
+        this.stage.setScene(scene);
+    }
+
     /**
      * Ferme l'application
      */
@@ -74,6 +93,8 @@ public class Game {
         if (isGameLaunched) {
             stopGame();
         }
+        SaveResultat s = new SaveResultat();
+        s.SaveScore(Resultats);
         Platform.exit();
         System.exit(0);
     }
@@ -91,7 +112,6 @@ public class Game {
             pane = (Pane) borderPane.getCenter();
             Scene scene = new Scene(borderPane);
 
-            score.reset();
             world = new World(this, entities, new SpriteManager(pane), score);
             world.loadWorld();
 

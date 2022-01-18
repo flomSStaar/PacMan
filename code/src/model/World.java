@@ -51,6 +51,8 @@ public class World implements EatObserver, BaseObserver {
 
     private final List<BaseEntity> eatenGhost = new ArrayList<>();
 
+    private SoundManager soundManager;
+
     /**
      * Créé une instance de World
      *
@@ -75,6 +77,7 @@ public class World implements EatObserver, BaseObserver {
             initEater();
             initPacMan();
             initGhosts();
+            soundManager = new SoundManager();
             isLoad = true;
         }
     }
@@ -98,6 +101,7 @@ public class World implements EatObserver, BaseObserver {
             for (Looper looper : loopers) {
                 new Thread(looper, looper.getName()).start();
             }
+            soundManager.PlayMusic();
             isThreadStart = true;
         }
     }
@@ -280,17 +284,20 @@ public class World implements EatObserver, BaseObserver {
     @Override
     public void onEat(BaseEntity entity) {
         if (entity instanceof PacMan) {
+            soundManager.StopMusic();
+            soundManager.DeathPacman();
             game.gameOver();
             return;
         } else if (entity instanceof SuperCandy) {
+            soundManager.PlayMusicPacman();
             new Thread(() -> {
                 try {
                     pacManEater.setActive(false);
                     ghostEater.setActive(true);
-                    for (BaseEntity ghost : eatenGhost) {
+                    for (BaseEntity ghost : getGhosts()) {
                         ghostAnimators.get(ghost).setEatable(true);
                     }
-                    for (BaseEntity ghost : eatenGhost) {
+                    for (BaseEntity ghost : getGhosts()) {
                         getGhostDisplacer((Ghost) ghost).setEatable(true);
                     }
                     pacmanMovementLooper.setMillis(Config.FAST_MOVEMENT_LOOP);
@@ -309,6 +316,7 @@ public class World implements EatObserver, BaseObserver {
                     }
                     pacmanMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
                     ghostMovementLooper.setMillis(Config.DEFAULT_MOVEMENT_LOOP);
+                    soundManager.StopMusicPacman();
                 }
             }, "PacManPower").start();
         } else if (entity instanceof Ghost) {
@@ -318,9 +326,11 @@ public class World implements EatObserver, BaseObserver {
             ghostAnimators.get(entity).setEatable(false);
             getGhostDisplacer((Ghost) entity).setEatable(false);
             score.increase(Config.GHOST_POINTS);
+            soundManager.EatGhost();
             return;
         }
         removeEntity(entity);
+        soundManager.EatCandy();
         for (BaseEntity e : entities) {
             if (e instanceof Candy || e instanceof SuperCandy) {
                 return;
