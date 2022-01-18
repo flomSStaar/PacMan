@@ -13,7 +13,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.displacer.PacManDisplacer;
 import model.entity.BaseEntity;
-import model.loader.MapEntityLoader;
+import model.io.loader.MapEntityLoader;
 import model.utils.Direction;
 
 import java.io.IOException;

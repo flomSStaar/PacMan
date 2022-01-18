@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import launcher.Launcher;
 import model.Score;
-import model.saver.ScoreSaver;
+import model.io.saver.ScoreSaver;
 import model.utils.PlayerScore;
 
 import java.io.IOException;

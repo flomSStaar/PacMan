@@ -1,4 +1,4 @@
-package model.saver;
+package model.io.saver;
 
 import model.utils.Config;
 import model.utils.PlayerScore;

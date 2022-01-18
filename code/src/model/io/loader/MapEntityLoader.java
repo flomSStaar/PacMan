@@ -1,4 +1,4 @@
-package model.loader;
+package model.io.loader;
 
 import model.entity.*;
 import model.entity.ghost.BlueGhost;
