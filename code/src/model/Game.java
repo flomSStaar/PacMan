@@ -9,9 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.displacer.PacManDisplacer;
 import model.entity.BaseEntity;
@@ -60,6 +57,7 @@ public class Game {
         }
         Parent p = FXMLLoader.load(getClass().getResource("/fxml/mainView.fxml"));
         Scene scene = new Scene(p);
+        scene.getStylesheets().add(getClass().getResource("/css/stylesheet.css").toExternalForm());
         this.stage.setScene(scene);
     }
 
@@ -71,6 +69,7 @@ public class Game {
     public void score() throws IOException {
         Parent p = FXMLLoader.load(getClass().getResource("/fxml/scoreView.fxml"));
         Scene scene = new Scene(p);
+        scene.getStylesheets().add(getClass().getResource("/css/stylesheet.css").toExternalForm());
         this.stage.setScene(scene);
     }
 
@@ -98,16 +97,11 @@ public class Game {
             BorderPane borderPane = FXMLLoader.load(getClass().getResource("/fxml/gameView.fxml"));
             pane = (Pane) borderPane.getCenter();
             Scene scene = new Scene(borderPane);
+            scene.getStylesheets().add(getClass().getResource("/css/stylesheet.css").toExternalForm());
 
             world = new World(this, entities, new SpriteManager(pane), score);
             world.loadWorld();
             score.reset();
-
-            Text scoreText = new Text(10, 40, score.getTextScore());
-            scoreText.textProperty().bind(score.textScoreProperty());
-            scoreText.setFill(Color.WHITE);
-            scoreText.setFont(Font.loadFont(getClass().getResourceAsStream("/font/emulogic.ttf"), 15));
-            borderPane.setTop(scoreText);
 
             world.startWorld();
             stage.addEventHandler(KeyEvent.KEY_PRESSED, this::onKeyPressed);
@@ -187,6 +181,7 @@ public class Game {
                 Thread.sleep(1000);
                 Parent p = FXMLLoader.load(getClass().getResource("/fxml/gameOverView.fxml"));
                 Scene scene = new Scene(p);
+                scene.getStylesheets().add(getClass().getResource("/css/stylesheet.css").toExternalForm());
                 this.stage.setScene(scene);
             } catch (Exception e) {
                 e.printStackTrace();

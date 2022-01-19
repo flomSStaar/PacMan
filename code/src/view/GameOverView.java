@@ -2,8 +2,8 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import launcher.Launcher;
 import model.Score;
 import model.utils.PlayerScore;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class GameOverView {
     @FXML
-    public Text textScore;
+    public Label scoreLabel;
     @FXML
     public TextField textField;
     @FXML
@@ -20,7 +20,7 @@ public class GameOverView {
 
     public void initialize() {
         score = Launcher.game.getScore();
-        textScore.textProperty().bind(score.textScoreProperty());
+        scoreLabel.textProperty().bind(score.textScoreProperty());
     }
 
     /**
@@ -54,6 +54,5 @@ public class GameOverView {
         String pseudo = textField.getText().isBlank() ? "anonymous" : textField.getText();
         PlayerScore playerScore = new PlayerScore(pseudo, score.getScore());
         Launcher.game.addPlayerScore(playerScore);
-//        new ScoreSaver().save(playerScore);
     }
 }

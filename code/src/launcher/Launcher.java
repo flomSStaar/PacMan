@@ -2,6 +2,7 @@ package launcher;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Game;
 
@@ -13,6 +14,7 @@ public class Launcher extends Application {
 
     public void start(Stage stage) {
         try {
+            Font.loadFont(getClass().getResourceAsStream("/font/emulogic.ttf"), 20);
             game = new Game(stage);
             stage.setOnCloseRequest(event -> game.close());
         } catch (Exception ioException) {

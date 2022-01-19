@@ -1,6 +1,5 @@
 package model;
 
-import javafx.application.Platform;
 import model.animator.GhostAnimator;
 import model.animator.PacManAnimator;
 import model.displacer.*;
