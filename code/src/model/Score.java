@@ -54,4 +54,9 @@ public class Score implements EatObserver {
             increase(Config.GHOST_POINTS);
         }
     }
+
+    public int getIntegerScore()
+    {
+        return integerScore;
+    }
 }
