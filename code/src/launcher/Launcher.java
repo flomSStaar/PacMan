@@ -16,6 +16,8 @@ public class Launcher extends Application {
         try {
             Font.loadFont(getClass().getResourceAsStream("/font/emulogic.ttf"), 20);
             game = new Game(stage);
+            stage.setMinWidth(800);
+            stage.setMinHeight(800);
             stage.setOnCloseRequest(event -> game.close());
         } catch (Exception ioException) {
             ioException.printStackTrace();

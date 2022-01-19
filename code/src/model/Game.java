@@ -106,7 +106,6 @@ public class Game {
             world.startWorld();
             stage.addEventHandler(KeyEvent.KEY_PRESSED, this::onKeyPressed);
             stage.setScene(scene);
-            stage.setResizable(false);
             stage.show();
 
             isGameLaunched = true;
@@ -125,7 +124,6 @@ public class Game {
             world.clearWorld();
             world = null;
             isGameLaunched = false;
-            stage.setResizable(true);
         }
     }
 

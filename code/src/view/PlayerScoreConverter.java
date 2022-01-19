@@ -7,7 +7,7 @@ import model.utils.PlayerScore;
 /**
  * Permet de convertir le score d'un joueur avec son pseudo en une propriete pour la vue.
  */
-public class PlayerScoreConverter {
+public class PlayerScoreConverter implements Comparable<PlayerScoreConverter> {
     private final PlayerScore playerScore;
 
     private StringProperty text = new SimpleStringProperty();
@@ -23,5 +23,10 @@ public class PlayerScoreConverter {
     public PlayerScoreConverter(PlayerScore playerScore) {
         this.playerScore = playerScore;
         setText(playerScore.getPseudo() + " - " + playerScore.getScore());
+    }
+
+    @Override
+    public int compareTo(PlayerScoreConverter o) {
+        return this.playerScore.compareTo(o.playerScore);
     }
 }

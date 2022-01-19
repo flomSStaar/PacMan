@@ -7,9 +7,9 @@
             fx:id="borderPane"
             style="-fx-background-color: black;">
     <top>
-        <Label fx:id="scoreLabel"/>
+        <Label fx:id="scoreLabel" BorderPane.alignment="CENTER"/>
     </top>
     <center>
-        <Pane/>
+        <Pane BorderPane.alignment="CENTER" maxWidth="420" maxHeight="465"/>
     </center>
 </BorderPane>

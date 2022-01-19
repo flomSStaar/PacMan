@@ -10,6 +10,7 @@ import launcher.Launcher;
 import model.utils.PlayerScore;
 
 import java.io.IOException;
+import java.util.Collections;
 
 public class ScoreView {
     @FXML
@@ -20,6 +21,7 @@ public class ScoreView {
         for (PlayerScore playerScore : Launcher.game.getPlayerScores()) {
             playerScoreConverters.add(new PlayerScoreConverter(playerScore));
         }
+        Collections.sort(playerScoreConverters);
 
         playerScoreListView.setItems(playerScoreConverters);
         playerScoreListView.setCellFactory(__ -> new ListCell<>() {
