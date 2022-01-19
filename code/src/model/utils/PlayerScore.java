@@ -1,11 +1,15 @@
 package model.utils;
 
+import java.io.Serializable;
+
 /**
  * Permet de stocker le pseudo et le score du joueur dans un objet pour pouvoir le sauvegarder
  */
-public class PlayerScore {
+public class PlayerScore implements Serializable, Comparable<PlayerScore> {
     private final String pseudo;
     private final int score;
+
+    private static final long serialVersionUID = -44195267321904431L;
 
     /**
      * Créé une instance de PlayerScore
@@ -34,5 +38,11 @@ public class PlayerScore {
      */
     public int getScore() {
         return score;
+    }
+
+
+    @Override
+    public int compareTo(PlayerScore o) {
+        return o.getScore() - this.score;
     }
 }

@@ -1,29 +1,27 @@
 package model;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Save.LoadResultat;
-import model.Save.SaveResultat;
 import model.displacer.PacManDisplacer;
 import model.entity.BaseEntity;
 import model.io.loader.MapEntityLoader;
+import model.io.loader.ScoreLoader;
+import model.io.saver.ScoreSaver;
 import model.utils.Direction;
-import model.utils.Resultat;
+import model.utils.PlayerScore;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +32,7 @@ public class Game {
     private Pane pane;
     private World world;
     private final Score score = new Score();
-    public ObservableList<Resultat> Resultats = FXCollections.observableArrayList();
+    private ObservableList<PlayerScore> playerScores;
 
     private boolean isGameLaunched = false;
 
@@ -45,8 +43,7 @@ public class Game {
      * @throws IOException
      */
     public Game(Stage stage) throws IOException {
-        LoadResultat l = new LoadResultat();
-        Resultats = l.LoadScore(Resultats);
+        playerScores = FXCollections.observableArrayList(new ScoreLoader().load());
         this.stage = stage;
         home();
         this.stage.show();
@@ -77,15 +74,6 @@ public class Game {
         this.stage.setScene(scene);
     }
 
-    public void Score() throws IOException {
-        if (isGameLaunched) {
-            stopGame();
-        }
-        Parent p = FXMLLoader.load(getClass().getResource("/fxml/scoreView.fxml"));
-        Scene scene = new Scene(p);
-        this.stage.setScene(scene);
-    }
-
     /**
      * Ferme l'application
      */
@@ -93,8 +81,7 @@ public class Game {
         if (isGameLaunched) {
             stopGame();
         }
-        SaveResultat s = new SaveResultat();
-        s.SaveScore(Resultats);
+        new ScoreSaver().save(playerScores.stream().toList());
         Platform.exit();
         System.exit(0);
     }
@@ -124,6 +111,7 @@ public class Game {
             world.startWorld();
             stage.addEventHandler(KeyEvent.KEY_PRESSED, this::onKeyPressed);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
 
             isGameLaunched = true;
@@ -142,6 +130,7 @@ public class Game {
             world.clearWorld();
             world = null;
             isGameLaunched = false;
+            stage.setResizable(true);
         }
     }
 
@@ -195,7 +184,9 @@ public class Game {
             stopGame();
             try {
                 Thread.sleep(1000);
-                score();
+                Parent p = FXMLLoader.load(getClass().getResource("/fxml/gameOverView.fxml"));
+                Scene scene = new Scene(p);
+                this.stage.setScene(scene);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -231,5 +222,23 @@ public class Game {
      */
     public Score getScore() {
         return score;
+    }
+
+    /**
+     * Récupère la liste des scores des joueurs
+     *
+     * @return Liste des scores des joueurs
+     */
+    public ObservableList<PlayerScore> getPlayerScores() {
+        return playerScores;
+    }
+
+    /**
+     * Ajoute le score d'un joueur à la liste des scores
+     *
+     * @param playerScore Score du joueur
+     */
+    public void addPlayerScore(PlayerScore playerScore) {
+        playerScores.add(playerScore);
     }
 }

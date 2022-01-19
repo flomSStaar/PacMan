@@ -13,9 +13,9 @@ public class Score implements EatObserver {
     private int score = 0;
 
     private StringProperty textScore = new SimpleStringProperty("Score: " + score);
-    public String getTextScore() { return textScore.get(); }
-    public void setTextScore(String string) { textScore.set(string + getScore()); }
-    public StringProperty textScoreProperty() { return textScore; }
+        public String getTextScore() { return textScore.get(); }
+        public void setTextScore(String string) { textScore.set(string + getScore()); }
+        public StringProperty textScoreProperty() { return textScore; }
 
     /**
      * Augmente le score du nombre de points en paramètres
@@ -55,10 +55,5 @@ public class Score implements EatObserver {
         } else if (entity instanceof Ghost) {
             increase(Config.GHOST_POINTS);
         }
-    }
-
-    public int getIntegerScore()
-    {
-        return integerScore;
     }
 }

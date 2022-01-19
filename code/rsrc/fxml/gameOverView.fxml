@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameOverView">
+    <top>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Game Over" BorderPane.alignment="CENTER"/>
+    </top>
+    <bottom>
+        <HBox BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" text="Rejouer" onAction="#restart"/>
+            <Button mnemonicParsing="false" text="Retour à l'accueil" onAction="#home"/>
+        </HBox>
+    </bottom>
+    <center>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER"
+                  fx:id="textScore"/>
+            <VBox>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom"/>
+                <TextField fx:id="textField"/>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -4,8 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <BorderPane
         style="-fx-background-image: url(/image/fond.png);-fx-background-repeat: no-repeat; -fx-background-position: center center;"
         xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainView">
@@ -30,7 +29,10 @@
         </VBox>
     </top>
     <center>
-        <Button text="Jouer" onAction="#launchGame"/>
+        <VBox alignment="CENTER">
+            <Button text="Jouer" onAction="#launchGame"/>
+            <Button text="Afficher les scores" onAction="#scores"/>
+        </VBox>
     </center>
     <bottom>
         <ImageView pickOnBounds="true" preserveRatio="true" visible="false">
