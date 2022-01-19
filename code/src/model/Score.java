@@ -18,7 +18,7 @@ public class Score implements EatObserver {
         public StringProperty textScoreProperty() { return textScore; }
 
     /**
-     * Augmente le score du nombre de points en paramètres
+     * Augmente le score du nombre de points en parametres
      *
      * @param points Nombre de points
      */
@@ -30,7 +30,7 @@ public class Score implements EatObserver {
     }
 
     /**
-     * Remet à zero le score
+     * Remet a zero le score
      */
     public void reset() {
         score = 0;
@@ -38,7 +38,7 @@ public class Score implements EatObserver {
     }
 
     /**
-     * Récupère le score actuel
+     * Recupere le score actuel
      *
      * @return Score actuel
      */

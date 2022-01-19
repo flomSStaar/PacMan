@@ -7,16 +7,16 @@ import model.utils.Direction;
 import java.util.List;
 
 /**
- * Définit le déplacement de PacMan
+ * Definit le deplacement de PacMan
  */
 public class PacManDisplacer extends BaseDisplacer {
     protected Direction directionFuture = Direction.NONE;
 
     /**
-     * Créé une instance de PacManDisplacer
+     * Cree une instance de PacManDisplacer
      *
-     * @param entities Liste des entités
-     * @param pacMan   PacMan à déplacer
+     * @param entities Liste des entites
+     * @param pacMan   PacMan a deplacer
      */
     public PacManDisplacer(List<BaseEntity> entities, PacMan pacMan) {
         super(entities, pacMan);

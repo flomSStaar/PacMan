@@ -4,14 +4,14 @@ import model.utils.Config;
 
 public class MovementLooper extends Looper {
     /**
-     * Créé une instance de MovementLooper
+     * Cree une instance de MovementLooper
      */
     public MovementLooper() {
         this("Movement Looper");
     }
 
     /**
-     * Créé une instance de MovementLooper
+     * Cree une instance de MovementLooper
      *
      * @param name Nom du looper
      */

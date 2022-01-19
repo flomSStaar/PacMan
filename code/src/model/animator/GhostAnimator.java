@@ -13,16 +13,16 @@ public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
     private final Image[] eyeSprite;
     private int image;
     /**
-     * Définit si le fantôme est dans un état où il peut-être mangé.
+     * Dfinit si le fantome est dans un etat où il peut-etre mange.
      */
     private boolean isEatable = false;
     protected boolean hasBeenEaten = false;
 
     /**
-     * Créé une instance de GhostAnimator
+     * Cree une instance de GhostAnimator
      *
-     * @param imageView     ImageView qui va être gérée par l'animateur
-     * @param defaultSprite Sprites du fantôme
+     * @param imageView     ImageView qui va etre geree par l'animateur
+     * @param defaultSprite Sprites du fantome
      */
     public GhostAnimator(ImageView imageView, Image[] defaultSprite) {
         super(imageView);
@@ -33,7 +33,7 @@ public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
     }
 
     /**
-     * Récupère la valeur de isEateable
+     * Recupere la valeur de isEateable
      *
      * @return valeur de isEatable
      */
@@ -44,14 +44,14 @@ public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
     /**
      * Modifie la valeur de isEatable
      *
-     * @param eatable Nouvel état
+     * @param eatable Nouvel etat
      */
     public void setEatable(boolean eatable) {
         this.isEatable = eatable;
     }
 
     /**
-     * Récupère la valeur de hasBeenEaten
+     * Recupere la valeur de hasBeenEaten
      *
      * @return valeur de hasBeenEaten
      */
@@ -62,7 +62,7 @@ public class GhostAnimator extends BaseAnimator implements DisplacerObserver {
     /**
      * Modifie la valeur de hasBeenEaten
      *
-     * @param hasBeenEaten Nouvel état
+     * @param hasBeenEaten Nouvel etat
      */
     public void setHasBeenEaten(boolean hasBeenEaten) {
         this.hasBeenEaten = hasBeenEaten;

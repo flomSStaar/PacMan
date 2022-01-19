@@ -4,9 +4,9 @@ import model.entity.BaseEntity;
 
 public interface EatObserver {
     /**
-     * Permet de notifier quand une entité a été mangée
+     * Permet de notifier quand une entite a ete mangee
      *
-     * @param entity Entité qui a été mangée
+     * @param entity Entite qui a ete mangee
      */
     void onEat(BaseEntity entity);
 }

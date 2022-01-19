@@ -15,7 +15,7 @@ import java.util.Queue;
 import static java.lang.Math.abs;
 
 /**
- * Définit le déplacement d'un fantôme
+ * Definit le deplacement d'un fantome
  * <p>
  * A FINIR DE COMMENTER
  */
@@ -29,10 +29,10 @@ public abstract class GhostDisplacer extends BaseDisplacer {
     private List<BaseObserver> observerGhost = new ArrayList<>();
 
     /**
-     * Définit le constructeur de GhostDisplacer
+     * Definit le constructeur de GhostDisplacer
      *
-     * @param entities Liste des entités
-     * @param ghost    Fantôme à déplacer
+     * @param entities Liste des entites
+     * @param ghost    Fantome a deplacer
      * @param pacMan   PacMan
      */
     public GhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
@@ -47,9 +47,9 @@ public abstract class GhostDisplacer extends BaseDisplacer {
     }
 
     /**
-     * Modifie la direction future de l'entité
+     * Modifie la direction future de l'entite
      *
-     * @param direction Direction de l'entité
+     * @param direction Direction de l'entite
      */
     @Override
     public void setDirection(Direction direction) {
@@ -57,25 +57,25 @@ public abstract class GhostDisplacer extends BaseDisplacer {
     }
 
     /**
-     * Modifie l'état de isEatable
+     * Modifie l'etat de isEatable
      *
-     * @param eatable Future état
+     * @param eatable Future etat
      */
     public void setEatable(boolean eatable) {
         isEatable = eatable;
     }
 
     /**
-     * Modifie l'état de hasBeenEaten
+     * Modifie l'etat de hasBeenEaten
      *
-     * @param hasBeenEaten Future état
+     * @param hasBeenEaten Future etat
      */
     public void setHasBeenEaten(boolean hasBeenEaten) {
         this.hasBeenEaten = hasBeenEaten;
     }
 
     /**
-     * Trouve la direction pour s'échapper de PacMan
+     * Trouve la direction pour s'echapper de PacMan
      *
      * @return Direction de fuite
      */
@@ -98,7 +98,7 @@ public abstract class GhostDisplacer extends BaseDisplacer {
     }
 
     /**
-     * Trouve la direction pour retourner à la base
+     * Trouve la direction pour retourner a la base
      *
      * @return Direction vers la base
      */
@@ -107,7 +107,7 @@ public abstract class GhostDisplacer extends BaseDisplacer {
     }
 
     /**
-     * Trouve le plus court chemin pour arriver à PacMan
+     * Trouve le plus court chemin pour arriver a PacMan
      *
      * @param lab
      * @param cx
@@ -182,7 +182,7 @@ public abstract class GhostDisplacer extends BaseDisplacer {
     /**
      * Attache un observateur
      *
-     * @param observer Observateur à ajouter
+     * @param observer Observateur a ajouter
      */
     public void attachGhost(BaseObserver observer) {
         if (observer != null && !observerGhost.contains(observer))
@@ -192,16 +192,16 @@ public abstract class GhostDisplacer extends BaseDisplacer {
     /**
      * Supprime un observateur
      *
-     * @param observer Observateur à détacher
+     * @param observer Observateur a detacher
      */
     public void detachGhost(BaseObserver observer) {
         observerGhost.remove(observer);
     }
 
     /**
-     * Notifie les observateurs qu'une entité est sur la base
+     * Notifie les observateurs qu'une entite est sur la base
      *
-     * @param entity Entité sur la base
+     * @param entity Entite sur la base
      */
     protected void notifyGhost(BaseEntity entity) {
         for (BaseObserver observer : observerGhost) {

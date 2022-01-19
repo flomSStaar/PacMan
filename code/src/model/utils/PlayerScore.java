@@ -12,7 +12,7 @@ public class PlayerScore implements Serializable, Comparable<PlayerScore> {
     private static final long serialVersionUID = -44195267321904431L;
 
     /**
-     * Créé une instance de PlayerScore
+     * Cree une instance de PlayerScore
      *
      * @param pseudo Pseudonyme du joueur
      * @param score  Score du joueur
@@ -23,7 +23,7 @@ public class PlayerScore implements Serializable, Comparable<PlayerScore> {
     }
 
     /**
-     * Récupère le pseudonyme du joueur
+     * Recupere le pseudonyme du joueur
      *
      * @return Pseudonyme du joueur
      */
@@ -32,7 +32,7 @@ public class PlayerScore implements Serializable, Comparable<PlayerScore> {
     }
 
     /**
-     * Récupère le score du joueur
+     * Recupere le score du joueur
      *
      * @return Score du joueur
      */

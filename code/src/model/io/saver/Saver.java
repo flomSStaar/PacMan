@@ -2,9 +2,9 @@ package model.io.saver;
 
 public interface Saver {
     /**
-     * Définit la méthode pour sauvegarder un objet
+     * Definit la methode pour sauvegarder un objet
      *
-     * @param o Objet à sauvegarder
+     * @param o Objet a sauvegarder
      */
     void save(Object o);
 }

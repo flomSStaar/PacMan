@@ -15,7 +15,7 @@ public enum Direction {
     private final int dy;
 
     /**
-     * Créé une instance de Direction
+     * Cree une instance de Direction
      *
      * @param dx Direction sur l'axe x
      * @param dy Direction sur l'axe y
@@ -26,7 +26,7 @@ public enum Direction {
     }
 
     /**
-     * Récupère la valeur de la direction sur l'axe x
+     * Recupere la valeur de la direction sur l'axe x
      *
      * @return Valeur de la direction sur l'axe x
      */
@@ -35,7 +35,7 @@ public enum Direction {
     }
 
     /**
-     * Récupère la valeur de la direction sur l'axe y
+     * Recupere la valeur de la direction sur l'axe y
      *
      * @return Valeur de la direction sur l'axe y
      */

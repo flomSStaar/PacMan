@@ -7,16 +7,16 @@ import model.utils.Direction;
 import java.util.List;
 
 /**
- * Classe permettant de savoir si PacMan peut être mangé
+ * Classe permettant de savoir si PacMan peut etre mange
  * La classe notifie tous les observateurs si c'est le cas
  */
 public class PacManEater extends BaseEater {
     private List<BaseEntity> eatenGhost;
 
     /**
-     * Créé une instance de PacManEater
+     * Cree une instance de PacManEater
      *
-     * @param entities Liste des entités
+     * @param entities Liste des entites
      */
     public PacManEater(List<BaseEntity> entities, List<BaseEntity> eatenGhost) {
         super(entities, new PacManCollider());

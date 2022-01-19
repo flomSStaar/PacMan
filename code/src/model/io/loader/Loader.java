@@ -2,9 +2,9 @@ package model.io.loader;
 
 public interface Loader {
     /**
-     * Définit la méthode pour charger un objet
+     * Definit la methode pour charger un objet
      *
-     * @return Objet chargé
+     * @return Objet charge
      */
     Object load();
 }

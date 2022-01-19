@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Déplaceur de BaseEntity
+ * Deplaceur de BaseEntity
  */
 public abstract class BaseDisplacer implements LooperObserver {
     protected BaseEntity entity;
@@ -20,10 +20,10 @@ public abstract class BaseDisplacer implements LooperObserver {
     protected List<BaseEntity> entities;
 
     /**
-     * Définit le constructeur du déplaceur abstrait
+     * Definit le constructeur du deplaceur abstrait
      *
-     * @param entities Liste des entités
-     * @param entity   Entité à déplacer
+     * @param entities Liste des entites
+     * @param entity   Entite a deplacer
      */
     public BaseDisplacer(List<BaseEntity> entities, BaseEntity entity) {
         this.entities = entities;
@@ -31,9 +31,9 @@ public abstract class BaseDisplacer implements LooperObserver {
     }
 
     /**
-     * Ajoute un observateur à la liste d'observateurs du boucleur
+     * Ajoute un observateur a la liste d'observateurs du boucleur
      *
-     * @param observer Observateur à attacher
+     * @param observer Observateur a attacher
      */
     public void attach(DisplacerObserver observer) {
         if (observer != null && !observers.contains(observer))
@@ -41,16 +41,16 @@ public abstract class BaseDisplacer implements LooperObserver {
     }
 
     /**
-     * Supprime un observateur à la liste d'observateurs du déplaceur
+     * Supprime un observateur a la liste d'observateurs du deplaceur
      *
-     * @param observer Observateur à détacher
+     * @param observer Observateur a detacher
      */
     public void detach(DisplacerObserver observer) {
         observers.remove(observer);
     }
 
     /**
-     * Notifie tous les objets de la liste d'observateurs du déplaceur
+     * Notifie tous les objets de la liste d'observateurs du deplaceur
      */
     protected void notifyMove() {
         for (DisplacerObserver observer : observers) {
@@ -59,25 +59,25 @@ public abstract class BaseDisplacer implements LooperObserver {
     }
 
     /**
-     * Récupère la direction de l'entité
+     * Recupere la direction de l'entite
      *
-     * @return Direction de l'entité
+     * @return Direction de l'entite
      */
     public Direction getDirection() {
         return direction;
     }
 
     /**
-     * Modifie la direction de l'entité dans le déplaceur
+     * Modifie la direction de l'entite dans le deplaceur
      *
-     * @param direction Direction de l'entité
+     * @param direction Direction de l'entite
      */
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
     /**
-     * Déplacer l'entité gérée par le déplaceur
+     * Dplacer l'entit gre par le dplaceur
      */
     protected void moveEntity() {
         entity.setX(entity.getX() + direction.getDx());

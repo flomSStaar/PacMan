@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class MapEntityLoader implements Loader {
     /**
-     * Charge les entités à partir d'un fichier
+     * Charge les entites a partir d'un fichier
      *
-     * @return Entités chargées
+     * @return Entites chargees
      */
     public List<BaseEntity> load() {
         List<BaseEntity> entities = new ArrayList<>();

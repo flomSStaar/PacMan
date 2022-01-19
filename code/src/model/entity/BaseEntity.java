@@ -25,12 +25,12 @@ public abstract class BaseEntity {
         public FloatProperty heightProperty() { return height; }
 
     /**
-     * Définit le constructeur d'une entité
+     * Definit le constructeur d'une entite
      *
      * @param x      Position x
      * @param y      Position y
-     * @param width  Longueur de l'entité
-     * @param height Largeur de l'entité
+     * @param width  Longueur de l'entite
+     * @param height Largeur de l'entite
      */
     public BaseEntity(float x, float y, float width, float height) {
         setX(x);

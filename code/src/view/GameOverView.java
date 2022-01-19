@@ -26,7 +26,7 @@ public class GameOverView {
     /**
      * Redirige vers la page principale
      *
-     * @param actionEvent Action qui a réalisée l'événement
+     * @param actionEvent Action qui a realisee l'evenement
      */
     public void home(ActionEvent actionEvent) {
         try {
@@ -40,7 +40,7 @@ public class GameOverView {
     /**
      * Relance une partie
      *
-     * @param actionEvent Action qui a réalisée l'événement
+     * @param actionEvent Action qui a realisee l'evenement
      */
     public void restart(ActionEvent actionEvent) {
         saveScore();

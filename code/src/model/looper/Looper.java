@@ -13,7 +13,7 @@ public abstract class Looper implements Runnable {
     protected int millis = 50;
 
     /**
-     * Définit le constructeur d'un Looper.
+     * Definit le constructeur d'un Looper.
      *
      * @param name Nom du Looper
      */
@@ -22,9 +22,9 @@ public abstract class Looper implements Runnable {
     }
 
     /**
-     * Ajoute un observateur à la liste d'observateurs du boucleur
+     * Ajoute un observateur a la liste d'observateurs du boucleur
      *
-     * @param observer Observateur à attacher
+     * @param observer Observateur a attacher
      */
     public void attach(LooperObserver observer) {
         if (observer != null && !observers.contains(observer))
@@ -32,9 +32,9 @@ public abstract class Looper implements Runnable {
     }
 
     /**
-     * Supprime un observateur à la liste d'observateurs du boucleur
+     * Supprime un observateur a la liste d'observateurs du boucleur
      *
-     * @param observer Observateur à détacher
+     * @param observer Observateur a detacher
      */
     public void detach(LooperObserver observer) {
         observers.remove(observer);
@@ -50,21 +50,21 @@ public abstract class Looper implements Runnable {
     }
 
     /**
-     * Définit le Looper comme actif
+     * Definit le Looper comme actif
      */
     public void start() {
         canRun = true;
     }
 
     /**
-     * Définit le Looper comme inactif
+     * Definit le Looper comme inactif
      */
     public void stop() {
         canRun = false;
     }
 
     /**
-     * Récupère le temps de bouclage
+     * Recupere le temps de bouclage
      *
      * @return Temps du boucleur
      */
@@ -84,7 +84,7 @@ public abstract class Looper implements Runnable {
     }
 
     /**
-     * Récupère le nom du boucleur
+     * Recupere le nom du boucleur
      *
      * @return Nom du boucleur
      */
@@ -93,7 +93,7 @@ public abstract class Looper implements Runnable {
     }
 
     /**
-     * Définit le comportement lorsque le looper est utilisé dans un thread
+     * Definit le comportement lorsque le looper est utilise dans un thread
      */
     @Override
     public void run() {

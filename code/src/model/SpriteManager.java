@@ -16,7 +16,7 @@ public class SpriteManager implements EatObserver {
     private final Pane pane;
 
     /**
-     * Créé une instance de SpriteManager
+     * Cree une instance de SpriteManager
      *
      * @param pane Pane de la vue
      */
@@ -25,7 +25,7 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Remet à zero l'instance du SpriteManager
+     * Remet a zero l'instance du SpriteManager
      */
     public void reset() {
         entityImageViewMap.clear();
@@ -33,9 +33,9 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Ajoute toutes les entités à la vue
+     * Ajoute toutes les entites a la vue
      *
-     * @param entities Liste des entités à ajouter à la vue
+     * @param entities Liste des entites a ajouter a la vue
      */
     public void addAllSprite(List<BaseEntity> entities) {
         for (BaseEntity entity : entities) {
@@ -44,9 +44,9 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Ajoute l'entité à la vue
+     * Ajoute l'entite a la vue
      *
-     * @param entity Entité à ajouter à la vue
+     * @param entity Entite a ajouter a la vue
      */
     public void addSprite(BaseEntity entity) {
         ImageView imageView;
@@ -73,10 +73,10 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Ajoute l'ImageView associé à l'entité à la vue
+     * Ajoute l'ImageView associe a l'entite a la vue
      *
-     * @param entity    Entité associée à l'ImageView
-     * @param imageView ImageView à ajouter dans la vue
+     * @param entity    Entite associee a l'ImageView
+     * @param imageView ImageView a ajouter dans la vue
      */
     public void addSprite(BaseEntity entity, ImageView imageView) {
         if (entity == null || imageView == null)
@@ -88,9 +88,9 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Supprime une l'ImageView associée à l'entité passée en paramètre
+     * Supprime une l'ImageView associee a l'entite passee en parametre
      *
-     * @param entity Entité à supprimer dans la vue
+     * @param entity Entite a supprimer dans la vue
      */
     public void removeSprite(BaseEntity entity) {
         ImageView imageView = entityImageViewMap.get(entity);
@@ -101,10 +101,10 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Récupère l'ImageView associée à l'entité passé en paramètre
+     * Recupere l'ImageView associee a l'entite passe en parametre
      *
-     * @param entity Entité à récupérer
-     * @return ImageView de l'entité
+     * @param entity Entite a recuperer
+     * @return ImageView de l'entite
      */
     public ImageView getImageView(BaseEntity entity) {
         return entityImageViewMap.get(entity);
@@ -125,9 +125,9 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Retourne les sprites du fantôme rouge
+     * Retourne les sprites du fantome rouge
      *
-     * @return Sprites du fantôme rouge
+     * @return Sprites du fantome rouge
      */
     public static Image[] getRedGhostSprite() {
         Image[] imgR = new Image[8];
@@ -144,9 +144,9 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Retourne les sprites du fantôme rose
+     * Retourne les sprites du fantome rose
      *
-     * @return Sprites  du fantôme rose
+     * @return Sprites  du fantome rose
      */
     public static Image[] getPinkGhostSprite() {
         Image[] imgP = new Image[8];
@@ -163,9 +163,9 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Retourne les sprites du fantôme bleu
+     * Retourne les sprites du fantome bleu
      *
-     * @return Sprites du fantôme bleu
+     * @return Sprites du fantome bleu
      */
     public static Image[] getBlueGhostSprite() {
         Image[] imgB = new Image[8];
@@ -182,9 +182,9 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Retourne les sprites du fantôme orange
+     * Retourne les sprites du fantome orange
      *
-     * @return Sprites du fantôme orange
+     * @return Sprites du fantome orange
      */
     public static Image[] getOrangeGhostSprite() {
         Image[] imgO = new Image[8];
@@ -201,9 +201,9 @@ public class SpriteManager implements EatObserver {
     }
 
     /**
-     * Retourne les sprites d'un fantôme mangeable
+     * Retourne les sprites d'un fantome mangeable
      *
-     * @return Sprites d'un fantôme mangeable
+     * @return Sprites d'un fantome mangeable
      */
     public static Image[] getEatableGhostSprite() {
         Image[] im = new Image[4];

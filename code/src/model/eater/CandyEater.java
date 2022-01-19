@@ -6,14 +6,14 @@ import model.entity.BaseEntity;
 import java.util.List;
 
 /**
- * Classe permettant de savoir si un bonbon peut être mangé
+ * Classe permettant de savoir si un bonbon peut etre mange
  * La classe notifie tous les observateurs si c'est le cas
  */
 public class CandyEater extends BaseEater {
     /**
-     * Créé une instance de CandyEater
+     * Cree une instance de CandyEater
      *
-     * @param entities Liste des entités
+     * @param entities Liste des entites
      */
     public CandyEater(List<BaseEntity> entities) {
         super(entities, new CandyCollider());

@@ -4,14 +4,14 @@ import model.utils.Config;
 
 public class AnimationLooper extends Looper {
     /**
-     * Créé une instance d'AnimationLooper
+     * Cree une instance d'AnimationLooper
      */
     public AnimationLooper() {
         this("Animation Looper");
     }
 
     /**
-     * Créé une instance d'AnimationLooper
+     * Cree une instance d'AnimationLooper
      *
      * @param name Nom du Looper
      */

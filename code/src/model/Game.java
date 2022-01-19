@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Cette classe permet de gérer la naviguation de l'application.
+ * Cette classe permet de gerer la naviguation de l'application.
  */
 public class Game {
     private final Stage stage;
@@ -37,10 +37,10 @@ public class Game {
     private boolean isGameLaunched = false;
 
     /**
-     * Créer une nouvelle instance de Game
+     * Cree une nouvelle instance de Game
      *
      * @param stage Stage de la vue
-     * @throws IOException
+     * @throws IOException Exception lancee si la vue d'accueil n'arrive pas a charger
      */
     public Game(Stage stage) throws IOException {
         playerScores = FXCollections.observableArrayList(new ScoreLoader().load());
@@ -52,7 +52,7 @@ public class Game {
     /**
      * Effectue la naviguation vers la vue principale
      *
-     * @throws IOException Exception lancée si le fichier de vue à un problème ou n'arrive pas à être chargée
+     * @throws IOException Exception lancee si le fichier de vue a un probleme ou n'arrive pas a etre chargee
      */
     public void home() throws IOException {
         if (isGameLaunched) {
@@ -66,7 +66,7 @@ public class Game {
     /**
      * Effectue la naviguation vers la vue de score
      *
-     * @throws IOException Exception lancée si le fichier de vue à un problème ou n'arrive pas à être chargée
+     * @throws IOException Exception lancee si le fichier de vue a un probleme ou n'arrive pas a etre chargee
      */
     public void score() throws IOException {
         Parent p = FXMLLoader.load(getClass().getResource("/fxml/scoreView.fxml"));
@@ -136,9 +136,9 @@ public class Game {
     }
 
     /**
-     * Effectue les actions lorsqu'une touche est appuyé.
+     * Effectue les actions lorsqu'une touche est appuye.
      *
-     * @param event Evenement déclenché
+     * @param event Evenement declenche
      */
     private void onKeyPressed(KeyEvent event) {
         try {
@@ -203,7 +203,7 @@ public class Game {
                 //Arret de l'ancien monde
                 world.clearWorld();
 
-                //Création du nouveau monde
+                //Creation du nouveau monde
                 List<BaseEntity> entities = new MapEntityLoader().load();
                 SpriteManager spriteManager = world.getSpriteManager();
                 spriteManager.reset();
@@ -217,7 +217,7 @@ public class Game {
     }
 
     /**
-     * Récupère l'instance de score en cours
+     * Recupere l'instance de score en cours
      *
      * @return Score en cours
      */
@@ -226,7 +226,7 @@ public class Game {
     }
 
     /**
-     * Récupère la liste des scores des joueurs
+     * Recupere la liste des scores des joueurs
      *
      * @return Liste des scores des joueurs
      */
@@ -235,7 +235,7 @@ public class Game {
     }
 
     /**
-     * Ajoute le score d'un joueur à la liste des scores
+     * Ajoute le score d'un joueur a la liste des scores
      *
      * @param playerScore Score du joueur
      */

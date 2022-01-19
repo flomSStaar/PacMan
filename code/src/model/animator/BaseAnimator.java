@@ -5,16 +5,16 @@ import model.observer.LooperObserver;
 import model.utils.Direction;
 
 /**
- * Définit un animateur de base
+ * Definit un animateur de base
  */
 public abstract class BaseAnimator implements LooperObserver {
     protected ImageView imageView;
     protected Direction direction;
 
     /**
-     * Définit le constructeur de la classe BaseAnimator
+     * Definit le constructeur de la classe BaseAnimator
      *
-     * @param imageView ImageView qui va être gérée par l'animateur
+     * @param imageView ImageView qui va etre geree par l'animateur
      */
     public BaseAnimator(ImageView imageView) {
         this.imageView = imageView;
@@ -22,7 +22,7 @@ public abstract class BaseAnimator implements LooperObserver {
     }
 
     /**
-     * Récupère la directioon de l'animateur
+     * Recupere la directioon de l'animateur
      *
      * @return Direction de l'animateur
      */

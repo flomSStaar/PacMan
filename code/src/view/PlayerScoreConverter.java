@@ -5,7 +5,7 @@ import javafx.beans.property.StringProperty;
 import model.utils.PlayerScore;
 
 /**
- * Permet de convertir le score d'un joueur avec son pseudo en une propriété pour la vue.
+ * Permet de convertir le score d'un joueur avec son pseudo en une propriete pour la vue.
  */
 public class PlayerScoreConverter {
     private final PlayerScore playerScore;
@@ -16,9 +16,9 @@ public class PlayerScoreConverter {
     public StringProperty textProperty() { return text; }
 
     /**
-     * Créé une instance de PlayerScoreConverter
+     * Cree une instance de PlayerScoreConverter
      *
-     * @param playerScore PlayerScore à convertir
+     * @param playerScore PlayerScore a convertir
      */
     public PlayerScoreConverter(PlayerScore playerScore) {
         this.playerScore = playerScore;

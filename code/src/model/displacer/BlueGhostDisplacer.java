@@ -8,10 +8,10 @@ import java.util.List;
 
 public class BlueGhostDisplacer extends GhostDisplacer {
     /**
-     * Créé une instance de BlueGhostDisplacer
+     * Cree une instance de BlueGhostDisplacer
      *
-     * @param entities Liste des entités
-     * @param ghost    Fantôme à déplacer
+     * @param entities Liste des entites
+     * @param ghost    Fantome a deplacer
      * @param pacMan   PacMan
      */
     public BlueGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {

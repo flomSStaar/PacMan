@@ -55,9 +55,9 @@ public class World implements EatObserver, BaseObserver {
     private SoundManager soundManager;
 
     /**
-     * Créé une instance de World
+     * Cree une instance de World
      *
-     * @param entities      Liste des entités
+     * @param entities      Liste des entites
      * @param spriteManager SpriteManager
      * @param score         Score
      */
@@ -95,7 +95,7 @@ public class World implements EatObserver, BaseObserver {
     }
 
     /**
-     * Démarre le monde
+     * Demarre le monde
      */
     public void startWorld() {
         if (isLoad && !isThreadStart) {
@@ -108,7 +108,7 @@ public class World implements EatObserver, BaseObserver {
     }
 
     /**
-     * Arrête le monde
+     * Arrete le monde
      */
     public void stopWorld() {
         soundManager.stopMusic();
@@ -133,7 +133,7 @@ public class World implements EatObserver, BaseObserver {
     }
 
     /**
-     * Initialise les fantômes
+     * Initialise les fantomes
      */
     private void initGhosts() {
         PacMan pacMan = getPacMan();
@@ -197,7 +197,7 @@ public class World implements EatObserver, BaseObserver {
     }
 
     /**
-     * Modifie l'état du mangeur de bonbons pour PacMan
+     * Modifie l'etat du mangeur de bonbons pour PacMan
      *
      * @param canEatCandy Etat du mangeur de bonbons
      */
@@ -219,18 +219,18 @@ public class World implements EatObserver, BaseObserver {
     }
 
     /**
-     * Retourne le déplaceur de PacMan
+     * Retourne le deplaceur de PacMan
      *
-     * @return Déplaceur de PacMan
+     * @return Deplaceur de PacMan
      */
     public PacManDisplacer getPacManDisplacer() {
         return (PacManDisplacer) entityDisplacerMap.get(getPacMan());
     }
 
     /**
-     * Retourne les fantômes
+     * Retourne les fantomes
      *
-     * @return Liste des fantômes
+     * @return Liste des fantomes
      */
     public List<Ghost> getGhosts() {
         List<Ghost> ghosts = new ArrayList<>();
@@ -243,10 +243,10 @@ public class World implements EatObserver, BaseObserver {
     }
 
     /**
-     * Renvoie le déplaceur du fantôme passé en paramètre
+     * Renvoie le deplaceur du fantome passe en parametre
      *
      * @param ghost Fantome
-     * @return Déplaceur du fantome
+     * @return Deplaceur du fantome
      */
     public GhostDisplacer getGhostDisplacer(Ghost ghost) {
         for (var set : entityDisplacerMap.entrySet()) {
@@ -257,9 +257,9 @@ public class World implements EatObserver, BaseObserver {
     }
 
     /**
-     * Retourne les entités
+     * Retourne les entites
      *
-     * @return Liste des entités
+     * @return Liste des entites
      */
     public List<BaseEntity> getEntities() {
         return entities;
@@ -275,9 +275,9 @@ public class World implements EatObserver, BaseObserver {
     }
 
     /**
-     * Supprime une entité
+     * Supprime une entite
      *
-     * @param entity Entité à supprimer
+     * @param entity Entite a supprimer
      */
     private void removeEntity(BaseEntity entity) {
         entities.remove(entity);

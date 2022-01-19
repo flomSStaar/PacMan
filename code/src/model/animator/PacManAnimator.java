@@ -11,9 +11,9 @@ public class PacManAnimator extends BaseAnimator implements DisplacerObserver {
     private final Image[] defaultSprite;
 
     /**
-     * Créé une instance de PacManAnimator
+     * Cree une instance de PacManAnimator
      *
-     * @param imageView     ImageView qui va être gérée par l'animateur
+     * @param imageView     ImageView qui va etre geree par l'animateur
      * @param defaultSprite Sprite du PacMan
      */
     public PacManAnimator(ImageView imageView, Image[] defaultSprite) {

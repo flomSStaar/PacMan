@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Définit le comportement du mangeur
+ * Definit le comportement du mangeur
  */
 public abstract class BaseEater implements DisplacerObserver {
     private final List<EatObserver> observers = new ArrayList<>();
@@ -24,9 +24,9 @@ public abstract class BaseEater implements DisplacerObserver {
     }
 
     /**
-     * Ajoute un observateur à la liste d'observateurs du mangeur
+     * Ajoute un observateur a la liste d'observateurs du mangeur
      *
-     * @param observer Observateur à attacher
+     * @param observer Observateur a attacher
      */
     public void attach(EatObserver observer) {
         if (observer != null && !observers.contains(observer))
@@ -34,18 +34,18 @@ public abstract class BaseEater implements DisplacerObserver {
     }
 
     /**
-     * Supprime un observateur à la liste d'observateurs du mangeur
+     * Supprime un observateur a la liste d'observateurs du mangeur
      *
-     * @param observer Observateur à détacher
+     * @param observer Observateur a detacher
      */
     public void detach(EatObserver observer) {
         observers.remove(observer);
     }
 
     /**
-     * Notifie les observateurs qu'une entité peut être mangée
+     * Notifie les observateurs qu'une entite peut etre mangee
      *
-     * @param entity Entité pouvant être mangée
+     * @param entity Entite pouvant etre mangee
      */
     protected void notifyEating(BaseEntity entity) {
         for (EatObserver observer : observers) {
@@ -54,7 +54,7 @@ public abstract class BaseEater implements DisplacerObserver {
     }
 
     /**
-     * Récupère l'état du mangeur
+     * Recupere l'etat du mangeur
      *
      * @return Etat du mangeur
      */
@@ -63,9 +63,9 @@ public abstract class BaseEater implements DisplacerObserver {
     }
 
     /**
-     * Modifie l'état du mangeur
+     * Modifie l'etat du mangeur
      *
-     * @param isActive Future état
+     * @param isActive Future etat
      */
     public void setActive(boolean isActive) {
         this.isActive = isActive;

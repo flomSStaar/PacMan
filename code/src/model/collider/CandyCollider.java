@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Définit si une entité est en collision avec un bonbon
+ * Definit si une entite est en collision avec un bonbon
  */
 public class CandyCollider implements BaseCollider {
     @Override

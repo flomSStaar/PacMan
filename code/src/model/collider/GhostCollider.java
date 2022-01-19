@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Définit si une entité est en collision avec un fantôme
+ * Definit si une entite est en collision avec un fantome
  */
 public class GhostCollider implements BaseCollider {
     @Override

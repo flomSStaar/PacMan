@@ -6,10 +6,11 @@ import java.util.List;
 
 public interface BaseCollider {
     /**
-     * Vérifie si l'entité passée en paramètre n'est pas en collision avec chacune des entités de la liste
+     * Verifie si l'entite passee en parametre n'est pas en collision avec chacune des entites de la liste
      * sur la position x et y
-     * @param entities Liste des entités
-     * @param entity   Entité à vérifier
+     *
+     * @param entities Liste des entites
+     * @param entity   Entite a verifier
      * @param x        Position X
      * @param y        Position Y
      * @return Vrai si en collision sinon faux
@@ -17,12 +18,13 @@ public interface BaseCollider {
     boolean isCollide(List<BaseEntity> entities, BaseEntity entity, float x, float y);
 
     /**
-     * Permet d'obtenir la liste des entités en collision avec l'entité recherchée
-     * @param entities Liste des entités
-     * @param entity   Entité à vérifier
+     * Permet d'obtenir la liste des entites en collision avec l'entite recherchee
+     *
+     * @param entities Liste des entites
+     * @param entity   Entite a verifier
      * @param x        Position X
      * @param y        Position Y
-     * @return Liste des entités en collision
+     * @return Liste des entites en collision
      */
     List<BaseEntity> getColliding(List<BaseEntity> entities, BaseEntity entity, float x, float y);
 }
