@@ -295,10 +295,10 @@ public class World implements EatObserver, BaseObserver {
                 try {
                     pacManEater.setActive(false);
                     ghostEater.setActive(true);
-                    for (BaseEntity ghost : eatenGhost) {
+                    for (BaseEntity ghost : getGhosts()) {
                         ghostAnimators.get(ghost).setEatable(true);
                     }
-                    for (BaseEntity ghost : eatenGhost) {
+                    for (BaseEntity ghost : getGhosts()) {
                         getGhostDisplacer((Ghost) ghost).setEatable(true);
                     }
                     pacmanMovementLooper.setMillis(Config.FAST_MOVEMENT_LOOP);
