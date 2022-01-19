@@ -101,6 +101,7 @@ public class Game {
 
             world = new World(this, entities, new SpriteManager(pane), score);
             world.loadWorld();
+            score.reset();
 
             Text scoreText = new Text(10, 40, score.getTextScore());
             scoreText.textProperty().bind(score.textScoreProperty());
