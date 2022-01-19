@@ -7,6 +7,14 @@ import model.entity.ghost.Ghost;
 import java.util.List;
 
 public class RedGhostDisplacer extends GhostDisplacer {
+
+    /**
+     * Cree une instance de RedGhostDisplacer
+     *
+     * @param entities Liste des entites
+     * @param ghost    Fantome a deplacer
+     * @param pacMan   PacMan
+     */
     public RedGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
         super(entities, ghost, pacMan);
     }

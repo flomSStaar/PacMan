@@ -11,6 +11,13 @@ public class OrangeGhostDisplacer extends GhostDisplacer {
     private int x;
     private int y;
 
+    /**
+     * Cree une instance de OrangeGhostDisplacer
+     *
+     * @param entities Liste des entites
+     * @param ghost    Fantome a deplacer
+     * @param pacMan   PacMan
+     */
     public OrangeGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
         super(entities, ghost, pacMan);
         x = 0;
