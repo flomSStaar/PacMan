@@ -3,11 +3,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameView"
             fx:id="borderPane"
             style="-fx-background-color: black;">
     <top>
-        <Label fx:id="scoreLabel" BorderPane.alignment="CENTER"/>
+        <Label fx:id="scoreLabel" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets top="30"/>
+            </BorderPane.margin>
+        </Label>
     </top>
     <center>
         <Pane BorderPane.alignment="CENTER" maxWidth="420" maxHeight="465"/>

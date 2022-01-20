@@ -2,25 +2,50 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameOverView">
     <bottom>
         <VBox BorderPane.alignment="CENTER" alignment="CENTER">
             <Button mnemonicParsing="false" onAction="#restart" text="Rejouer"/>
-            <Button mnemonicParsing="false" onAction="#home" text="Retour a l'accueil"/>
+            <Button mnemonicParsing="false" onAction="#home" text="Retour a l'accueil">
+                <VBox.margin>
+                    <Insets top="20" bottom="30"/>
+                </VBox.margin>
+            </Button>
         </VBox>
     </bottom>
     <center>
         <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-            <Label fx:id="scoreLabel" textAlignment="CENTER"/>
-            <VBox alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity">
-                <Label text="Votre pseudo"/>
-                <TextField fx:id="textField"/>
+            <Label fx:id="scoreLabel" textAlignment="CENTER">
+                <VBox.margin>
+                    <Insets bottom="50"/>
+                </VBox.margin>
+            </Label>
+            <VBox alignment="CENTER">
+                <Label text="Votre pseudo">
+                    <VBox.margin>
+                        <Insets bottom="10"/>
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="textField" alignment="CENTER" minWidth="250" maxWidth="-Infinity" maxHeight="-Infinity"/>
             </VBox>
         </VBox>
     </center>
     <top>
-        <Label id="titleText" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" text="GameOver"
-               textAlignment="CENTER"
-               BorderPane.alignment="CENTER"/>
+        <ImageView BorderPane.alignment="CENTER" preserveRatio="true" pickOnBounds="true" fitHeight="300">
+            <BorderPane.margin>
+                <Insets top="20"/>
+            </BorderPane.margin>
+            <Image url="/image/game_over_pacman.jpg"/>
+        </ImageView>
+<!--        <Label id="titleText" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity" text="GameOver"-->
+<!--               textAlignment="CENTER"-->
+<!--               BorderPane.alignment="CENTER">-->
+<!--            <BorderPane.margin>-->
+<!--                <Insets top="50"/>-->
+<!--            </BorderPane.margin>-->
+<!--        </Label>-->
     </top>
 </BorderPane>

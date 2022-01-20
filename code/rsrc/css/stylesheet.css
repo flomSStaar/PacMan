@@ -17,10 +17,6 @@
     -fx-background-insets: 5px;
 }
 
-.textfield {
-    -fx-font-family: 'Emulogic';
-}
-
 .button {
     -fx-background-color: black;
     -fx-text-fill: white;
@@ -65,4 +61,8 @@
 #titleText {
     -fx-font-size: 40;
     -fx-margin: 20;
+}
+
+#scoreLabel {
+    -fx-font-size: 30;
 }
