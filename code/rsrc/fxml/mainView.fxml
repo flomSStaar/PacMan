@@ -9,7 +9,7 @@
         style="-fx-background-color: black;-fx-background-repeat: no-repeat; -fx-background-position: center center;"
         xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainView">
     <top>
-        <VBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308">
+        <VBox alignment="TOP_RIGHT">
             <children>
                 <Button alignment="TOP_RIGHT" mnemonicParsing="false" text="Fermer" textAlignment="CENTER"
                         onAction="#close">
@@ -22,7 +22,7 @@
     </top>
     <center>
         <VBox alignment="CENTER">
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="600">
                 <image>
                     <Image url="/image/titre_pacman.png"/>
                 </image>
@@ -31,12 +31,12 @@
                 </VBox.margin>
             </ImageView>
             <Button text="Jouer" onAction="#launchGame">
-                    <VBox.margin>
-                        <Insets>
-                            <top>30</top>
-                            <bottom>15</bottom>
-                        </Insets>
-                    </VBox.margin>
+                <VBox.margin>
+                    <Insets>
+                        <top>30</top>
+                        <bottom>15</bottom>
+                    </Insets>
+                </VBox.margin>
             </Button>
             <Button text="Afficher les scores" onAction="#scores">
                 <VBox.margin>
@@ -48,4 +48,11 @@
             </Button>
         </VBox>
     </center>
+    <bottom>
+        <ImageView BorderPane.alignment="BOTTOM_CENTER" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="/image/bottom_main.jpg"/>
+            </image>
+        </ImageView>
+    </bottom>
 </BorderPane>

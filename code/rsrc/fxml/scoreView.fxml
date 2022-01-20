@@ -29,7 +29,7 @@
         </ListView>
     </center>
     <bottom>
-        <Button mnemonicParsing="false" text="Retour à l'accueil" BorderPane.alignment="CENTER" onAction="#home">
+        <Button mnemonicParsing="false" text="Retour a l'accueil" BorderPane.alignment="CENTER" onAction="#home">
             <BorderPane.margin>
                 <Insets>
                     <bottom>30</bottom>

@@ -37,6 +37,31 @@
   -fx-background-color: brown;
 }
 
+.list-view {
+    -fx-background-color: black;
+    -fx-border-color: transparent;
+}
+
+.list-cell {
+    -fx-text-fill: #f9ca24;
+    -fx-font-size: 20;
+    -fx-background-color: #000000;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-width: 3px;
+    -fx-alignment: center;
+}
+
+.list-cell:odd {
+    -fx-background-color: #303030;
+    -fx-border-color: #202020;
+}
+
+.list-cell:even {
+    -fx-background-color: #202020;
+    -fx-border-color: #303030;
+}
+
 #titleText {
     -fx-font-size: 40;
     -fx-margin: 20;
