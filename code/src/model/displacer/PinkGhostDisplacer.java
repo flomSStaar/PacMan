@@ -10,6 +10,8 @@ import java.util.List;
 
 public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObserver {
 
+    private Direction save = Direction.NONE;
+
     /**
      * Cree une instance de PinkGhostDisplacer
      *
@@ -26,6 +28,10 @@ public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObser
         if (isEatable || hasBeenEaten)
             super.onLoop();
         else {
+            if(direction == Direction.NONE)
+            {
+                direction = save;
+            }
             if (h % 15 == 0) {
                 if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + directionFuture.getDx(), super.entity.getY() + directionFuture.getDy()) && directionFuture != Direction.NONE) {
                     if (!((entity.getX() <= 0 || entity.getX() >= 420) && (directionFuture == Direction.UP || directionFuture == Direction.DOWN))) {
@@ -36,6 +42,12 @@ public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObser
                 }
             }
             if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + direction.getDx(), super.entity.getY() + direction.getDy())) {
+                moveEntity();
+            }
+            else
+            {
+                save = direction;
+                direction = Direction.NONE;
                 moveEntity();
             }
             h++;
