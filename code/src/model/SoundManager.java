@@ -4,16 +4,23 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.util.Random;
+
 public class SoundManager {
 
-    private final MediaPlayer music = new MediaPlayer(new Media(getClass().getResource("/sound/Music.wav").toExternalForm()));
+    private final MediaPlayer[] music = new MediaPlayer[5];
     private final MediaPlayer pacmanMusic = new MediaPlayer(new Media(getClass().getResource("/sound/pacman_intermission.wav").toExternalForm()));
     private final AudioClip eatCandy = new AudioClip(getClass().getResource("/sound/pacman_chomp.wav").toExternalForm());
     private final AudioClip eatGhost = new AudioClip(getClass().getResource("/sound/pacman_eatghost.wav").toExternalForm());
     private final AudioClip deathPacman = new AudioClip(getClass().getResource("/sound/pacman_death.wav").toExternalForm());
+    private int numMusic = 0;
+    private Random rand = new Random();
 
     public SoundManager() {
-        music.setVolume(0.5);
+        for(int i = 0; i < 5; i++) {
+            music[i] = new MediaPlayer(new Media(getClass().getResource("/sound/Music" + i + ".wav").toExternalForm()));
+            music[i].setVolume(0.5);
+        }
     }
 
     public void playMusicPacman() {
@@ -26,12 +33,13 @@ public class SoundManager {
     }
 
     public void playMusic() {
-        music.setAutoPlay(true);
+        numMusic = rand.nextInt(5);
+        music[numMusic].setAutoPlay(true);
     }
 
     public void stopMusic() {
-        music.setAutoPlay(false);
-        music.stop();
+        music[numMusic].setAutoPlay(false);
+        music[numMusic].stop();
     }
 
     public void eatCandy() {
