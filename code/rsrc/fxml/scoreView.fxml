@@ -4,15 +4,37 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ScoreView"
             id="">
     <top>
-        <Label text="Scores" BorderPane.alignment="CENTER"/>
+        <Label text="Scores" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                    <Insets>
+                        <top>30</top>
+                        <bottom>30</bottom>
+                    </Insets>
+            </BorderPane.margin>
+        </Label>
     </top>
     <center>
-        <ListView BorderPane.alignment="CENTER" fx:id="playerScoreListView"/>
+        <ListView BorderPane.alignment="CENTER" fx:id="playerScoreListView">
+            <BorderPane.margin>
+                <Insets>
+                    <bottom>30</bottom>
+                    <left>30</left>
+                    <right>30</right>
+                </Insets>
+            </BorderPane.margin>
+        </ListView>
     </center>
     <bottom>
-        <Button mnemonicParsing="false" text="Retour à l'accueil" BorderPane.alignment="CENTER" onAction="#home"/>
+        <Button mnemonicParsing="false" text="Retour à l'accueil" BorderPane.alignment="CENTER" onAction="#home">
+            <BorderPane.margin>
+                <Insets>
+                    <bottom>30</bottom>
+                </Insets>
+            </BorderPane.margin>
+        </Button>
     </bottom>
 </BorderPane>

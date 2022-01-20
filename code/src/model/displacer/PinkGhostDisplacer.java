@@ -9,6 +9,14 @@ import model.utils.Direction;
 import java.util.List;
 
 public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObserver {
+
+    /**
+     * Cree une instance de PinkGhostDisplacer
+     *
+     * @param entities Liste des entites
+     * @param ghost    Fantome a deplacer
+     * @param pacMan   PacMan
+     */
     public PinkGhostDisplacer(List<BaseEntity> entities, Ghost ghost, PacMan pacMan) {
         super(entities, ghost, pacMan);
     }

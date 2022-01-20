@@ -107,14 +107,14 @@ public abstract class GhostDisplacer extends BaseDisplacer {
     }
 
     /**
-     * Trouve le plus court chemin pour arriver a PacMan
+     * Trouve la prochaine direction pour qu'un point aille vers un autre point
      *
-     * @param lab
-     * @param cx
-     * @param cy
-     * @param mx
-     * @param my
-     * @return
+     * @param lab Tableau de boolean des murs
+     * @param cx position en x du point qui va se déplacer
+     * @param cy position en y du point qui va se déplacer
+     * @param mx position en x du point vers ou aller
+     * @param my position en x du point vers ou aller
+     * @return la prochaine direction pour qu'un point aille vers un autre point
      */
     protected Direction findShortestPath(boolean[][] lab, int cx, int cy, int mx, int my) {
         Queue<Node> queue = new ArrayDeque<>();
@@ -167,6 +167,9 @@ public abstract class GhostDisplacer extends BaseDisplacer {
         h++;
     }
 
+    /**
+     * Noeud qui permet de se souvenir de la direction utiliser a la base
+     */
     private static class Node {
         final int x;
         final int y;
