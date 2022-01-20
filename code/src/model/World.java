@@ -51,7 +51,7 @@ public class World implements EatObserver, BaseObserver {
 
     private final List<BaseEntity> eatenGhost = new ArrayList<>();
 
-    private SoundManager soundManager;
+    private final SoundManager soundManager=new SoundManager();
 
     /**
      * Cree une instance de World
@@ -77,7 +77,6 @@ public class World implements EatObserver, BaseObserver {
             initEater();
             initPacMan();
             initGhosts();
-            soundManager = new SoundManager();
             isLoad = true;
         }
     }
