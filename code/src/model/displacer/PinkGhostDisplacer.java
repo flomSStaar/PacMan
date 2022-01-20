@@ -9,7 +9,6 @@ import model.utils.Direction;
 import java.util.List;
 
 public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObserver {
-
     private Direction save = Direction.NONE;
 
     /**
@@ -28,8 +27,7 @@ public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObser
         if (isEatable || hasBeenEaten)
             super.onLoop();
         else {
-            if(direction == Direction.NONE)
-            {
+            if (direction == Direction.NONE) {
                 direction = save;
             }
             if (h % 15 == 0) {
@@ -43,9 +41,7 @@ public class PinkGhostDisplacer extends GhostDisplacer implements DisplacerObser
             }
             if (!wallCollider.isCollide(entities, super.entity, super.entity.getX() + direction.getDx(), super.entity.getY() + direction.getDy())) {
                 moveEntity();
-            }
-            else
-            {
+            } else {
                 save = direction;
                 direction = Direction.NONE;
                 moveEntity();
