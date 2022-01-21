@@ -59,6 +59,8 @@ public class Game {
         Scene scene = new Scene(p);
         scene.getStylesheets().add(getClass().getResource("/css/stylesheet.css").toExternalForm());
         this.stage.setScene(scene);
+        this.stage.setHeight(stage.getHeight());
+        this.stage.show();
     }
 
     /**
@@ -71,6 +73,8 @@ public class Game {
         Scene scene = new Scene(p);
         scene.getStylesheets().add(getClass().getResource("/css/stylesheet.css").toExternalForm());
         this.stage.setScene(scene);
+        this.stage.setHeight(stage.getHeight());
+        this.stage.show();
     }
 
     /**
@@ -106,6 +110,7 @@ public class Game {
             world.startWorld();
             stage.addEventHandler(KeyEvent.KEY_PRESSED, this::onKeyPressed);
             stage.setScene(scene);
+            this.stage.setHeight(stage.getHeight());
             stage.show();
 
             isGameLaunched = true;
@@ -181,6 +186,8 @@ public class Game {
                 Scene scene = new Scene(p);
                 scene.getStylesheets().add(getClass().getResource("/css/stylesheet.css").toExternalForm());
                 this.stage.setScene(scene);
+                this.stage.setHeight(stage.getHeight());
+                this.stage.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
