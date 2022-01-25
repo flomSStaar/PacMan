@@ -18672,6 +18672,7 @@
 											"top": 1581,
 											"width": 339.7392578125,
 											"height": 13,
+											"underline": true,
 											"text": "+getPacManSprite(): Image[]",
 											"horizontalAlignment": 0
 										},
@@ -18690,6 +18691,7 @@
 											"top": 1596,
 											"width": 339.7392578125,
 											"height": 13,
+											"underline": true,
 											"text": "+getRedGhostSprite(): Image[]",
 											"horizontalAlignment": 0
 										},
@@ -18708,6 +18710,7 @@
 											"top": 1611,
 											"width": 339.7392578125,
 											"height": 13,
+											"underline": true,
 											"text": "+getPinkGhostSprite(): Image",
 											"horizontalAlignment": 0
 										},
@@ -18726,6 +18729,7 @@
 											"top": 1626,
 											"width": 339.7392578125,
 											"height": 13,
+											"underline": true,
 											"text": "+getBlueGhostSprite(): Image[]",
 											"horizontalAlignment": 0
 										},
@@ -18744,6 +18748,7 @@
 											"top": 1641,
 											"width": 339.7392578125,
 											"height": 13,
+											"underline": true,
 											"text": "+getOrangeGhostSprite(): Image",
 											"horizontalAlignment": 0
 										},
@@ -18762,6 +18767,7 @@
 											"top": 1656,
 											"width": 339.7392578125,
 											"height": 13,
+											"underline": true,
 											"text": "+getEatableGhostSprite(): Image[]",
 											"horizontalAlignment": 0
 										},
@@ -18780,6 +18786,7 @@
 											"top": 1671,
 											"width": 339.7392578125,
 											"height": 13,
+											"underline": true,
 											"text": "+getGhostEyeSprite(): Image[]",
 											"horizontalAlignment": 0
 										}
@@ -30334,6 +30341,7 @@
 								"$ref": "AAAAAAF+aePgKmALsP8="
 							},
 							"name": "getPacManSprite",
+							"isStatic": true,
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -30354,6 +30362,7 @@
 								"$ref": "AAAAAAF+aePgKmALsP8="
 							},
 							"name": "getRedGhostSprite",
+							"isStatic": true,
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -30374,6 +30383,7 @@
 								"$ref": "AAAAAAF+aePgKmALsP8="
 							},
 							"name": "getPinkGhostSprite",
+							"isStatic": true,
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -30394,6 +30404,7 @@
 								"$ref": "AAAAAAF+aePgKmALsP8="
 							},
 							"name": "getBlueGhostSprite",
+							"isStatic": true,
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -30414,6 +30425,7 @@
 								"$ref": "AAAAAAF+aePgKmALsP8="
 							},
 							"name": "getOrangeGhostSprite",
+							"isStatic": true,
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -30434,6 +30446,7 @@
 								"$ref": "AAAAAAF+aePgKmALsP8="
 							},
 							"name": "getEatableGhostSprite",
+							"isStatic": true,
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -30454,6 +30467,7 @@
 								"$ref": "AAAAAAF+aePgKmALsP8="
 							},
 							"name": "getGhostEyeSprite",
+							"isStatic": true,
 							"parameters": [
 								{
 									"_type": "UMLParameter",
